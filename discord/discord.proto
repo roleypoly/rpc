@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+service Discord {
+  rpc RootGetAllServers(Empty) returns (ServerSlugPayload) {}
+}
+
+message Empty {
+}
+
+message ServerSlug {
+  string id = 1;
+  string name = 2;
+  string icon = 3;
+  int32 memberCount = 4;
+  int32 roleCount = 5;
+}
+
+message ServerSlugPayload {
+  repeated ServerSlug servers = 1;
+}
