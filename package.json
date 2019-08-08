@@ -1,0 +1,12 @@
+{
+  "name": "@roleypoly/rpc",
+  "version": "3.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:roleypoly/rpc.git",
+  "author": "Katie Thornhill <katie.thornhill@citrix.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "ts-protoc-gen": "^0.10.0"
+  }
+}

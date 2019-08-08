@@ -1,20 +1,55 @@
 syntax = "proto3";
 
 service Discord {
-  rpc RootGetAllServers(Empty) returns (ServerSlugPayload) {}
+  rpc ListServers(Empty) returns (GuildList) {}
 }
 
 message Empty {
 }
 
-message ServerSlug {
-  string id = 1;
-  string name = 2;
-  string icon = 3;
-  int32 memberCount = 4;
-  int32 roleCount = 5;
+message GuildList {
+  repeated Guild guilds = 1;
 }
 
-message ServerSlugPayload {
-  repeated ServerSlug servers = 1;
+message Guild {
+  string ID = 1;
+  string name = 2;
+  string icon = 3;
+  string ownerID = 4;
+  int32 memberCount = 5;
+  string splash = 6;  
+}
+
+message GuildRoles {
+  string ID = 1;
+  repeated Role roles = 2;
+}
+
+message GuildMembers {
+  string ID = 1;
+  repeated Member members = 2;
+}
+
+message Role {
+  string ID = 1;
+  string name = 2;
+  int64 permissions = 3;
+  int32 color = 4;
+  int32 position = 5;
+  bool managed = 6;
+}
+
+message Member {
+  string guildID = 1;
+  repeated string roles = 3;
+  string nick = 4;
+  User user = 5;
+}
+
+message User {
+  string ID = 1;
+  string username = 2;
+  string discriminator = 3;
+  string avatar = 4;
+  string bot = 5;
 }
