@@ -12,3 +12,9 @@ In both cases, you may directly import a sub-directory, e.g. `@roleypoly/rpc/dis
 ## Developing
 
 Make your changes **only** to .proto files, run `./gen.sh` to update definitions. All `index.js` and `index.d.ts` files are generated for you.
+
+To update definitions, you'll need to run `yarn` for **protoc-gen-ts**, and fetch **protoc**, and **protoc-gen-go** on your own.
+
+## Using
+
+You are free to use my definitions as you see fit. They might be useful in your app, or they might not. 
