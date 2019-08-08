@@ -4,8 +4,8 @@ This package includes automatically generated files based on protobuf definition
 
 ## Importing
 
-**Go:** `go get -u github.com/roleypoly/rpc`
-**JS/TS:** `yarn add @roleypoly/rpc`
+- **Go:** `go get -u github.com/roleypoly/rpc`
+- **JS/TS:** `yarn add @roleypoly/rpc`
 
 In both cases, you may directly import a sub-directory, e.g. `@roleypoly/rpc/discord` or `github.com/roleypoly/rpc/discord`, which resolves to the generated protobuf file.
 
