@@ -1,2 +1,2 @@
 
-import * as discord from './discord/discord_pb'; export {discord}
+import * as discord from './discord'; export {discord}
