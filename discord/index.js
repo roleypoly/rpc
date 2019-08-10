@@ -1,1 +1,1 @@
-module.exports = require('./discord_pb')
+module.exports = { ...require('./discord_pb'), ...require('./discord_pb_service') }

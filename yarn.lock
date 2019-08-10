@@ -2,14 +2,14 @@
 # yarn lockfile v1
 
 
+"@roleypoly/ts-protoc-gen@^1.0.0-promises.1":
+  version "1.0.0-promises.1"
+  resolved "https://registry.yarnpkg.com/@roleypoly/ts-protoc-gen/-/ts-protoc-gen-1.0.0-promises.1.tgz#bad910abfb53f9a849fa0c18cc26cd15c1b720d5"
+  integrity sha512-0O5nG1/OvgHhckkazYGFwD7HNAUEQU+BIVJZwXay18O2ISUbly4r+/1RkydsW3ANJI24pkXf/M7sWzVUevFp1g==
+  dependencies:
+    google-protobuf "^3.6.1"
+
 google-protobuf@^3.6.1:
   version "3.9.1"
   resolved "https://registry.yarnpkg.com/google-protobuf/-/google-protobuf-3.9.1.tgz#87e6a16b7fb16405b515a6c6622d5ace45578d86"
   integrity sha512-tkz7SVwBktFbqFK3teXFUY/VM57+mbUgV9bSD+sZH1ocHJ7uk7BfEWMRdU24dd0ciUDokreA7ghH2fYFIczQdw==
-
-ts-protoc-gen@^0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/ts-protoc-gen/-/ts-protoc-gen-0.10.0.tgz#f708d99be59ad0be6bdce6f4fe893ec41757d2c9"
-  integrity sha512-EEbgDWNHK3CvcNhmib94I4HMO23qLddjLRdXW8EUE11VJxbi3n5J0l2DiX/L1pijOaPTkbEoRK+zQinKgKGqsw==
-  dependencies:
-    google-protobuf "^3.6.1"

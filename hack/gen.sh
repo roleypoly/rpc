@@ -13,9 +13,9 @@ write_node_files () {
   echo "module.exports.$1 = require('./$1')" \
    | tee -a $ROOT/index.js >/dev/null
 
-  echo "module.exports = require('./$1_pb')" \
+  echo "module.exports = { ...require('./$1_pb'), ...require('./$1_pb_service') }" \
    | tee index.js >/dev/null
-  echo "export * from './$1_pb'" \
+  echo "export * from './$1_pb'; export * from './$1_pb_service'" \
    | tee index.d.ts >/dev/null
 }
 
@@ -30,7 +30,7 @@ for d in $DIRS; do
         --proto_path=$GOPATH/src:. \
         --plugin="protoc-gen-ts=${PROTOC_GEN_TS_PATH}" \
         --js_out="import_style=commonjs,binary:." \
-        --ts_out="." \
+        --ts_out="service=true:." \
         --go_out="plugins=grpc:." \
           *.proto
 

@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
-    "ts-protoc-gen": "^0.10.0"
+    "@roleypoly/ts-protoc-gen": "^1.0.0-promises.1"
   },
   "peerDependencies": {
     "@improbable-eng/grpc-web": "*",
