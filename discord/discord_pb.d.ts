@@ -19,6 +19,30 @@ export namespace Empty {
   }
 }
 
+export class IDQuery extends jspb.Message {
+  getMemberid(): string;
+  setMemberid(value: string): void;
+
+  getGuildid(): string;
+  setGuildid(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): IDQuery.AsObject;
+  static toObject(includeInstance: boolean, msg: IDQuery): IDQuery.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: IDQuery, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): IDQuery;
+  static deserializeBinaryFromReader(message: IDQuery, reader: jspb.BinaryReader): IDQuery;
+}
+
+export namespace IDQuery {
+  export type AsObject = {
+    memberid: string,
+    guildid: string,
+  }
+}
+
 export class GuildList extends jspb.Message {
   clearGuildsList(): void;
   getGuildsList(): Array<Guild>;
@@ -222,8 +246,8 @@ export class User extends jspb.Message {
   getAvatar(): string;
   setAvatar(value: string): void;
 
-  getBot(): string;
-  setBot(value: string): void;
+  getBot(): boolean;
+  setBot(value: boolean): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): User.AsObject;
@@ -241,7 +265,7 @@ export namespace User {
     username: string,
     discriminator: string,
     avatar: string,
-    bot: string,
+    bot: boolean,
   }
 }
 

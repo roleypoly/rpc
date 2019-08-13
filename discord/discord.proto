@@ -2,9 +2,18 @@ syntax = "proto3";
 
 service Discord {
   rpc ListServers(Empty) returns (GuildList) {}
+  rpc GetGuild(IDQuery) returns (Guild) {}
+
+  rpc GetMember(IDQuery) returns (Member) {}
+  rpc UpdateMember(Member) returns (Member) {}
 }
 
 message Empty {
+}
+
+message IDQuery {
+  string MemberID = 1;
+  string GuildID = 2;
 }
 
 message GuildList {
@@ -51,5 +60,5 @@ message User {
   string username = 2;
   string discriminator = 3;
   string avatar = 4;
-  string bot = 5;
+  bool bot = 5;
 }
