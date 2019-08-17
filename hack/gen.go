@@ -134,7 +134,7 @@ func writeGlobalJS() error {
 
 	jsContents.WriteString("module.exports = {\n")
 	for _, export := range globalJSExports {
-		jsName := ToCamel(strings.Replace(export, "/", "_", -1))
+		jsName := toCamel(strings.Replace(export, "/", "_", -1))
 		tsContents.WriteString(fmt.Sprintf("import * as %s from './%s'\n", jsName, export))
 		jsContents.WriteString(fmt.Sprintf("  %s: require('./%s'),\n", jsName, export))
 	}
@@ -257,6 +257,7 @@ func runProtoc(dir string, flags ...string) error {
 	return err
 }
 
+// -- ripped from https://stackoverflow.com/a/26809999 --
 func glob(dir string, ext string) ([]string, error) {
 
 	files := []string{}
@@ -273,6 +274,7 @@ func glob(dir string, ext string) ([]string, error) {
 	return files, err
 }
 
+// -- ripped from https://github.com/iancoleman/strcase --
 var numberSequence = regexp.MustCompile(`([a-zA-Z])(\d+)([a-zA-Z]?)`)
 var numberReplacement = []byte(`$1 $2 $3`)
 
@@ -310,7 +312,6 @@ func toCamelInitCase(s string, initCase bool) string {
 	return n
 }
 
-// ToCamel converts a string to CamelCase
-func ToCamel(s string) string {
+func toCamel(s string) string {
 	return toCamelInitCase(s, true)
 }
