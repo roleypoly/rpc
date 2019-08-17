@@ -1,14 +1,16 @@
 syntax = "proto3";
 
+package com.roleypoly.discord;
+
+import "google/protobuf/empty.proto";
+
 service Discord {
-  rpc ListServers(Empty) returns (GuildList) {}
+  rpc ListGuilds(google.protobuf.Empty) returns (GuildList) {}
   rpc GetGuild(IDQuery) returns (Guild) {}
+  rpc GetGuildsByMember(IDQuery) returns (GuildList) {}
 
   rpc GetMember(IDQuery) returns (Member) {}
   rpc UpdateMember(Member) returns (Member) {}
-}
-
-message Empty {
 }
 
 message IDQuery {

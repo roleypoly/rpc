@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@roleypoly/ts-protoc-gen@^1.0.0-promises.1":
-  version "1.0.0-promises.1"
-  resolved "https://registry.yarnpkg.com/@roleypoly/ts-protoc-gen/-/ts-protoc-gen-1.0.0-promises.1.tgz#bad910abfb53f9a849fa0c18cc26cd15c1b720d5"
-  integrity sha512-0O5nG1/OvgHhckkazYGFwD7HNAUEQU+BIVJZwXay18O2ISUbly4r+/1RkydsW3ANJI24pkXf/M7sWzVUevFp1g==
+"@roleypoly/ts-protoc-gen@^1.0.1-promises.1":
+  version "1.0.1-promises.1"
+  resolved "https://registry.yarnpkg.com/@roleypoly/ts-protoc-gen/-/ts-protoc-gen-1.0.1-promises.1.tgz#6102bb3539d3100957ad54df474bce8ea915aa45"
+  integrity sha512-I9OLiFRusAFH3uYG186BzheXNiEMKr9HpLUD1/Q4/gYNH+LwJhDAdBrHSXoi/beTq/MLomtjPxvjfOzl46996g==
   dependencies:
     google-protobuf "^3.6.1"
 

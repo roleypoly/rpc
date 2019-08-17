@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package com.roleypoly.auth.internal;
+
+service AuthInternal {
+    rpc GetSessionChallenge(UserSlug) returns (AuthChallenge) {}
+}
+
+message UserSlug {
+    string userID = 1;
+}
+
+message AuthChallenge {
+    string userID = 1;
+    string magicUrl = 2;
+    string magicWords = 3;
+}

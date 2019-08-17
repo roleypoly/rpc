@@ -1,2 +1,2 @@
+import * as AuthClient from './auth/client'
 
-import * as discord from './discord'; export {discord}

@@ -6,8 +6,11 @@
   "author": "Katie Thornhill <katie@kat.cafe>",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "generate": "go run hack/gen.go"
+  },
   "devDependencies": {
-    "@roleypoly/ts-protoc-gen": "^1.0.0-promises.1"
+    "@roleypoly/ts-protoc-gen": "^1.0.1-promises.1"
   },
   "peerDependencies": {
     "@improbable-eng/grpc-web": "*",

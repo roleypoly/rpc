@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package com.roleypoly.auth.client;
+
+service AuthClient {
+    
+}

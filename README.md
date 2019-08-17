@@ -15,6 +15,24 @@ Make your changes **only** to .proto files, run `go generate` to update definiti
 
 To update definitions, you'll need to run `yarn` for **protoc-gen-ts**, and fetch **protoc**, and **protoc-gen-go** on your own.
 
+### Making new packages
+
+All packages for this repo need to have a protobuf file, and `.genconfig` with every generator needed on separate lines.
+
+For instance, a shared gRPC-Web and gRPC-Go package will want to have a `.genconfig` with the following contents:
+```
+go
+js
+ts
+```
+
+These are automatically configured to these arguments to protoc:
+- `ts` => `--ts_out=services=true:.`
+- `js` => `--js_out=import_style=commonjs,binary:.`
+- `go` => `--go_out=plugins=grpc:.`
+
+If more are needed, please add them to `./hack/gen.sh`.
+
 ## Using
 
 You are free to use my definitions as you see fit. They might be useful in your app, or they might not. 

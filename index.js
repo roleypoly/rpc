@@ -1,2 +1,4 @@
-module.exports = {}
-module.exports.discord = require('./discord')
+module.exports = {
+  AuthClient: require('./auth/client'),
+}
+
