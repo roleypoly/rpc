@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+"@improbable-eng/grpc-web@*":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@improbable-eng/grpc-web/-/grpc-web-0.11.0.tgz#c9d4097b4a947384e3dc0234299d910668a6e7ad"
+  integrity sha512-SS2YP6iHyZ7TSSuCShnSo9xJyUkNZHEhEPJpTSUcNoULe1LuLEk52OKHY+VW9XB0qXstejpHgZq2Hx+69PThiw==
+  dependencies:
+    browser-headers "^0.4.0"
+
 "@roleypoly/ts-protoc-gen@^1.0.1-promises.1":
   version "1.0.1-promises.1"
   resolved "https://registry.yarnpkg.com/@roleypoly/ts-protoc-gen/-/ts-protoc-gen-1.0.1-promises.1.tgz#6102bb3539d3100957ad54df474bce8ea915aa45"
@@ -9,7 +16,12 @@
   dependencies:
     google-protobuf "^3.6.1"
 
-google-protobuf@^3.6.1:
+browser-headers@^0.4.0:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/browser-headers/-/browser-headers-0.4.1.tgz#4308a7ad3b240f4203dbb45acedb38dc2d65dd02"
+  integrity sha512-CA9hsySZVo9371qEHjHZtYxV2cFtVj5Wj/ZHi8ooEsrtm4vOnl9Y9HmyYWk9q+05d7K3rdoAE0j3MVEFVvtQtg==
+
+google-protobuf@*, google-protobuf@^3.6.1:
   version "3.9.1"
   resolved "https://registry.yarnpkg.com/google-protobuf/-/google-protobuf-3.9.1.tgz#87e6a16b7fb16405b515a6c6622d5ace45578d86"
   integrity sha512-tkz7SVwBktFbqFK3teXFUY/VM57+mbUgV9bSD+sZH1ocHJ7uk7BfEWMRdU24dd0ciUDokreA7ghH2fYFIczQdw==
