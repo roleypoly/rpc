@@ -1,6 +1,6 @@
 {
   "name": "@roleypoly/rpc",
-  "version": "3.0.0-alpha.4",
+  "version": "3.0.0-alpha.5",
   "main": "index.js",
   "repository": "git@github.com:roleypoly/rpc.git",
   "author": "Katie Thornhill <katie@kat.cafe>",
@@ -12,7 +12,7 @@
   "devDependencies": {
     "@roleypoly/ts-protoc-gen": "^1.0.1-promises.1"
   },
-  "peerDependencies": {
+  "dependencies": {
     "@improbable-eng/grpc-web": "*",
     "google-protobuf": "*"
   }
