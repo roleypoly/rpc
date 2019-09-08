@@ -132,12 +132,16 @@ func writeGlobalJS() error {
 	jsContents := strings.Builder{}
 	tsContents := strings.Builder{}
 
+	tsContents.WriteString("export { Empty } from 'google-protobuf/google/protobuf/empty_pb'\n")
 	jsContents.WriteString("module.exports = {\n")
+	jsContents.WriteString("  Empty: require('google-protobuf/google/protobuf/empty_pb').Empty,\n")
+
 	for _, export := range globalJSExports {
 		jsName := toCamel(strings.Replace(export, "/", "_", -1))
-		tsContents.WriteString(fmt.Sprintf("import * as %s from './%s'\n", jsName, export))
+		tsContents.WriteString(fmt.Sprintf("export %s from './%s'\n", jsName, export))
 		jsContents.WriteString(fmt.Sprintf("  %s: require('./%s'),\n", jsName, export))
 	}
+
 	tsContents.WriteString("\n")
 	jsContents.WriteString("}\n\n")
 
