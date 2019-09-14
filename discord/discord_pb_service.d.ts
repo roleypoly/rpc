@@ -23,6 +23,15 @@ type DiscordGetGuild = {
   readonly responseType: typeof discord_pb.Guild;
 };
 
+type DiscordGetGuildRoles = {
+  readonly methodName: string;
+  readonly service: typeof Discord;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof discord_pb.IDQuery;
+  readonly responseType: typeof discord_pb.GuildRoles;
+};
+
 type DiscordGetGuildsByMember = {
   readonly methodName: string;
   readonly service: typeof Discord;
@@ -54,6 +63,7 @@ export class Discord {
   static readonly serviceName: string;
   static readonly ListGuilds: DiscordListGuilds;
   static readonly GetGuild: DiscordGetGuild;
+  static readonly GetGuildRoles: DiscordGetGuildRoles;
   static readonly GetGuildsByMember: DiscordGetGuildsByMember;
   static readonly GetMember: DiscordGetMember;
   static readonly UpdateMember: DiscordUpdateMember;
@@ -99,6 +109,10 @@ export class DiscordClient {
     requestMessage: discord_pb.IDQuery,
     metadata?: grpc.Metadata,
   ): Promise<discord_pb.Guild>;
+  getGuildRoles(
+    requestMessage: discord_pb.IDQuery,
+    metadata?: grpc.Metadata,
+  ): Promise<discord_pb.GuildRoles>;
   getGuildsByMember(
     requestMessage: discord_pb.IDQuery,
     metadata?: grpc.Metadata,

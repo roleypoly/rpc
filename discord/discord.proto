@@ -7,10 +7,14 @@ import "google/protobuf/empty.proto";
 service Discord {
   rpc ListGuilds(google.protobuf.Empty) returns (GuildList) {}
   rpc GetGuild(IDQuery) returns (Guild) {}
+  rpc GetGuildRoles(IDQuery) returns (GuildRoles) {}
   rpc GetGuildsByMember(IDQuery) returns (GuildList) {}
 
   rpc GetMember(IDQuery) returns (Member) {}
+  rpc GetUser(IDQuery) returns (User) {}
   rpc UpdateMember(Member) returns (Member) {}
+
+  rpc OwnUser(google.protobuf.Empty) returns (User) {}
 }
 
 message IDQuery {
@@ -63,4 +67,11 @@ message User {
   string discriminator = 3;
   string avatar = 4;
   bool bot = 5;
+}
+
+message ShardInfo {
+  int32 shards = 1;
+  int32 servers = 2;
+  int32 users = 3;
+  int32 roles = 4;
 }

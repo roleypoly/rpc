@@ -29,6 +29,15 @@ Discord.GetGuild = {
   responseType: discord_pb.Guild
 };
 
+Discord.GetGuildRoles = {
+  methodName: "GetGuildRoles",
+  service: Discord,
+  requestStream: false,
+  responseStream: false,
+  requestType: discord_pb.IDQuery,
+  responseType: discord_pb.GuildRoles
+};
+
 Discord.GetGuildsByMember = {
   methodName: "GetGuildsByMember",
   service: Discord,
@@ -88,6 +97,28 @@ DiscordClient.prototype.listGuilds = function listGuilds(requestMessage, metadat
 DiscordClient.prototype.getGuild = function getGuild(requestMessage, metadata) {
   return new Promise((resolve, reject) => {
     grpc.unary(Discord.GetGuild, {
+      request: requestMessage,
+      host: this.serviceHost,
+      metadata: metadata,
+      transport: this.options.transport,
+      debug: this.options.debug,
+      onEnd: function (response) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          reject(err);
+        } else {
+          resolve(response.message);
+        }
+      }
+    });
+  });
+};
+
+DiscordClient.prototype.getGuildRoles = function getGuildRoles(requestMessage, metadata) {
+  return new Promise((resolve, reject) => {
+    grpc.unary(Discord.GetGuildRoles, {
       request: requestMessage,
       host: this.serviceHost,
       metadata: metadata,
