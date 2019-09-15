@@ -1,12 +1,5 @@
 name: Validate RPCs
-
-on:
-  push:
-    branch:
-      - "!master"
-  pull_request:
-    branch:
-      - "*"
+on: [push, pull_request]
 
 jobs:
   validate:
@@ -17,6 +10,19 @@ jobs:
         uses: actions/setup-go@master
         with:
           go-version: 1.13.x
+
+      - name: Ensure Node
+        uses: actions/setup-node@master
+        with:
+          node-version: 12.x
+
+      - name: Ensure protoc
+        uses: roleypoly/actions-setup-protoc@master
+        with:
+          protoc-version: "3.9.1"
+
+      - name: Ensure protoc-gen-go
+        run: go get github.com/golang/protobuf/protoc-gen-go
 
       - uses: actions/checkout@v1
 

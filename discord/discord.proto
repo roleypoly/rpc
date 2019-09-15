@@ -5,7 +5,7 @@ package com.roleypoly.discord;
 import "google/protobuf/empty.proto";
 
 service Discord {
-  rpc ListGuilds(google.protobuf.Empty) returns (GuildList) {}
+  rpc ListGuilds(google.protobuf.Empty) returns (GuldList) {}
   rpc GetGuild(IDQuery) returns (Guild) {}
   rpc GetGuildRoles(IDQuery) returns (GuildRoles) {}
   rpc GetGuildsByMember(IDQuery) returns (GuildList) {}
