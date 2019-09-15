@@ -21,18 +21,14 @@ jobs:
         with:
           protoc-version: "3.9.1"
 
-      - name: Ensure protoc-gen-go & protoc-gen-ts
-        run: |
-          go get github.com/golang/protobuf/protoc-gen-go
-          npm install -g @roleypoly/ts-protoc-gen
-
       - uses: actions/checkout@v1
 
-      - name: NPM Install
-        run: npm i
-
       - name: Generate
-        run: go generate
+        run: |
+          export PATH=$PATH:$(go env GOPATH)/bin
+          go get github.com/golang/protobuf/protoc-gen-go
+          npm install -g @roleypoly/ts-protoc-gen
+          go generate
 
       - name: Check Diff
         run: git diff --exit-code
