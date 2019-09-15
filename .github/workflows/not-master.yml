@@ -1,7 +1,9 @@
+name: Validate RPCs
+
 on:
   push:
     branch:
-      - !master
+      - "!master"
   pull_request:
     branch:
       - "*"
