@@ -34,8 +34,8 @@ jobs:
           npm i
           go generate
 
-      - name: Check Diff
-        run: git diff --exit-code
+      - name: Check if dirty
+        run: test -z "`git status -s`
 
   publish:
     name: Build & Publish
