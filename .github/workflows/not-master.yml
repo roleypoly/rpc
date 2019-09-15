@@ -23,7 +23,7 @@ jobs:
 
       - uses: actions/checkout@v1
 
-      - name: Fetch Dependencies
+      - name: Fetch Dependencies & Generate
         run: |
           export PATH=$PATH:$(go env GOPATH)/bin
           go get github.com/golang/protobuf/protoc-gen-go
