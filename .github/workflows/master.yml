@@ -15,10 +15,24 @@ jobs:
         with:
           go-version: 1.13.x
 
+      - name: Ensure Node
+        uses: actions/setup-node@master
+        with:
+          node-version: 12.x
+
+      - name: Ensure protoc
+        uses: roleypoly/actions-setup-protoc@master
+        with:
+          protoc-version: "3.9.1"
+
       - uses: actions/checkout@v1
 
-      - name: Generate
-        run: go generate
+      - name: Fetch Dependencies & Generate
+        run: |
+          export PATH=$PATH:$(go env GOPATH)/bin
+          go get github.com/golang/protobuf/protoc-gen-go
+          npm i
+          go generate
 
       - name: Check Diff
         run: git diff --exit-code
