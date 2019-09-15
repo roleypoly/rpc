@@ -50,6 +50,15 @@ type DiscordGetMember = {
   readonly responseType: typeof discord_pb.Member;
 };
 
+type DiscordGetUser = {
+  readonly methodName: string;
+  readonly service: typeof Discord;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof discord_pb.IDQuery;
+  readonly responseType: typeof discord_pb.User;
+};
+
 type DiscordUpdateMember = {
   readonly methodName: string;
   readonly service: typeof Discord;
@@ -59,6 +68,15 @@ type DiscordUpdateMember = {
   readonly responseType: typeof discord_pb.Member;
 };
 
+type DiscordOwnUser = {
+  readonly methodName: string;
+  readonly service: typeof Discord;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof google_protobuf_empty_pb.Empty;
+  readonly responseType: typeof discord_pb.User;
+};
+
 export class Discord {
   static readonly serviceName: string;
   static readonly ListGuilds: DiscordListGuilds;
@@ -66,7 +84,9 @@ export class Discord {
   static readonly GetGuildRoles: DiscordGetGuildRoles;
   static readonly GetGuildsByMember: DiscordGetGuildsByMember;
   static readonly GetMember: DiscordGetMember;
+  static readonly GetUser: DiscordGetUser;
   static readonly UpdateMember: DiscordUpdateMember;
+  static readonly OwnUser: DiscordOwnUser;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -121,9 +141,17 @@ export class DiscordClient {
     requestMessage: discord_pb.IDQuery,
     metadata?: grpc.Metadata,
   ): Promise<discord_pb.Member>;
+  getUser(
+    requestMessage: discord_pb.IDQuery,
+    metadata?: grpc.Metadata,
+  ): Promise<discord_pb.User>;
   updateMember(
     requestMessage: discord_pb.Member,
     metadata?: grpc.Metadata,
   ): Promise<discord_pb.Member>;
+  ownUser(
+    requestMessage: google_protobuf_empty_pb.Empty,
+    metadata?: grpc.Metadata,
+  ): Promise<discord_pb.User>;
 }
 

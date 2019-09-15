@@ -56,6 +56,15 @@ Discord.GetMember = {
   responseType: discord_pb.Member
 };
 
+Discord.GetUser = {
+  methodName: "GetUser",
+  service: Discord,
+  requestStream: false,
+  responseStream: false,
+  requestType: discord_pb.IDQuery,
+  responseType: discord_pb.User
+};
+
 Discord.UpdateMember = {
   methodName: "UpdateMember",
   service: Discord,
@@ -63,6 +72,15 @@ Discord.UpdateMember = {
   responseStream: false,
   requestType: discord_pb.Member,
   responseType: discord_pb.Member
+};
+
+Discord.OwnUser = {
+  methodName: "OwnUser",
+  service: Discord,
+  requestStream: false,
+  responseStream: false,
+  requestType: google_protobuf_empty_pb.Empty,
+  responseType: discord_pb.User
 };
 
 exports.Discord = Discord;
@@ -182,9 +200,53 @@ DiscordClient.prototype.getMember = function getMember(requestMessage, metadata)
   });
 };
 
+DiscordClient.prototype.getUser = function getUser(requestMessage, metadata) {
+  return new Promise((resolve, reject) => {
+    grpc.unary(Discord.GetUser, {
+      request: requestMessage,
+      host: this.serviceHost,
+      metadata: metadata,
+      transport: this.options.transport,
+      debug: this.options.debug,
+      onEnd: function (response) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          reject(err);
+        } else {
+          resolve(response.message);
+        }
+      }
+    });
+  });
+};
+
 DiscordClient.prototype.updateMember = function updateMember(requestMessage, metadata) {
   return new Promise((resolve, reject) => {
     grpc.unary(Discord.UpdateMember, {
+      request: requestMessage,
+      host: this.serviceHost,
+      metadata: metadata,
+      transport: this.options.transport,
+      debug: this.options.debug,
+      onEnd: function (response) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          reject(err);
+        } else {
+          resolve(response.message);
+        }
+      }
+    });
+  });
+};
+
+DiscordClient.prototype.ownUser = function ownUser(requestMessage, metadata) {
+  return new Promise((resolve, reject) => {
+    grpc.unary(Discord.OwnUser, {
       request: requestMessage,
       host: this.serviceHost,
       metadata: metadata,

@@ -254,3 +254,35 @@ export namespace User {
   }
 }
 
+export class ShardInfo extends jspb.Message {
+  getShards(): number;
+  setShards(value: number): void;
+
+  getServers(): number;
+  setServers(value: number): void;
+
+  getUsers(): number;
+  setUsers(value: number): void;
+
+  getRoles(): number;
+  setRoles(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ShardInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: ShardInfo): ShardInfo.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ShardInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ShardInfo;
+  static deserializeBinaryFromReader(message: ShardInfo, reader: jspb.BinaryReader): ShardInfo;
+}
+
+export namespace ShardInfo {
+  export type AsObject = {
+    shards: number,
+    servers: number,
+    users: number,
+    roles: number,
+  }
+}
+
