@@ -31,4 +31,4 @@ jobs:
           go generate
 
       - name: Check if dirty
-        run: test -z "`git status -s`"
+        run: test -z "`git status -s`" || (git status && exit 1)

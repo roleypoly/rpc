@@ -4,6 +4,8 @@ on:
   push:
     branch:
       - master
+    paths:
+      - "package.json"
 
 jobs:
   validate:
@@ -35,7 +37,7 @@ jobs:
           go generate
 
       - name: Check if dirty
-        run: test -z "`git status -s`
+        run: test -z "`git status -s` || (git status && exit 1)
 
   publish:
     name: Build & Publish
