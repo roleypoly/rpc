@@ -37,7 +37,7 @@ jobs:
           go generate
 
       - name: Check if dirty
-        run: test -z "`git status -s` || (git status && exit 1)
+        run: test -z "`git status -s`" || (git status && exit 1)
 
   publish:
     name: Build & Publish
