@@ -28,9 +28,7 @@ jobs:
           export PATH=$PATH:$(go env GOPATH)/bin
           go get github.com/golang/protobuf/protoc-gen-go
           npm i
-
-      - name: Generate
-        run: go generate
+          go generate
 
       - name: Check Diff
         run: git diff --exit-code
