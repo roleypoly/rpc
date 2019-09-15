@@ -21,8 +21,10 @@ jobs:
         with:
           protoc-version: "3.9.1"
 
-      - name: Ensure protoc-gen-go
-        run: go get github.com/golang/protobuf/protoc-gen-go
+      - name: Ensure protoc-gen-go & protoc-gen-ts
+        run: |
+          go get github.com/golang/protobuf/protoc-gen-go
+          npm install -g @roleypoly/protoc-gen-ts
 
       - uses: actions/checkout@v1
 
