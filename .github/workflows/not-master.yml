@@ -24,12 +24,12 @@ jobs:
       - name: Ensure protoc-gen-go & protoc-gen-ts
         run: |
           go get github.com/golang/protobuf/protoc-gen-go
-          npm install -g @roleypoly/protoc-gen-ts
+          npm install -g @roleypoly/ts-protoc-gen
 
       - uses: actions/checkout@v1
 
       - name: NPM Install
-        run: npm ci
+        run: npm i
 
       - name: Generate
         run: go generate
