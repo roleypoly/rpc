@@ -18,7 +18,7 @@ message FlagQuery {
 message FlagMutation {
   string ID = 1;
   Flag flag = 2;
-  int32 percent = 3;
+  float percent = 3;
 }
 
 message Flag {
@@ -26,6 +26,4 @@ message Flag {
   bool value = 2;
 }
 
-message Flags {
-    repeated Flag flags = 1;
-}
+message Flags { repeated Flag flags = 1; }
