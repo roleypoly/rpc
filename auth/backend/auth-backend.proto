@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package com.roleypoly.auth.internal;
+package com.roleypoly.auth.nackend;
 
-service AuthInternal {
+service AuthBackend {
     rpc GetSessionChallenge(UserSlug) returns (AuthChallenge) {}
 }
 
