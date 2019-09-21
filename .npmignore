@@ -1,0 +1,7 @@
+*.go
+vendor
+go.mod
+go.sum
+hack
+.github
+.genconfig
