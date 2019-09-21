@@ -23,7 +23,7 @@ jobs:
           node-version: 12.x
 
       - name: Ensure protoc
-        uses: roleypoly/actions-setup-protoc@master
+        uses: roleypoly/actions/setup-protoc@master
         with:
           protoc-version: "3.9.1"
 
