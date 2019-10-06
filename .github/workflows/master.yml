@@ -46,9 +46,16 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Publish
+      - name: Publish (NPM)
         uses: actions/npm@master
         with:
           args: publish --access public
         env:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      
+      - name: Publish (GitHub)
+        uses: actions/npm@master
+        with:
+          args: publish --access public --registry https://npm.pkg.github.com/
+        env:
+          NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
