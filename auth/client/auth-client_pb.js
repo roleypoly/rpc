@@ -1,4 +1,4 @@
-// source: auth-client.proto
+// source: auth/client/auth-client.proto
 /**
  * @fileoverview
  * @enhanceable

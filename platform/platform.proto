@@ -1,7 +1,11 @@
 syntax = "proto3";
 
 package com.roleypoly.platform;
+option go_package = "github.com/roleypoly/rpc/platform";
+
+import "discord/discord.proto";
 
 service Platform {
-
+  rpc GetGuild(com.roleypoly.discord.IDQuery)
+      returns (com.roleypoly.discord.Guild) {}
 }

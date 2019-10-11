@@ -1,7 +1,7 @@
 // package: com.roleypoly.discord
-// file: discord.proto
+// file: discord/discord.proto
 
-var discord_pb = require("./discord_pb");
+var discord_discord_pb = require("../discord/discord_pb");
 var google_protobuf_empty_pb = require("google-protobuf/google/protobuf/empty_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
@@ -17,7 +17,7 @@ Discord.ListGuilds = {
   requestStream: false,
   responseStream: false,
   requestType: google_protobuf_empty_pb.Empty,
-  responseType: discord_pb.GuildList
+  responseType: discord_discord_pb.GuildList
 };
 
 Discord.GetGuild = {
@@ -25,8 +25,8 @@ Discord.GetGuild = {
   service: Discord,
   requestStream: false,
   responseStream: false,
-  requestType: discord_pb.IDQuery,
-  responseType: discord_pb.Guild
+  requestType: discord_discord_pb.IDQuery,
+  responseType: discord_discord_pb.Guild
 };
 
 Discord.GetGuildRoles = {
@@ -34,8 +34,8 @@ Discord.GetGuildRoles = {
   service: Discord,
   requestStream: false,
   responseStream: false,
-  requestType: discord_pb.IDQuery,
-  responseType: discord_pb.GuildRoles
+  requestType: discord_discord_pb.IDQuery,
+  responseType: discord_discord_pb.GuildRoles
 };
 
 Discord.GetGuildsByMember = {
@@ -43,8 +43,8 @@ Discord.GetGuildsByMember = {
   service: Discord,
   requestStream: false,
   responseStream: false,
-  requestType: discord_pb.IDQuery,
-  responseType: discord_pb.GuildList
+  requestType: discord_discord_pb.IDQuery,
+  responseType: discord_discord_pb.GuildList
 };
 
 Discord.GetMember = {
@@ -52,8 +52,8 @@ Discord.GetMember = {
   service: Discord,
   requestStream: false,
   responseStream: false,
-  requestType: discord_pb.IDQuery,
-  responseType: discord_pb.Member
+  requestType: discord_discord_pb.IDQuery,
+  responseType: discord_discord_pb.Member
 };
 
 Discord.GetUser = {
@@ -61,8 +61,8 @@ Discord.GetUser = {
   service: Discord,
   requestStream: false,
   responseStream: false,
-  requestType: discord_pb.IDQuery,
-  responseType: discord_pb.User
+  requestType: discord_discord_pb.IDQuery,
+  responseType: discord_discord_pb.User
 };
 
 Discord.UpdateMember = {
@@ -70,8 +70,8 @@ Discord.UpdateMember = {
   service: Discord,
   requestStream: false,
   responseStream: false,
-  requestType: discord_pb.Member,
-  responseType: discord_pb.Member
+  requestType: discord_discord_pb.Member,
+  responseType: discord_discord_pb.Member
 };
 
 Discord.OwnUser = {
@@ -80,7 +80,7 @@ Discord.OwnUser = {
   requestStream: false,
   responseStream: false,
   requestType: google_protobuf_empty_pb.Empty,
-  responseType: discord_pb.User
+  responseType: discord_discord_pb.User
 };
 
 exports.Discord = Discord;

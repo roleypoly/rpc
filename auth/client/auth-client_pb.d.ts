@@ -1,5 +1,5 @@
 // package: com.roleypoly.auth.client
-// file: auth-client.proto
+// file: auth/client/auth-client.proto
 
 import * as jspb from "google-protobuf";
 

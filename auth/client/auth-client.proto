@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package com.roleypoly.auth.client;
+option go_package = "github.com/roleypoly/rpc/auth/client";
 
 service AuthClient {
     

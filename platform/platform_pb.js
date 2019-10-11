@@ -1,4 +1,4 @@
-// source: platform.proto
+// source: platform/platform.proto
 /**
  * @fileoverview
  * @enhanceable
@@ -12,3 +12,5 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
+var discord_discord_pb = require('../discord/discord_pb.js');
+goog.object.extend(proto, discord_discord_pb);

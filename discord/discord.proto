@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package com.roleypoly.discord;
+option go_package = "github.com/roleypoly/rpc/discord";
 
 import "google/protobuf/empty.proto";
 
@@ -22,9 +23,7 @@ message IDQuery {
   string GuildID = 2;
 }
 
-message GuildList {
-  repeated Guild guilds = 1;
-}
+message GuildList { repeated Guild guilds = 1; }
 
 message Guild {
   string ID = 1;
@@ -32,7 +31,7 @@ message Guild {
   string icon = 3;
   string ownerID = 4;
   int32 memberCount = 5;
-  string splash = 6;  
+  string splash = 6;
 }
 
 message GuildRoles {

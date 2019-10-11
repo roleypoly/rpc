@@ -1,7 +1,7 @@
 // package: com.roleypoly.auth.client
-// file: auth-client.proto
+// file: auth/client/auth-client.proto
 
-var auth_client_pb = require("./auth-client_pb");
+var auth_client_auth_client_pb = require("../../auth/client/auth-client_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
 var AuthClient = (function () {

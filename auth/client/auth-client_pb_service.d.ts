@@ -1,7 +1,7 @@
 // package: com.roleypoly.auth.client
-// file: auth-client.proto
+// file: auth/client/auth-client.proto
 
-import * as auth_client_pb from "./auth-client_pb";
+import * as auth_client_auth_client_pb from "../../auth/client/auth-client_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 export class AuthClient {

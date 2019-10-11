@@ -1,4 +1,4 @@
-// source: discord.proto
+// source: discord/discord.proto
 /**
  * @fileoverview
  * @enhanceable

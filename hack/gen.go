@@ -74,9 +74,9 @@ func generate(dir string) error {
 
 	config := configFromGenconfig(genconfig)
 
-	flags := getProtocFlags(config)
+	flags := getProtocFlags(config, dir)
 	if len(flags) == 0 {
-		return errors.New("No valid configuration was present.")
+		return errors.New("no valid configuration was present")
 	}
 
 	err = runProtoc(dir, flags...)
@@ -178,8 +178,8 @@ func getRelevantDirs() ([]string, error) {
 	return dirs, nil
 }
 
-func getProtocFlags(lc langconfig) []string {
-	flags := []string{}
+func getProtocFlags(lc langconfig, outputDir string) []string {
+	flags := []string{"-I" + rootDir}
 
 	if lc.JS {
 		flags = append(flags, "--js_out=import_style=commonjs,binary:.")
@@ -190,7 +190,7 @@ func getProtocFlags(lc langconfig) []string {
 	}
 
 	if lc.Go {
-		flags = append(flags, "--go_out=plugins=grpc:.")
+		flags = append(flags, "--go_out=paths=source_relative,plugins=grpc:.")
 	}
 
 	return flags
@@ -215,7 +215,6 @@ func cleanDir(dir string) {
 	files = append(files, tsFiles...)
 
 	for _, file := range files {
-		log.Println(dir, file)
 		err := os.Remove(file)
 		if err != nil {
 			log.Fatalln(err)
@@ -231,16 +230,10 @@ func runProtoc(dir string, flags ...string) error {
 	log.Printf("[%s] ... protoc\n", dir)
 
 	args := []string{
-		// "--proto-path=$GOPATH/src:.",
 		fmt.Sprintf("--plugin=protoc-gen-ts=%s/node_modules/.bin/protoc-gen-ts", rootDir),
 	}
 
-	err := os.Chdir(dir)
-	if err != nil {
-		return err
-	}
-
-	files, err := glob(".", ".proto")
+	files, err := glob(dir, ".proto")
 	if err != nil {
 		return err
 	}
@@ -257,8 +250,7 @@ func runProtoc(dir string, flags ...string) error {
 		return err
 	}
 
-	err = os.Chdir(rootDir)
-	return err
+	return nil
 }
 
 // -- ripped from https://stackoverflow.com/a/26809999 --
