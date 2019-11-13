@@ -1,5 +1,8 @@
-module.exports = {
-  ...require('./discord_pb'),
-  ...require('./discord_pb_service'),
+"use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(require("./discord_pb"));
+__export(require("./discord_pb_service"));
+//# sourceMappingURL=index.js.map

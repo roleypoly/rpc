@@ -38,6 +38,7 @@ func main() {
 	}
 
 	writeGlobalJS()
+	runTsc()
 }
 
 type langconfig struct {
@@ -104,24 +105,16 @@ func generateJs(dir string) error {
 		)
 	}
 
-	jsContents := strings.Builder{}
 	tsContents := strings.Builder{}
 
-	jsContents.WriteString("module.exports = {\n")
 	for _, export := range exports {
 		safeName := strings.Replace(filepath.Base(export), ".proto", "", -1)
-		jsContents.WriteString(fmt.Sprintf("  ...require('./%s'),\n", safeName))
-		tsContents.WriteString(fmt.Sprintf("export * from './%s'\n", safeName))
+		tsContents.WriteString(fmt.Sprintf("export * from './%s';\n", safeName))
 	}
-	jsContents.WriteString("}\n\n")
+
 	tsContents.WriteString("\n")
 
-	err := ioutil.WriteFile(filepath.Join(dir, "index.js"), []byte(jsContents.String()), 0666)
-	if err != nil {
-		return err
-	}
-
-	err = ioutil.WriteFile(filepath.Join(dir, "index.d.ts"), []byte(tsContents.String()), 0666)
+	err := ioutil.WriteFile(filepath.Join(dir, "index.ts"), []byte(tsContents.String()), 0666)
 	if err != nil {
 		return err
 	}
@@ -129,28 +122,18 @@ func generateJs(dir string) error {
 }
 
 func writeGlobalJS() error {
-	jsContents := strings.Builder{}
 	tsContents := strings.Builder{}
 
-	tsContents.WriteString("export { Empty } from 'google-protobuf/google/protobuf/empty_pb'\n")
-	jsContents.WriteString("module.exports = {\n")
-	jsContents.WriteString("  Empty: require('google-protobuf/google/protobuf/empty_pb').Empty,\n")
+	tsContents.WriteString("export { Empty } from 'google-protobuf/google/protobuf/empty_pb';\n")
 
 	for _, export := range globalJSExports {
 		jsName := toCamel(strings.Replace(export, "/", "_", -1))
-		tsContents.WriteString(fmt.Sprintf("export %s from './%s'\n", jsName, export))
-		jsContents.WriteString(fmt.Sprintf("  %s: require('./%s'),\n", jsName, export))
+		tsContents.WriteString(fmt.Sprintf("import * as %s from './%s'; export { %s };\n", jsName, export, jsName))
 	}
 
 	tsContents.WriteString("\n")
-	jsContents.WriteString("}\n\n")
 
-	err := ioutil.WriteFile(filepath.Join(rootDir, "index.js"), []byte(jsContents.String()), 0666)
-	if err != nil {
-		return err
-	}
-
-	err = ioutil.WriteFile(filepath.Join(rootDir, "index.d.ts"), []byte(tsContents.String()), 0666)
+	err := ioutil.WriteFile(filepath.Join(rootDir, "index.ts"), []byte(tsContents.String()), 0666)
 	if err != nil {
 		return err
 	}
@@ -210,9 +193,11 @@ func cleanDir(dir string) {
 	jsFiles := assertGlob(glob(dir, ".js"))
 	goFiles := assertGlob(glob(dir, ".go"))
 	tsFiles := assertGlob(glob(dir, ".ts"))
+	mapFiles := assertGlob(glob(dir, ".map"))
 
 	files := append(jsFiles, goFiles...)
 	files = append(files, tsFiles...)
+	files = append(files, mapFiles...)
 
 	for _, file := range files {
 		err := os.Remove(file)
@@ -251,6 +236,17 @@ func runProtoc(dir string, flags ...string) error {
 	}
 
 	return nil
+}
+
+func runTsc() {
+	cmd := exec.Command("npm", "run", "tsc")
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	err := cmd.Run()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 }
 
 // -- ripped from https://stackoverflow.com/a/26809999 --

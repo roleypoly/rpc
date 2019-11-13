@@ -1,5 +1,8 @@
-module.exports = {
-  ...require('./platform_pb'),
-  ...require('./platform_pb_service'),
+"use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(require("./platform_pb"));
+__export(require("./platform_pb_service"));
+//# sourceMappingURL=index.js.map
