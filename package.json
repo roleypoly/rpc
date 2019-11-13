@@ -1,6 +1,6 @@
 {
   "name": "@roleypoly/rpc",
-  "version": "3.0.0-alpha.11",
+  "version": "3.0.0-alpha.12",
   "main": "index.js",
   "repository": "git@github.com:roleypoly/rpc.git",
   "author": "Katie Thornhill <katie@kat.cafe>",
