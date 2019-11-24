@@ -1,8 +1,9 @@
-// package: com.roleypoly.discord
+// package: roleypoly.discord
 // file: discord/discord.proto
 
 import * as discord_discord_pb from "../discord/discord_pb";
 import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
+import * as shared_shared_pb from "../shared/shared_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
 type DiscordListGuilds = {
@@ -11,7 +12,7 @@ type DiscordListGuilds = {
   readonly requestStream: false;
   readonly responseStream: false;
   readonly requestType: typeof google_protobuf_empty_pb.Empty;
-  readonly responseType: typeof discord_discord_pb.GuildList;
+  readonly responseType: typeof shared_shared_pb.GuildList;
 };
 
 type DiscordGetGuild = {
@@ -19,8 +20,8 @@ type DiscordGetGuild = {
   readonly service: typeof Discord;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof discord_discord_pb.IDQuery;
-  readonly responseType: typeof discord_discord_pb.Guild;
+  readonly requestType: typeof shared_shared_pb.IDQuery;
+  readonly responseType: typeof shared_shared_pb.Guild;
 };
 
 type DiscordGetGuildRoles = {
@@ -28,8 +29,8 @@ type DiscordGetGuildRoles = {
   readonly service: typeof Discord;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof discord_discord_pb.IDQuery;
-  readonly responseType: typeof discord_discord_pb.GuildRoles;
+  readonly requestType: typeof shared_shared_pb.IDQuery;
+  readonly responseType: typeof shared_shared_pb.GuildRoles;
 };
 
 type DiscordGetGuildsByMember = {
@@ -37,8 +38,8 @@ type DiscordGetGuildsByMember = {
   readonly service: typeof Discord;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof discord_discord_pb.IDQuery;
-  readonly responseType: typeof discord_discord_pb.GuildList;
+  readonly requestType: typeof shared_shared_pb.IDQuery;
+  readonly responseType: typeof shared_shared_pb.GuildList;
 };
 
 type DiscordGetMember = {
@@ -46,7 +47,7 @@ type DiscordGetMember = {
   readonly service: typeof Discord;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof discord_discord_pb.IDQuery;
+  readonly requestType: typeof shared_shared_pb.IDQuery;
   readonly responseType: typeof discord_discord_pb.Member;
 };
 
@@ -55,7 +56,7 @@ type DiscordGetUser = {
   readonly service: typeof Discord;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof discord_discord_pb.IDQuery;
+  readonly requestType: typeof shared_shared_pb.IDQuery;
   readonly responseType: typeof discord_discord_pb.User;
 };
 
@@ -124,25 +125,25 @@ export class DiscordClient {
   listGuilds(
     requestMessage: google_protobuf_empty_pb.Empty,
     metadata?: grpc.Metadata,
-  ): Promise<discord_discord_pb.GuildList>;
+  ): Promise<shared_shared_pb.GuildList>;
   getGuild(
-    requestMessage: discord_discord_pb.IDQuery,
+    requestMessage: shared_shared_pb.IDQuery,
     metadata?: grpc.Metadata,
-  ): Promise<discord_discord_pb.Guild>;
+  ): Promise<shared_shared_pb.Guild>;
   getGuildRoles(
-    requestMessage: discord_discord_pb.IDQuery,
+    requestMessage: shared_shared_pb.IDQuery,
     metadata?: grpc.Metadata,
-  ): Promise<discord_discord_pb.GuildRoles>;
+  ): Promise<shared_shared_pb.GuildRoles>;
   getGuildsByMember(
-    requestMessage: discord_discord_pb.IDQuery,
+    requestMessage: shared_shared_pb.IDQuery,
     metadata?: grpc.Metadata,
-  ): Promise<discord_discord_pb.GuildList>;
+  ): Promise<shared_shared_pb.GuildList>;
   getMember(
-    requestMessage: discord_discord_pb.IDQuery,
+    requestMessage: shared_shared_pb.IDQuery,
     metadata?: grpc.Metadata,
   ): Promise<discord_discord_pb.Member>;
   getUser(
-    requestMessage: discord_discord_pb.IDQuery,
+    requestMessage: shared_shared_pb.IDQuery,
     metadata?: grpc.Metadata,
   ): Promise<discord_discord_pb.User>;
   updateMember(

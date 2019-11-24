@@ -1,11 +1,33 @@
 syntax = "proto3";
 
-package com.roleypoly.platform;
+package roleypoly.platform;
 option go_package = "github.com/roleypoly/rpc/platform";
 
-import "discord/discord.proto";
+import "shared/shared.proto";
+import "google/protobuf/empty.proto";
 
 service Platform {
-  rpc GetGuild(com.roleypoly.discord.IDQuery)
-      returns (com.roleypoly.discord.Guild) {}
+  rpc GetMyGuilds(google.protobuf.Empty)
+      returns (roleypoly.GuildList) {}
+
+  rpc GetGuild(roleypoly.IDQuery)
+      returns (roleypoly.Guild) {}
+
+  rpc UpdateGuildData(GuildData) returns (google.protobuf.Empty) {}
+
+  rpc CommitRoles(Roles) returns (google.protobuf.Empty) {}
+}
+
+message GuildData {
+  string ID = 1;
+  string message = 2;
+  repeated Category categories = 3;
+}
+
+message Roles {
+
+}
+
+message Category {
+
 }

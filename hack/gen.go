@@ -42,9 +42,10 @@ func main() {
 }
 
 type langconfig struct {
-	Go bool
-	JS bool
-	TS bool
+	Go        bool
+	JS        bool
+	TS        bool
+	noService bool
 }
 
 func configFromGenconfig(genconfig []byte) langconfig {
@@ -59,6 +60,8 @@ func configFromGenconfig(genconfig []byte) langconfig {
 			lc.TS = true
 		case "go":
 			lc.Go = true
+		case "--noService":
+			lc.noService = true
 		}
 	}
 
@@ -86,13 +89,13 @@ func generate(dir string) error {
 	}
 
 	if config.JS {
-		err = generateJs(dir)
+		err = generateJs(dir, config)
 	}
 
 	return err
 }
 
-func generateJs(dir string) error {
+func generateJs(dir string, config langconfig) error {
 	globalJSExports = append(globalJSExports, dir)
 	protos := getLocalProtoNames(dir)
 
@@ -101,8 +104,14 @@ func generateJs(dir string) error {
 		exports = append(
 			exports,
 			fmt.Sprintf("./%s_pb", protoName),
-			fmt.Sprintf("./%s_pb_service", protoName),
 		)
+
+		if !config.noService {
+			exports = append(
+				exports,
+				fmt.Sprintf("./%s_pb_service", protoName),
+			)
+		}
 	}
 
 	tsContents := strings.Builder{}
@@ -169,11 +178,19 @@ func getProtocFlags(lc langconfig, outputDir string) []string {
 	}
 
 	if lc.TS {
-		flags = append(flags, "--ts_out=service=true:.")
+		if lc.noService {
+			flags = append(flags, "--ts_out=service=false:.")
+		} else {
+			flags = append(flags, "--ts_out=service=true:.")
+		}
 	}
 
 	if lc.Go {
-		flags = append(flags, "--go_out=paths=source_relative,plugins=grpc:.")
+		if lc.noService {
+			flags = append(flags, "--go_out=paths=source_relative:.")
+		} else {
+			flags = append(flags, "--go_out=paths=source_relative,plugins=grpc:.")
+		}
 	}
 
 	return flags

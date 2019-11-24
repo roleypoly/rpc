@@ -1,4 +1,4 @@
-// package: com.roleypoly.auth.client
+// package: roleypoly.auth.client
 // file: auth/client/auth-client.proto
 
 var auth_client_auth_client_pb = require("../../auth/client/auth-client_pb");
@@ -6,7 +6,7 @@ var grpc = require("@improbable-eng/grpc-web").grpc;
 
 var AuthClient = (function () {
   function AuthClient() {}
-  AuthClient.serviceName = "com.roleypoly.auth.client.AuthClient";
+  AuthClient.serviceName = "roleypoly.auth.client.AuthClient";
   return AuthClient;
 }());
 

@@ -1,13 +1,14 @@
-// package: com.roleypoly.discord
+// package: roleypoly.discord
 // file: discord/discord.proto
 
 var discord_discord_pb = require("../discord/discord_pb");
 var google_protobuf_empty_pb = require("google-protobuf/google/protobuf/empty_pb");
+var shared_shared_pb = require("../shared/shared_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
 var Discord = (function () {
   function Discord() {}
-  Discord.serviceName = "com.roleypoly.discord.Discord";
+  Discord.serviceName = "roleypoly.discord.Discord";
   return Discord;
 }());
 
@@ -17,7 +18,7 @@ Discord.ListGuilds = {
   requestStream: false,
   responseStream: false,
   requestType: google_protobuf_empty_pb.Empty,
-  responseType: discord_discord_pb.GuildList
+  responseType: shared_shared_pb.GuildList
 };
 
 Discord.GetGuild = {
@@ -25,8 +26,8 @@ Discord.GetGuild = {
   service: Discord,
   requestStream: false,
   responseStream: false,
-  requestType: discord_discord_pb.IDQuery,
-  responseType: discord_discord_pb.Guild
+  requestType: shared_shared_pb.IDQuery,
+  responseType: shared_shared_pb.Guild
 };
 
 Discord.GetGuildRoles = {
@@ -34,8 +35,8 @@ Discord.GetGuildRoles = {
   service: Discord,
   requestStream: false,
   responseStream: false,
-  requestType: discord_discord_pb.IDQuery,
-  responseType: discord_discord_pb.GuildRoles
+  requestType: shared_shared_pb.IDQuery,
+  responseType: shared_shared_pb.GuildRoles
 };
 
 Discord.GetGuildsByMember = {
@@ -43,8 +44,8 @@ Discord.GetGuildsByMember = {
   service: Discord,
   requestStream: false,
   responseStream: false,
-  requestType: discord_discord_pb.IDQuery,
-  responseType: discord_discord_pb.GuildList
+  requestType: shared_shared_pb.IDQuery,
+  responseType: shared_shared_pb.GuildList
 };
 
 Discord.GetMember = {
@@ -52,7 +53,7 @@ Discord.GetMember = {
   service: Discord,
   requestStream: false,
   responseStream: false,
-  requestType: discord_discord_pb.IDQuery,
+  requestType: shared_shared_pb.IDQuery,
   responseType: discord_discord_pb.Member
 };
 
@@ -61,7 +62,7 @@ Discord.GetUser = {
   service: Discord,
   requestStream: false,
   responseStream: false,
-  requestType: discord_discord_pb.IDQuery,
+  requestType: shared_shared_pb.IDQuery,
   responseType: discord_discord_pb.User
 };
 

@@ -1,56 +1,27 @@
 syntax = "proto3";
 
-package com.roleypoly.discord;
+package roleypoly.discord;
 option go_package = "github.com/roleypoly/rpc/discord";
 
 import "google/protobuf/empty.proto";
+import "shared/shared.proto";
 
 service Discord {
   rpc ListGuilds(google.protobuf.Empty) returns (GuildList) {}
-  rpc GetGuild(IDQuery) returns (Guild) {}
-  rpc GetGuildRoles(IDQuery) returns (GuildRoles) {}
-  rpc GetGuildsByMember(IDQuery) returns (GuildList) {}
+  rpc GetGuild(roleypoly.IDQuery) returns (Guild) {}
+  rpc GetGuildRoles(roleypoly.IDQuery) returns (GuildRoles) {}
+  rpc GetGuildsByMember(roleypoly.IDQuery) returns (GuildList) {}
 
-  rpc GetMember(IDQuery) returns (Member) {}
-  rpc GetUser(IDQuery) returns (User) {}
+  rpc GetMember(roleypoly.IDQuery) returns (Member) {}
+  rpc GetUser(roleypoly.IDQuery) returns (User) {}
   rpc UpdateMember(Member) returns (Member) {}
 
   rpc OwnUser(google.protobuf.Empty) returns (User) {}
 }
 
-message IDQuery {
-  string MemberID = 1;
-  string GuildID = 2;
-}
-
-message GuildList { repeated Guild guilds = 1; }
-
-message Guild {
-  string ID = 1;
-  string name = 2;
-  string icon = 3;
-  string ownerID = 4;
-  int32 memberCount = 5;
-  string splash = 6;
-}
-
-message GuildRoles {
-  string ID = 1;
-  repeated Role roles = 2;
-}
-
 message GuildMembers {
   string ID = 1;
   repeated Member members = 2;
-}
-
-message Role {
-  string ID = 1;
-  string name = 2;
-  int64 permissions = 3;
-  int32 color = 4;
-  int32 position = 5;
-  bool managed = 6;
 }
 
 message Member {

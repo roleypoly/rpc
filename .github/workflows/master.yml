@@ -29,11 +29,23 @@ jobs:
 
       - uses: actions/checkout@v1
 
+      - name: Get npm cache directory
+        id: npm-cache
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+          
+      - uses: actions/cache@v1
+        with:
+          path: ${{ steps.npm-cache.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Fetch Dependencies & Generate
         run: |
           export PATH=$PATH:$(go env GOPATH)/bin
           go get github.com/golang/protobuf/protoc-gen-go
-          npm i
+          npm ci
           go generate
 
       - name: Check if dirty

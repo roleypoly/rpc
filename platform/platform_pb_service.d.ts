@@ -1,22 +1,53 @@
-// package: com.roleypoly.platform
+// package: roleypoly.platform
 // file: platform/platform.proto
 
 import * as platform_platform_pb from "../platform/platform_pb";
-import * as discord_discord_pb from "../discord/discord_pb";
+import * as shared_shared_pb from "../shared/shared_pb";
+import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
 import {grpc} from "@improbable-eng/grpc-web";
+
+type PlatformGetMyGuilds = {
+  readonly methodName: string;
+  readonly service: typeof Platform;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof google_protobuf_empty_pb.Empty;
+  readonly responseType: typeof shared_shared_pb.GuildList;
+};
 
 type PlatformGetGuild = {
   readonly methodName: string;
   readonly service: typeof Platform;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof discord_discord_pb.IDQuery;
-  readonly responseType: typeof discord_discord_pb.Guild;
+  readonly requestType: typeof shared_shared_pb.IDQuery;
+  readonly responseType: typeof shared_shared_pb.Guild;
+};
+
+type PlatformUpdateGuildData = {
+  readonly methodName: string;
+  readonly service: typeof Platform;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof platform_platform_pb.GuildData;
+  readonly responseType: typeof google_protobuf_empty_pb.Empty;
+};
+
+type PlatformCommitRoles = {
+  readonly methodName: string;
+  readonly service: typeof Platform;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof platform_platform_pb.Roles;
+  readonly responseType: typeof google_protobuf_empty_pb.Empty;
 };
 
 export class Platform {
   static readonly serviceName: string;
+  static readonly GetMyGuilds: PlatformGetMyGuilds;
   static readonly GetGuild: PlatformGetGuild;
+  static readonly UpdateGuildData: PlatformUpdateGuildData;
+  static readonly CommitRoles: PlatformCommitRoles;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -51,9 +82,21 @@ export class PlatformClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
-  getGuild(
-    requestMessage: discord_discord_pb.IDQuery,
+  getMyGuilds(
+    requestMessage: google_protobuf_empty_pb.Empty,
     metadata?: grpc.Metadata,
-  ): Promise<discord_discord_pb.Guild>;
+  ): Promise<shared_shared_pb.GuildList>;
+  getGuild(
+    requestMessage: shared_shared_pb.IDQuery,
+    metadata?: grpc.Metadata,
+  ): Promise<shared_shared_pb.Guild>;
+  updateGuildData(
+    requestMessage: platform_platform_pb.GuildData,
+    metadata?: grpc.Metadata,
+  ): Promise<google_protobuf_empty_pb.Empty>;
+  commitRoles(
+    requestMessage: platform_platform_pb.Roles,
+    metadata?: grpc.Metadata,
+  ): Promise<google_protobuf_empty_pb.Empty>;
 }
 

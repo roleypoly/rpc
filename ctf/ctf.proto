@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package com.roleypoly.ctf;
+package roleypoly.ctf;
 option go_package = "github.com/roleypoly/rpc/ctf";
 
 import "google/protobuf/empty.proto";

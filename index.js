@@ -15,4 +15,6 @@ const Discord = __importStar(require("./discord"));
 exports.Discord = Discord;
 const Platform = __importStar(require("./platform"));
 exports.Platform = Platform;
+const Shared = __importStar(require("./shared"));
+exports.Shared = Shared;
 //# sourceMappingURL=index.js.map
