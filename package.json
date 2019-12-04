@@ -13,7 +13,7 @@
   "devDependencies": {
     "@roleypoly/ts-protoc-gen": "^1.0.1-promises.1",
     "@types/google-protobuf": "3.7.2",
-    "typescript": "^3.7.2"
+    "typescript": "^3.7.3"
   },
   "dependencies": {
     "@improbable-eng/grpc-web": "0.11.0",
