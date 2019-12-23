@@ -22,12 +22,23 @@ message GuildData {
   string ID = 1;
   string message = 2;
   repeated Category categories = 3;
+  repeated string entitlements = 4;
 }
 
 message Roles {
-
+  repeated string roles = 1;
 }
 
 message Category {
+  string ID = 1;
+  string name = 2;
+  repeated string roles = 3;
+  bool hidden = 4;
+  CategoryType type = 5;
+  int32 position = 6;
 
+  enum CategoryType {
+    multi = 0;
+    single = 1;
+  }
 }

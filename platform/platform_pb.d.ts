@@ -17,6 +17,11 @@ export class GuildData extends jspb.Message {
   setCategoriesList(value: Array<Category>): void;
   addCategories(value?: Category, index?: number): Category;
 
+  clearEntitlementsList(): void;
+  getEntitlementsList(): Array<string>;
+  setEntitlementsList(value: Array<string>): void;
+  addEntitlements(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GuildData.AsObject;
   static toObject(includeInstance: boolean, msg: GuildData): GuildData.AsObject;
@@ -32,10 +37,16 @@ export namespace GuildData {
     id: string,
     message: string,
     categoriesList: Array<Category.AsObject>,
+    entitlementsList: Array<string>,
   }
 }
 
 export class Roles extends jspb.Message {
+  clearRolesList(): void;
+  getRolesList(): Array<string>;
+  setRolesList(value: Array<string>): void;
+  addRoles(value: string, index?: number): string;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Roles.AsObject;
   static toObject(includeInstance: boolean, msg: Roles): Roles.AsObject;
@@ -48,10 +59,31 @@ export class Roles extends jspb.Message {
 
 export namespace Roles {
   export type AsObject = {
+    rolesList: Array<string>,
   }
 }
 
 export class Category extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  clearRolesList(): void;
+  getRolesList(): Array<string>;
+  setRolesList(value: Array<string>): void;
+  addRoles(value: string, index?: number): string;
+
+  getHidden(): boolean;
+  setHidden(value: boolean): void;
+
+  getType(): Category.CategoryTypeMap[keyof Category.CategoryTypeMap];
+  setType(value: Category.CategoryTypeMap[keyof Category.CategoryTypeMap]): void;
+
+  getPosition(): number;
+  setPosition(value: number): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Category.AsObject;
   static toObject(includeInstance: boolean, msg: Category): Category.AsObject;
@@ -64,6 +96,19 @@ export class Category extends jspb.Message {
 
 export namespace Category {
   export type AsObject = {
+    id: string,
+    name: string,
+    rolesList: Array<string>,
+    hidden: boolean,
+    type: Category.CategoryTypeMap[keyof Category.CategoryTypeMap],
+    position: number,
   }
+
+  export interface CategoryTypeMap {
+    MULTI: 0;
+    SINGLE: 1;
+  }
+
+  export const CategoryType: CategoryTypeMap;
 }
 

@@ -17,6 +17,7 @@ goog.object.extend(proto, shared_shared_pb);
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
 goog.object.extend(proto, google_protobuf_empty_pb);
 goog.exportSymbol('proto.roleypoly.platform.Category', null, global);
+goog.exportSymbol('proto.roleypoly.platform.Category.CategoryType', null, global);
 goog.exportSymbol('proto.roleypoly.platform.GuildData', null, global);
 goog.exportSymbol('proto.roleypoly.platform.Roles', null, global);
 /**
@@ -51,7 +52,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.roleypoly.platform.Roles = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.roleypoly.platform.Roles.repeatedFields_, null);
 };
 goog.inherits(proto.roleypoly.platform.Roles, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -72,7 +73,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.roleypoly.platform.Category = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.roleypoly.platform.Category.repeatedFields_, null);
 };
 goog.inherits(proto.roleypoly.platform.Category, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -88,7 +89,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.roleypoly.platform.GuildData.repeatedFields_ = [3];
+proto.roleypoly.platform.GuildData.repeatedFields_ = [3,4];
 
 
 
@@ -124,7 +125,8 @@ proto.roleypoly.platform.GuildData.toObject = function(includeInstance, msg) {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     message: jspb.Message.getFieldWithDefault(msg, 2, ""),
     categoriesList: jspb.Message.toObjectList(msg.getCategoriesList(),
-    proto.roleypoly.platform.Category.toObject, includeInstance)
+    proto.roleypoly.platform.Category.toObject, includeInstance),
+    entitlementsList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -173,6 +175,10 @@ proto.roleypoly.platform.GuildData.deserializeBinaryFromReader = function(msg, r
       var value = new proto.roleypoly.platform.Category;
       reader.readMessage(value,proto.roleypoly.platform.Category.deserializeBinaryFromReader);
       msg.addCategories(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addEntitlements(value);
       break;
     default:
       reader.skipField();
@@ -223,6 +229,13 @@ proto.roleypoly.platform.GuildData.serializeBinaryToWriter = function(message, w
       3,
       f,
       proto.roleypoly.platform.Category.serializeBinaryToWriter
+    );
+  }
+  f = message.getEntitlementsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      4,
+      f
     );
   }
 };
@@ -292,6 +305,45 @@ proto.roleypoly.platform.GuildData.prototype.clearCategoriesList = function() {
 };
 
 
+/**
+ * repeated string entitlements = 4;
+ * @return {!Array<string>}
+ */
+proto.roleypoly.platform.GuildData.prototype.getEntitlementsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
+};
+
+
+/** @param {!Array<string>} value */
+proto.roleypoly.platform.GuildData.prototype.setEntitlementsList = function(value) {
+  jspb.Message.setField(this, 4, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ */
+proto.roleypoly.platform.GuildData.prototype.addEntitlements = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 4, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ */
+proto.roleypoly.platform.GuildData.prototype.clearEntitlementsList = function() {
+  this.setEntitlementsList([]);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.roleypoly.platform.Roles.repeatedFields_ = [1];
 
 
 
@@ -324,7 +376,7 @@ proto.roleypoly.platform.Roles.prototype.toObject = function(opt_includeInstance
  */
 proto.roleypoly.platform.Roles.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    rolesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -361,6 +413,10 @@ proto.roleypoly.platform.Roles.deserializeBinaryFromReader = function(msg, reade
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addRoles(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -390,9 +446,55 @@ proto.roleypoly.platform.Roles.prototype.serializeBinary = function() {
  */
 proto.roleypoly.platform.Roles.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getRolesList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      1,
+      f
+    );
+  }
 };
 
 
+/**
+ * repeated string roles = 1;
+ * @return {!Array<string>}
+ */
+proto.roleypoly.platform.Roles.prototype.getRolesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
+};
+
+
+/** @param {!Array<string>} value */
+proto.roleypoly.platform.Roles.prototype.setRolesList = function(value) {
+  jspb.Message.setField(this, 1, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ */
+proto.roleypoly.platform.Roles.prototype.addRoles = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 1, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ */
+proto.roleypoly.platform.Roles.prototype.clearRolesList = function() {
+  this.setRolesList([]);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.roleypoly.platform.Category.repeatedFields_ = [3];
 
 
 
@@ -425,7 +527,12 @@ proto.roleypoly.platform.Category.prototype.toObject = function(opt_includeInsta
  */
 proto.roleypoly.platform.Category.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    rolesList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
+    hidden: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+    type: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    position: jspb.Message.getFieldWithDefault(msg, 6, 0)
   };
 
   if (includeInstance) {
@@ -462,6 +569,30 @@ proto.roleypoly.platform.Category.deserializeBinaryFromReader = function(msg, re
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setName(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addRoles(value);
+      break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setHidden(value);
+      break;
+    case 5:
+      var value = /** @type {!proto.roleypoly.platform.Category.CategoryType} */ (reader.readEnum());
+      msg.setType(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setPosition(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -491,6 +622,163 @@ proto.roleypoly.platform.Category.prototype.serializeBinary = function() {
  */
 proto.roleypoly.platform.Category.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getName();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getRolesList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      3,
+      f
+    );
+  }
+  f = message.getHidden();
+  if (f) {
+    writer.writeBool(
+      4,
+      f
+    );
+  }
+  f = message.getType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      5,
+      f
+    );
+  }
+  f = message.getPosition();
+  if (f !== 0) {
+    writer.writeInt32(
+      6,
+      f
+    );
+  }
+};
+
+
+/**
+ * @enum {number}
+ */
+proto.roleypoly.platform.Category.CategoryType = {
+  MULTI: 0,
+  SINGLE: 1
+};
+
+/**
+ * optional string ID = 1;
+ * @return {string}
+ */
+proto.roleypoly.platform.Category.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.roleypoly.platform.Category.prototype.setId = function(value) {
+  jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string name = 2;
+ * @return {string}
+ */
+proto.roleypoly.platform.Category.prototype.getName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.roleypoly.platform.Category.prototype.setName = function(value) {
+  jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * repeated string roles = 3;
+ * @return {!Array<string>}
+ */
+proto.roleypoly.platform.Category.prototype.getRolesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
+};
+
+
+/** @param {!Array<string>} value */
+proto.roleypoly.platform.Category.prototype.setRolesList = function(value) {
+  jspb.Message.setField(this, 3, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ */
+proto.roleypoly.platform.Category.prototype.addRoles = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ */
+proto.roleypoly.platform.Category.prototype.clearRolesList = function() {
+  this.setRolesList([]);
+};
+
+
+/**
+ * optional bool hidden = 4;
+ * @return {boolean}
+ */
+proto.roleypoly.platform.Category.prototype.getHidden = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
+};
+
+
+/** @param {boolean} value */
+proto.roleypoly.platform.Category.prototype.setHidden = function(value) {
+  jspb.Message.setProto3BooleanField(this, 4, value);
+};
+
+
+/**
+ * optional CategoryType type = 5;
+ * @return {!proto.roleypoly.platform.Category.CategoryType}
+ */
+proto.roleypoly.platform.Category.prototype.getType = function() {
+  return /** @type {!proto.roleypoly.platform.Category.CategoryType} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/** @param {!proto.roleypoly.platform.Category.CategoryType} value */
+proto.roleypoly.platform.Category.prototype.setType = function(value) {
+  jspb.Message.setProto3EnumField(this, 5, value);
+};
+
+
+/**
+ * optional int32 position = 6;
+ * @return {number}
+ */
+proto.roleypoly.platform.Category.prototype.getPosition = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/** @param {number} value */
+proto.roleypoly.platform.Category.prototype.setPosition = function(value) {
+  jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
