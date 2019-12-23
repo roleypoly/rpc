@@ -48,6 +48,15 @@ Platform.CommitRoles = {
   responseType: google_protobuf_empty_pb.Empty
 };
 
+Platform.SetEntitlement = {
+  methodName: "SetEntitlement",
+  service: Platform,
+  requestStream: false,
+  responseStream: false,
+  requestType: platform_platform_pb.UpdateEntitlement,
+  responseType: google_protobuf_empty_pb.Empty
+};
+
 exports.Platform = Platform;
 
 function PlatformClient(serviceHost, options) {
@@ -124,6 +133,28 @@ PlatformClient.prototype.updateGuildData = function updateGuildData(requestMessa
 PlatformClient.prototype.commitRoles = function commitRoles(requestMessage, metadata) {
   return new Promise((resolve, reject) => {
     grpc.unary(Platform.CommitRoles, {
+      request: requestMessage,
+      host: this.serviceHost,
+      metadata: metadata,
+      transport: this.options.transport,
+      debug: this.options.debug,
+      onEnd: function (response) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          reject(err);
+        } else {
+          resolve(response.message);
+        }
+      }
+    });
+  });
+};
+
+PlatformClient.prototype.setEntitlement = function setEntitlement(requestMessage, metadata) {
+  return new Promise((resolve, reject) => {
+    grpc.unary(Platform.SetEntitlement, {
       request: requestMessage,
       host: this.serviceHost,
       metadata: metadata,

@@ -1,5 +1,6 @@
 syntax = "proto3";
 package roleypoly;
+option go_package = "github.com/roleypoly/rpc/shared";
 
 message IDQuery {
   string MemberID = 1;
@@ -30,3 +31,4 @@ message Role {
     int32 position = 5;
     bool managed = 6;
 }
+

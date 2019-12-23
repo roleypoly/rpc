@@ -42,12 +42,22 @@ type PlatformCommitRoles = {
   readonly responseType: typeof google_protobuf_empty_pb.Empty;
 };
 
+type PlatformSetEntitlement = {
+  readonly methodName: string;
+  readonly service: typeof Platform;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof platform_platform_pb.UpdateEntitlement;
+  readonly responseType: typeof google_protobuf_empty_pb.Empty;
+};
+
 export class Platform {
   static readonly serviceName: string;
   static readonly GetMyGuilds: PlatformGetMyGuilds;
   static readonly GetGuild: PlatformGetGuild;
   static readonly UpdateGuildData: PlatformUpdateGuildData;
   static readonly CommitRoles: PlatformCommitRoles;
+  static readonly SetEntitlement: PlatformSetEntitlement;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -96,6 +106,10 @@ export class PlatformClient {
   ): Promise<google_protobuf_empty_pb.Empty>;
   commitRoles(
     requestMessage: platform_platform_pb.Roles,
+    metadata?: grpc.Metadata,
+  ): Promise<google_protobuf_empty_pb.Empty>;
+  setEntitlement(
+    requestMessage: platform_platform_pb.UpdateEntitlement,
     metadata?: grpc.Metadata,
   ): Promise<google_protobuf_empty_pb.Empty>;
 }

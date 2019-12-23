@@ -112,3 +112,33 @@ export namespace Category {
   export const CategoryType: CategoryTypeMap;
 }
 
+export class UpdateEntitlement extends jspb.Message {
+  hasQuery(): boolean;
+  clearQuery(): void;
+  getQuery(): shared_shared_pb.IDQuery | undefined;
+  setQuery(value?: shared_shared_pb.IDQuery): void;
+
+  getName(): string;
+  setName(value: string): void;
+
+  getState(): boolean;
+  setState(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateEntitlement.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateEntitlement): UpdateEntitlement.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateEntitlement, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateEntitlement;
+  static deserializeBinaryFromReader(message: UpdateEntitlement, reader: jspb.BinaryReader): UpdateEntitlement;
+}
+
+export namespace UpdateEntitlement {
+  export type AsObject = {
+    query?: shared_shared_pb.IDQuery.AsObject,
+    name: string,
+    state: boolean,
+  }
+}
+

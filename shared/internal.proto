@@ -1,6 +1,7 @@
 syntax = "proto3";
 package roleypoly;
 import "discord/discord.proto";
+option go_package = "github.com/roleypoly/rpc/shared";
 
 message RoleypolyUser {
     roleypoly.discord.User discordUser = 1;
