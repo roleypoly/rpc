@@ -16,6 +16,8 @@ service Platform {
   rpc UpdateGuildData(GuildData) returns (google.protobuf.Empty) {}
 
   rpc CommitRoles(Roles) returns (google.protobuf.Empty) {}
+
+  rpc SetEntitlement(UpdateEntitlement) returns (google.protobuf.Empty) {}
 }
 
 message GuildData {
@@ -41,4 +43,10 @@ message Category {
     multi = 0;
     single = 1;
   }
+}
+
+message UpdateEntitlement {
+  roleypoly.IDQuery query = 1;
+  string name = 2;
+  bool state = 3;
 }
