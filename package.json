@@ -15,10 +15,21 @@
     "@roleypoly/ts-protoc-gen": "^1.0.1-promises.1",
     "@types/google-protobuf": "3.7.2",
     "typescript": "^3.7.4",
-    "semantic-release": "15.14.0"
+    "semantic-release": "15.14.0",
+    "@semantic-release/git": "7.0.18"
   },
   "dependencies": {
     "@improbable-eng/grpc-web": "0.11.0",
     "google-protobuf": "3.10.0"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      "@semantic-release/git"
+    ],
+    "preset": "angular"
   }
 }

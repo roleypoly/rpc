@@ -6,8 +6,9 @@ on:
 
 jobs:
   validate:
-    name: Validate Generation
+    name: Validate & Release
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[ci skip]')"
     steps:
       - name: Ensure Go
         uses: actions/setup-go@master
