@@ -14,7 +14,7 @@
   "devDependencies": {
     "@roleypoly/ts-protoc-gen": "^1.0.1-promises.1",
     "@types/google-protobuf": "3.7.2",
-    "typescript": "^3.7.2",
+    "typescript": "^3.7.4",
     "semantic-release": "15.14.0"
   },
   "dependencies": {
