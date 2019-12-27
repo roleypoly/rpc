@@ -1,8 +1,6 @@
-name: Master CI/CD
-on:
-  push:
-    branches:
-      - master
+name: RPC CI/CD
+
+on: push
 
 jobs:
   validate:
@@ -38,18 +36,33 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+      
+      - uses: actions/cache@v1
+        with:
+          path: ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
 
-      - name: Fetch Dependencies & Generate
+      - name: Fetch Dependencies 
         run: |
           export PATH=$PATH:$(go env GOPATH)/bin
           go get github.com/golang/protobuf/protoc-gen-go
           npm ci
-          go generate
+
+      - name: Smoketest
+        run : |
+          go vet ./...
+          node hack/smoketest.js
+
+      - name: Generate 
+        run: go generate
 
       - name: Check if dirty
         run: test -z "`git status -s`" || (git status && exit 1)
 
       - name: Release
+        if: github.ref == 'refs/heads/master'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
