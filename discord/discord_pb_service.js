@@ -63,7 +63,7 @@ Discord.GetUser = {
   requestStream: false,
   responseStream: false,
   requestType: shared_shared_pb.IDQuery,
-  responseType: discord_discord_pb.User
+  responseType: shared_shared_pb.DiscordUser
 };
 
 Discord.UpdateMember = {
@@ -81,7 +81,7 @@ Discord.OwnUser = {
   requestStream: false,
   responseStream: false,
   requestType: google_protobuf_empty_pb.Empty,
-  responseType: discord_discord_pb.User
+  responseType: shared_shared_pb.DiscordUser
 };
 
 exports.Discord = Discord;

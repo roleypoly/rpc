@@ -2,13 +2,13 @@
 // file: shared/internal.proto
 
 import * as jspb from "google-protobuf";
-import * as discord_discord_pb from "../discord/discord_pb";
+import * as shared_shared_pb from "../shared/shared_pb";
 
 export class RoleypolyUser extends jspb.Message {
   hasDiscorduser(): boolean;
   clearDiscorduser(): void;
-  getDiscorduser(): discord_discord_pb.User | undefined;
-  setDiscorduser(value?: discord_discord_pb.User): void;
+  getDiscorduser(): shared_shared_pb.DiscordUser | undefined;
+  setDiscorduser(value?: shared_shared_pb.DiscordUser): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RoleypolyUser.AsObject;
@@ -22,7 +22,7 @@ export class RoleypolyUser extends jspb.Message {
 
 export namespace RoleypolyUser {
   export type AsObject = {
-    discorduser?: discord_discord_pb.User.AsObject,
+    discorduser?: shared_shared_pb.DiscordUser.AsObject,
   }
 }
 

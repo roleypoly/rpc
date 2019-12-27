@@ -13,10 +13,10 @@ service Discord {
   rpc GetGuildsByMember(roleypoly.IDQuery) returns (GuildList) {}
 
   rpc GetMember(roleypoly.IDQuery) returns (Member) {}
-  rpc GetUser(roleypoly.IDQuery) returns (User) {}
+  rpc GetUser(roleypoly.IDQuery) returns (roleypoly.DiscordUser) {}
   rpc UpdateMember(Member) returns (Member) {}
 
-  rpc OwnUser(google.protobuf.Empty) returns (User) {}
+  rpc OwnUser(google.protobuf.Empty) returns (roleypoly.DiscordUser) {}
 }
 
 message GuildMembers {
@@ -28,15 +28,7 @@ message Member {
   string guildID = 1;
   repeated string roles = 3;
   string nick = 4;
-  User user = 5;
-}
-
-message User {
-  string ID = 1;
-  string username = 2;
-  string discriminator = 3;
-  string avatar = 4;
-  bool bot = 5;
+  roleypoly.DiscordUser user = 5;
 }
 
 message ShardInfo {

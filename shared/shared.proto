@@ -32,3 +32,10 @@ message Role {
     bool managed = 6;
 }
 
+message DiscordUser {
+  string ID = 1;
+  string username = 2;
+  string discriminator = 3;
+  string avatar = 4;
+  bool bot = 5;
+}

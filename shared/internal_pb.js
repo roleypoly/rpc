@@ -12,8 +12,8 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
-var discord_discord_pb = require('../discord/discord_pb.js');
-goog.object.extend(proto, discord_discord_pb);
+var shared_shared_pb = require('../shared/shared_pb.js');
+goog.object.extend(proto, shared_shared_pb);
 goog.exportSymbol('proto.roleypoly.RoleypolySession', null, global);
 goog.exportSymbol('proto.roleypoly.RoleypolySession.SessionSource', null, global);
 goog.exportSymbol('proto.roleypoly.RoleypolyUser', null, global);
@@ -91,7 +91,7 @@ proto.roleypoly.RoleypolyUser.prototype.toObject = function(opt_includeInstance)
  */
 proto.roleypoly.RoleypolyUser.toObject = function(includeInstance, msg) {
   var f, obj = {
-    discorduser: (f = msg.getDiscorduser()) && discord_discord_pb.User.toObject(includeInstance, f)
+    discorduser: (f = msg.getDiscorduser()) && shared_shared_pb.DiscordUser.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -129,8 +129,8 @@ proto.roleypoly.RoleypolyUser.deserializeBinaryFromReader = function(msg, reader
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new discord_discord_pb.User;
-      reader.readMessage(value,discord_discord_pb.User.deserializeBinaryFromReader);
+      var value = new shared_shared_pb.DiscordUser;
+      reader.readMessage(value,shared_shared_pb.DiscordUser.deserializeBinaryFromReader);
       msg.setDiscorduser(value);
       break;
     default:
@@ -167,23 +167,23 @@ proto.roleypoly.RoleypolyUser.serializeBinaryToWriter = function(message, writer
     writer.writeMessage(
       1,
       f,
-      discord_discord_pb.User.serializeBinaryToWriter
+      shared_shared_pb.DiscordUser.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional discord.User discordUser = 1;
- * @return {?proto.roleypoly.discord.User}
+ * optional DiscordUser discordUser = 1;
+ * @return {?proto.roleypoly.DiscordUser}
  */
 proto.roleypoly.RoleypolyUser.prototype.getDiscorduser = function() {
-  return /** @type{?proto.roleypoly.discord.User} */ (
-    jspb.Message.getWrapperField(this, discord_discord_pb.User, 1));
+  return /** @type{?proto.roleypoly.DiscordUser} */ (
+    jspb.Message.getWrapperField(this, shared_shared_pb.DiscordUser, 1));
 };
 
 
-/** @param {?proto.roleypoly.discord.User|undefined} value */
+/** @param {?proto.roleypoly.DiscordUser|undefined} value */
 proto.roleypoly.RoleypolyUser.prototype.setDiscorduser = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };

@@ -45,8 +45,8 @@ export class Member extends jspb.Message {
 
   hasUser(): boolean;
   clearUser(): void;
-  getUser(): User | undefined;
-  setUser(value?: User): void;
+  getUser(): shared_shared_pb.DiscordUser | undefined;
+  setUser(value?: shared_shared_pb.DiscordUser): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Member.AsObject;
@@ -63,43 +63,7 @@ export namespace Member {
     guildid: string,
     rolesList: Array<string>,
     nick: string,
-    user?: User.AsObject,
-  }
-}
-
-export class User extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
-
-  getUsername(): string;
-  setUsername(value: string): void;
-
-  getDiscriminator(): string;
-  setDiscriminator(value: string): void;
-
-  getAvatar(): string;
-  setAvatar(value: string): void;
-
-  getBot(): boolean;
-  setBot(value: boolean): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): User.AsObject;
-  static toObject(includeInstance: boolean, msg: User): User.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: User, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): User;
-  static deserializeBinaryFromReader(message: User, reader: jspb.BinaryReader): User;
-}
-
-export namespace User {
-  export type AsObject = {
-    id: string,
-    username: string,
-    discriminator: string,
-    avatar: string,
-    bot: boolean,
+    user?: shared_shared_pb.DiscordUser.AsObject,
   }
 }
 

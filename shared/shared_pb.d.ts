@@ -155,3 +155,39 @@ export namespace Role {
   }
 }
 
+export class DiscordUser extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getUsername(): string;
+  setUsername(value: string): void;
+
+  getDiscriminator(): string;
+  setDiscriminator(value: string): void;
+
+  getAvatar(): string;
+  setAvatar(value: string): void;
+
+  getBot(): boolean;
+  setBot(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DiscordUser.AsObject;
+  static toObject(includeInstance: boolean, msg: DiscordUser): DiscordUser.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: DiscordUser, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DiscordUser;
+  static deserializeBinaryFromReader(message: DiscordUser, reader: jspb.BinaryReader): DiscordUser;
+}
+
+export namespace DiscordUser {
+  export type AsObject = {
+    id: string,
+    username: string,
+    discriminator: string,
+    avatar: string,
+    bot: boolean,
+  }
+}
+

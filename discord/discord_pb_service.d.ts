@@ -57,7 +57,7 @@ type DiscordGetUser = {
   readonly requestStream: false;
   readonly responseStream: false;
   readonly requestType: typeof shared_shared_pb.IDQuery;
-  readonly responseType: typeof discord_discord_pb.User;
+  readonly responseType: typeof shared_shared_pb.DiscordUser;
 };
 
 type DiscordUpdateMember = {
@@ -75,7 +75,7 @@ type DiscordOwnUser = {
   readonly requestStream: false;
   readonly responseStream: false;
   readonly requestType: typeof google_protobuf_empty_pb.Empty;
-  readonly responseType: typeof discord_discord_pb.User;
+  readonly responseType: typeof shared_shared_pb.DiscordUser;
 };
 
 export class Discord {
@@ -145,7 +145,7 @@ export class DiscordClient {
   getUser(
     requestMessage: shared_shared_pb.IDQuery,
     metadata?: grpc.Metadata,
-  ): Promise<discord_discord_pb.User>;
+  ): Promise<shared_shared_pb.DiscordUser>;
   updateMember(
     requestMessage: discord_discord_pb.Member,
     metadata?: grpc.Metadata,
@@ -153,6 +153,6 @@ export class DiscordClient {
   ownUser(
     requestMessage: google_protobuf_empty_pb.Empty,
     metadata?: grpc.Metadata,
-  ): Promise<discord_discord_pb.User>;
+  ): Promise<shared_shared_pb.DiscordUser>;
 }
 

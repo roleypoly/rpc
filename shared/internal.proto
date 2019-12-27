@@ -1,10 +1,10 @@
 syntax = "proto3";
 package roleypoly;
-import "discord/discord.proto";
+import "shared/shared.proto";
 option go_package = "github.com/roleypoly/rpc/shared";
 
 message RoleypolyUser {
-    roleypoly.discord.User discordUser = 1;
+    roleypoly.DiscordUser discordUser = 1;
 }
 
 message RoleypolySession {
