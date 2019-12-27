@@ -44,19 +44,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-go-
 
-      - name: Fetch Dependencies 
+      - name: Fetch Dependencies & Generate
         run: |
           export PATH=$PATH:$(go env GOPATH)/bin
           go get github.com/golang/protobuf/protoc-gen-go
           npm ci
+          go generate
 
       - name: Smoketest
         run : |
           go vet ./...
           node hack/smoketest.js
-
-      - name: Generate 
-        run: go generate
 
       - name: Check if dirty
         run: test -z "`git status -s`" || (git status && exit 1)
