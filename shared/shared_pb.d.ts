@@ -134,6 +134,9 @@ export class Role extends jspb.Message {
   getManaged(): boolean;
   setManaged(value: boolean): void;
 
+  getSafety(): Role.RoleSafetyMap[keyof Role.RoleSafetyMap];
+  setSafety(value: Role.RoleSafetyMap[keyof Role.RoleSafetyMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Role.AsObject;
   static toObject(includeInstance: boolean, msg: Role): Role.AsObject;
@@ -152,7 +155,16 @@ export namespace Role {
     color: number,
     position: number,
     managed: boolean,
+    safety: Role.RoleSafetyMap[keyof Role.RoleSafetyMap],
   }
+
+  export interface RoleSafetyMap {
+    SAFE: 0;
+    HIGHERTHANBOT: 1;
+    DANGEROUSPERMISSIONS: 2;
+  }
+
+  export const RoleSafety: RoleSafetyMap;
 }
 
 export class DiscordUser extends jspb.Message {
