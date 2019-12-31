@@ -30,6 +30,12 @@ message Role {
     int32 color = 4;
     int32 position = 5;
     bool managed = 6;
+    RoleSafety safety = 7;
+    enum RoleSafety {
+      safe = 0;
+      higherThanBot = 1;
+      dangerousPermissions = 2;
+    }
 }
 
 message DiscordUser {
