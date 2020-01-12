@@ -8,11 +8,12 @@ message RoleypolyUser {
 }
 
 message RoleypolySession {
-    string id = 1;
+    string ID = 1;
     RoleypolyUser user = 2;
     enum SessionSource {
-        OAUTH = 0;
-        DM = 1;
+        UNKNOWN = 0;
+        OAUTH = 1;
+        DM = 2;
     }
     SessionSource source = 3;
     int64 created_at = 4;

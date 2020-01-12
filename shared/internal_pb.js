@@ -383,12 +383,13 @@ proto.roleypoly.RoleypolySession.serializeBinaryToWriter = function(message, wri
  * @enum {number}
  */
 proto.roleypoly.RoleypolySession.SessionSource = {
-  OAUTH: 0,
-  DM: 1
+  UNKNOWN: 0,
+  OAUTH: 1,
+  DM: 2
 };
 
 /**
- * optional string id = 1;
+ * optional string ID = 1;
  * @return {string}
  */
 proto.roleypoly.RoleypolySession.prototype.getId = function() {

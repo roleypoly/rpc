@@ -67,8 +67,9 @@ export namespace RoleypolySession {
   }
 
   export interface SessionSourceMap {
-    OAUTH: 0;
-    DM: 1;
+    UNKNOWN: 0;
+    OAUTH: 1;
+    DM: 2;
   }
 
   export const SessionSource: SessionSourceMap;
