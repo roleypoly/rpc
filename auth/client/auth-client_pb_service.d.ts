@@ -2,10 +2,32 @@
 // file: auth/client/auth-client.proto
 
 import * as auth_client_auth_client_pb from "../../auth/client/auth-client_pb";
+import * as shared_internal_pb from "../../shared/internal_pb";
+import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
 import {grpc} from "@improbable-eng/grpc-web";
+
+type AuthClientGetClientToken = {
+  readonly methodName: string;
+  readonly service: typeof AuthClient;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof google_protobuf_empty_pb.Empty;
+  readonly responseType: typeof auth_client_auth_client_pb.ClientToken;
+};
+
+type AuthClientGetUserSession = {
+  readonly methodName: string;
+  readonly service: typeof AuthClient;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof google_protobuf_empty_pb.Empty;
+  readonly responseType: typeof shared_internal_pb.RoleypolySession;
+};
 
 export class AuthClient {
   static readonly serviceName: string;
+  static readonly GetClientToken: AuthClientGetClientToken;
+  static readonly GetUserSession: AuthClientGetUserSession;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -40,5 +62,13 @@ export class AuthClientClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
+  getClientToken(
+    requestMessage: google_protobuf_empty_pb.Empty,
+    metadata?: grpc.Metadata,
+  ): Promise<auth_client_auth_client_pb.ClientToken>;
+  getUserSession(
+    requestMessage: google_protobuf_empty_pb.Empty,
+    metadata?: grpc.Metadata,
+  ): Promise<shared_internal_pb.RoleypolySession>;
 }
 

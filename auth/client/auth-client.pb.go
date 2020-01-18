@@ -7,7 +7,11 @@ import (
 	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
+	empty "github.com/golang/protobuf/ptypes/empty"
+	shared "github.com/roleypoly/rpc/shared"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -22,17 +26,68 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+type ClientToken struct {
+	Token                string   `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ClientToken) Reset()         { *m = ClientToken{} }
+func (m *ClientToken) String() string { return proto.CompactTextString(m) }
+func (*ClientToken) ProtoMessage()    {}
+func (*ClientToken) Descriptor() ([]byte, []int) {
+	return fileDescriptor_1833648300932cc9, []int{0}
+}
+
+func (m *ClientToken) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ClientToken.Unmarshal(m, b)
+}
+func (m *ClientToken) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ClientToken.Marshal(b, m, deterministic)
+}
+func (m *ClientToken) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ClientToken.Merge(m, src)
+}
+func (m *ClientToken) XXX_Size() int {
+	return xxx_messageInfo_ClientToken.Size(m)
+}
+func (m *ClientToken) XXX_DiscardUnknown() {
+	xxx_messageInfo_ClientToken.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ClientToken proto.InternalMessageInfo
+
+func (m *ClientToken) GetToken() string {
+	if m != nil {
+		return m.Token
+	}
+	return ""
+}
+
+func init() {
+	proto.RegisterType((*ClientToken)(nil), "roleypoly.auth.client.ClientToken")
+}
+
 func init() { proto.RegisterFile("auth/client/auth-client.proto", fileDescriptor_1833648300932cc9) }
 
 var fileDescriptor_1833648300932cc9 = []byte{
-	// 105 bytes of a gzipped FileDescriptorProto
+	// 232 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x4d, 0x2c, 0x2d, 0xc9,
 	0xd0, 0x4f, 0xce, 0xc9, 0x4c, 0xcd, 0x2b, 0xd1, 0x07, 0xb1, 0x75, 0x21, 0x6c, 0xbd, 0x82, 0xa2,
 	0xfc, 0x92, 0x7c, 0x21, 0xd1, 0xa2, 0xfc, 0x9c, 0xd4, 0xca, 0x82, 0xfc, 0x9c, 0x4a, 0x3d, 0x90,
-	0xa4, 0x1e, 0x44, 0xd2, 0x88, 0x87, 0x8b, 0xcb, 0xb1, 0xb4, 0x24, 0xc3, 0x19, 0xcc, 0x73, 0x52,
-	0x8b, 0x52, 0x49, 0xcf, 0x2c, 0xc9, 0x28, 0x4d, 0xd2, 0x4b, 0xce, 0xcf, 0xd5, 0x87, 0xeb, 0xd0,
-	0x2f, 0x2a, 0x48, 0xd6, 0x47, 0x32, 0x3e, 0x89, 0x0d, 0x6c, 0xa6, 0x31, 0x20, 0x00, 0x00, 0xff,
-	0xff, 0x15, 0xb7, 0xc8, 0xcb, 0x74, 0x00, 0x00, 0x00,
+	0xa4, 0x1e, 0x44, 0x52, 0x4a, 0xb4, 0x38, 0x23, 0xb1, 0x28, 0x35, 0x45, 0x3f, 0x33, 0xaf, 0x24,
+	0xb5, 0x28, 0x2f, 0x31, 0x07, 0xa2, 0x5a, 0x4a, 0x3a, 0x3d, 0x3f, 0x3f, 0x3d, 0x27, 0x55, 0x1f,
+	0xcc, 0x4b, 0x2a, 0x4d, 0xd3, 0x4f, 0xcd, 0x2d, 0x28, 0xa9, 0x84, 0x48, 0x2a, 0x29, 0x73, 0x71,
+	0x3b, 0x83, 0x75, 0x87, 0xe4, 0x67, 0xa7, 0xe6, 0x09, 0x89, 0x70, 0xb1, 0x96, 0x80, 0x18, 0x12,
+	0x8c, 0x0a, 0x8c, 0x1a, 0x9c, 0x41, 0x10, 0x8e, 0xd1, 0x52, 0x46, 0x2e, 0x2e, 0xc7, 0xd2, 0x92,
+	0x0c, 0x88, 0x4a, 0x21, 0x3f, 0x2e, 0x3e, 0xf7, 0xd4, 0x12, 0x64, 0x6d, 0x62, 0x7a, 0x10, 0x3b,
+	0xf4, 0x60, 0x76, 0xe8, 0xb9, 0x82, 0xec, 0x90, 0x52, 0xd2, 0xc3, 0xea, 0x52, 0x3d, 0x24, 0xbd,
+	0x4a, 0x0c, 0x42, 0xee, 0x60, 0xf3, 0x42, 0x8b, 0x53, 0x8b, 0x82, 0x53, 0x8b, 0x8b, 0x33, 0xf3,
+	0x71, 0x9b, 0x27, 0x8d, 0x64, 0x5e, 0x10, 0x8c, 0x05, 0xd5, 0xa4, 0xc4, 0xe0, 0xa4, 0x16, 0xa5,
+	0x92, 0x9e, 0x59, 0x92, 0x51, 0x9a, 0xa4, 0x97, 0x9c, 0x9f, 0xab, 0x0f, 0x57, 0xaa, 0x5f, 0x54,
+	0x90, 0xac, 0x8f, 0x14, 0xa2, 0x49, 0x6c, 0x60, 0x63, 0x8d, 0x01, 0x01, 0x00, 0x00, 0xff, 0xff,
+	0x9e, 0x62, 0x55, 0x4f, 0x67, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -47,6 +102,8 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type AuthClientClient interface {
+	GetClientToken(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ClientToken, error)
+	GetUserSession(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*shared.RoleypolySession, error)
 }
 
 type authClientClient struct {
@@ -57,22 +114,94 @@ func NewAuthClientClient(cc *grpc.ClientConn) AuthClientClient {
 	return &authClientClient{cc}
 }
 
+func (c *authClientClient) GetClientToken(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ClientToken, error) {
+	out := new(ClientToken)
+	err := c.cc.Invoke(ctx, "/roleypoly.auth.client.AuthClient/GetClientToken", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClientClient) GetUserSession(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*shared.RoleypolySession, error) {
+	out := new(shared.RoleypolySession)
+	err := c.cc.Invoke(ctx, "/roleypoly.auth.client.AuthClient/GetUserSession", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthClientServer is the server API for AuthClient service.
 type AuthClientServer interface {
+	GetClientToken(context.Context, *empty.Empty) (*ClientToken, error)
+	GetUserSession(context.Context, *empty.Empty) (*shared.RoleypolySession, error)
 }
 
 // UnimplementedAuthClientServer can be embedded to have forward compatible implementations.
 type UnimplementedAuthClientServer struct {
 }
 
+func (*UnimplementedAuthClientServer) GetClientToken(ctx context.Context, req *empty.Empty) (*ClientToken, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetClientToken not implemented")
+}
+func (*UnimplementedAuthClientServer) GetUserSession(ctx context.Context, req *empty.Empty) (*shared.RoleypolySession, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserSession not implemented")
+}
+
 func RegisterAuthClientServer(s *grpc.Server, srv AuthClientServer) {
 	s.RegisterService(&_AuthClient_serviceDesc, srv)
+}
+
+func _AuthClient_GetClientToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthClientServer).GetClientToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/roleypoly.auth.client.AuthClient/GetClientToken",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthClientServer).GetClientToken(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthClient_GetUserSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthClientServer).GetUserSession(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/roleypoly.auth.client.AuthClient/GetUserSession",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthClientServer).GetUserSession(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 var _AuthClient_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "roleypoly.auth.client.AuthClient",
 	HandlerType: (*AuthClientServer)(nil),
-	Methods:     []grpc.MethodDesc{},
-	Streams:     []grpc.StreamDesc{},
-	Metadata:    "auth/client/auth-client.proto",
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetClientToken",
+			Handler:    _AuthClient_GetClientToken_Handler,
+		},
+		{
+			MethodName: "GetUserSession",
+			Handler:    _AuthClient_GetUserSession_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "auth/client/auth-client.proto",
 }
