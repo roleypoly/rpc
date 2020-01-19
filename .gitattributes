@@ -1,0 +1,4 @@
+* linguist-generated=true
+hack/* linguist-generated=false
+doc.go linguist-generated=false
+*.proto linguist-generated=false
