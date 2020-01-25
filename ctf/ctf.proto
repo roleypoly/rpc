@@ -6,23 +6,21 @@ option go_package = "github.com/roleypoly/rpc/ctf";
 import "google/protobuf/empty.proto";
 
 service CTF {
-  rpc GetCanaries(CanaryQuery) returns (Canaries) {}
-  rpc SetSingleCanaryRollout(CanaryQuery) returns (google.protobuf.Empty) {}
-  rpc SetGlobalCanaryRollout(CanaryQuery) returns (google.protobuf.Empty) {}
-  rpc CreateCanary(Canary) returns (Canary) {}
-  rpc DeleteCanary(CanaryQuery) returns (google.protobuf.Empty) {}
+  rpc GetRingFlags (Ring) returns (Flags) {}
+  rpc CreateFlag (Flag) returns (Flag) {}
+  rpc PromoteFlag (Flag) returns (Flag) {}
+  rpc RemoveFlag (Flag) returns (google.protobuf.Empty) {}
 }
 
-message Canary {
+message Flags { 
+  repeated Flag flags = 1;
+}
+
+message Flag {
   string name = 1;
-  float percent = 2;
+  int32 ring = 2;
 }
 
-message Canaries {
-  repeated Canary canaries = 1;
-}
-
-message CanaryQuery {
-  float threshold = 1;
-  Canary canary = 2;
+message Ring {
+  int32 ring = 1;
 }

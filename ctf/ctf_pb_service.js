@@ -11,48 +11,39 @@ var CTF = (function () {
   return CTF;
 }());
 
-CTF.GetCanaries = {
-  methodName: "GetCanaries",
+CTF.GetRingFlags = {
+  methodName: "GetRingFlags",
   service: CTF,
   requestStream: false,
   responseStream: false,
-  requestType: ctf_ctf_pb.CanaryQuery,
-  responseType: ctf_ctf_pb.Canaries
+  requestType: ctf_ctf_pb.Ring,
+  responseType: ctf_ctf_pb.Flags
 };
 
-CTF.SetSingleCanaryRollout = {
-  methodName: "SetSingleCanaryRollout",
+CTF.CreateFlag = {
+  methodName: "CreateFlag",
   service: CTF,
   requestStream: false,
   responseStream: false,
-  requestType: ctf_ctf_pb.CanaryQuery,
-  responseType: google_protobuf_empty_pb.Empty
+  requestType: ctf_ctf_pb.Flag,
+  responseType: ctf_ctf_pb.Flag
 };
 
-CTF.SetGlobalCanaryRollout = {
-  methodName: "SetGlobalCanaryRollout",
+CTF.PromoteFlag = {
+  methodName: "PromoteFlag",
   service: CTF,
   requestStream: false,
   responseStream: false,
-  requestType: ctf_ctf_pb.CanaryQuery,
-  responseType: google_protobuf_empty_pb.Empty
+  requestType: ctf_ctf_pb.Flag,
+  responseType: ctf_ctf_pb.Flag
 };
 
-CTF.CreateCanary = {
-  methodName: "CreateCanary",
+CTF.RemoveFlag = {
+  methodName: "RemoveFlag",
   service: CTF,
   requestStream: false,
   responseStream: false,
-  requestType: ctf_ctf_pb.Canary,
-  responseType: ctf_ctf_pb.Canary
-};
-
-CTF.DeleteCanary = {
-  methodName: "DeleteCanary",
-  service: CTF,
-  requestStream: false,
-  responseStream: false,
-  requestType: ctf_ctf_pb.CanaryQuery,
+  requestType: ctf_ctf_pb.Flag,
   responseType: google_protobuf_empty_pb.Empty
 };
 
@@ -63,9 +54,9 @@ function CTFClient(serviceHost, options) {
   this.options = options || {};
 }
 
-CTFClient.prototype.getCanaries = function getCanaries(requestMessage, metadata) {
+CTFClient.prototype.getRingFlags = function getRingFlags(requestMessage, metadata) {
   return new Promise((resolve, reject) => {
-    grpc.unary(CTF.GetCanaries, {
+    grpc.unary(CTF.GetRingFlags, {
       request: requestMessage,
       host: this.serviceHost,
       metadata: metadata,
@@ -85,9 +76,9 @@ CTFClient.prototype.getCanaries = function getCanaries(requestMessage, metadata)
   });
 };
 
-CTFClient.prototype.setSingleCanaryRollout = function setSingleCanaryRollout(requestMessage, metadata) {
+CTFClient.prototype.createFlag = function createFlag(requestMessage, metadata) {
   return new Promise((resolve, reject) => {
-    grpc.unary(CTF.SetSingleCanaryRollout, {
+    grpc.unary(CTF.CreateFlag, {
       request: requestMessage,
       host: this.serviceHost,
       metadata: metadata,
@@ -107,9 +98,9 @@ CTFClient.prototype.setSingleCanaryRollout = function setSingleCanaryRollout(req
   });
 };
 
-CTFClient.prototype.setGlobalCanaryRollout = function setGlobalCanaryRollout(requestMessage, metadata) {
+CTFClient.prototype.promoteFlag = function promoteFlag(requestMessage, metadata) {
   return new Promise((resolve, reject) => {
-    grpc.unary(CTF.SetGlobalCanaryRollout, {
+    grpc.unary(CTF.PromoteFlag, {
       request: requestMessage,
       host: this.serviceHost,
       metadata: metadata,
@@ -129,31 +120,9 @@ CTFClient.prototype.setGlobalCanaryRollout = function setGlobalCanaryRollout(req
   });
 };
 
-CTFClient.prototype.createCanary = function createCanary(requestMessage, metadata) {
+CTFClient.prototype.removeFlag = function removeFlag(requestMessage, metadata) {
   return new Promise((resolve, reject) => {
-    grpc.unary(CTF.CreateCanary, {
-      request: requestMessage,
-      host: this.serviceHost,
-      metadata: metadata,
-      transport: this.options.transport,
-      debug: this.options.debug,
-      onEnd: function (response) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          reject(err);
-        } else {
-          resolve(response.message);
-        }
-      }
-    });
-  });
-};
-
-CTFClient.prototype.deleteCanary = function deleteCanary(requestMessage, metadata) {
-  return new Promise((resolve, reject) => {
-    grpc.unary(CTF.DeleteCanary, {
+    grpc.unary(CTF.RemoveFlag, {
       request: requestMessage,
       host: this.serviceHost,
       metadata: metadata,

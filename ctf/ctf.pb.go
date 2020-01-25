@@ -25,170 +25,158 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type Canary struct {
-	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Percent              float32  `protobuf:"fixed32,2,opt,name=percent,proto3" json:"percent,omitempty"`
+type Flags struct {
+	Flags                []*Flag  `protobuf:"bytes,1,rep,name=flags,proto3" json:"flags,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Canary) Reset()         { *m = Canary{} }
-func (m *Canary) String() string { return proto.CompactTextString(m) }
-func (*Canary) ProtoMessage()    {}
-func (*Canary) Descriptor() ([]byte, []int) {
+func (m *Flags) Reset()         { *m = Flags{} }
+func (m *Flags) String() string { return proto.CompactTextString(m) }
+func (*Flags) ProtoMessage()    {}
+func (*Flags) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6327d78a13af617a, []int{0}
 }
 
-func (m *Canary) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Canary.Unmarshal(m, b)
+func (m *Flags) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Flags.Unmarshal(m, b)
 }
-func (m *Canary) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Canary.Marshal(b, m, deterministic)
+func (m *Flags) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Flags.Marshal(b, m, deterministic)
 }
-func (m *Canary) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Canary.Merge(m, src)
+func (m *Flags) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Flags.Merge(m, src)
 }
-func (m *Canary) XXX_Size() int {
-	return xxx_messageInfo_Canary.Size(m)
+func (m *Flags) XXX_Size() int {
+	return xxx_messageInfo_Flags.Size(m)
 }
-func (m *Canary) XXX_DiscardUnknown() {
-	xxx_messageInfo_Canary.DiscardUnknown(m)
+func (m *Flags) XXX_DiscardUnknown() {
+	xxx_messageInfo_Flags.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_Canary proto.InternalMessageInfo
+var xxx_messageInfo_Flags proto.InternalMessageInfo
 
-func (m *Canary) GetName() string {
+func (m *Flags) GetFlags() []*Flag {
+	if m != nil {
+		return m.Flags
+	}
+	return nil
+}
+
+type Flag struct {
+	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Ring                 int32    `protobuf:"varint,2,opt,name=ring,proto3" json:"ring,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Flag) Reset()         { *m = Flag{} }
+func (m *Flag) String() string { return proto.CompactTextString(m) }
+func (*Flag) ProtoMessage()    {}
+func (*Flag) Descriptor() ([]byte, []int) {
+	return fileDescriptor_6327d78a13af617a, []int{1}
+}
+
+func (m *Flag) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Flag.Unmarshal(m, b)
+}
+func (m *Flag) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Flag.Marshal(b, m, deterministic)
+}
+func (m *Flag) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Flag.Merge(m, src)
+}
+func (m *Flag) XXX_Size() int {
+	return xxx_messageInfo_Flag.Size(m)
+}
+func (m *Flag) XXX_DiscardUnknown() {
+	xxx_messageInfo_Flag.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Flag proto.InternalMessageInfo
+
+func (m *Flag) GetName() string {
 	if m != nil {
 		return m.Name
 	}
 	return ""
 }
 
-func (m *Canary) GetPercent() float32 {
+func (m *Flag) GetRing() int32 {
 	if m != nil {
-		return m.Percent
+		return m.Ring
 	}
 	return 0
 }
 
-type Canaries struct {
-	Canaries             []*Canary `protobuf:"bytes,1,rep,name=canaries,proto3" json:"canaries,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
-	XXX_unrecognized     []byte    `json:"-"`
-	XXX_sizecache        int32     `json:"-"`
-}
-
-func (m *Canaries) Reset()         { *m = Canaries{} }
-func (m *Canaries) String() string { return proto.CompactTextString(m) }
-func (*Canaries) ProtoMessage()    {}
-func (*Canaries) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6327d78a13af617a, []int{1}
-}
-
-func (m *Canaries) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Canaries.Unmarshal(m, b)
-}
-func (m *Canaries) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Canaries.Marshal(b, m, deterministic)
-}
-func (m *Canaries) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Canaries.Merge(m, src)
-}
-func (m *Canaries) XXX_Size() int {
-	return xxx_messageInfo_Canaries.Size(m)
-}
-func (m *Canaries) XXX_DiscardUnknown() {
-	xxx_messageInfo_Canaries.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Canaries proto.InternalMessageInfo
-
-func (m *Canaries) GetCanaries() []*Canary {
-	if m != nil {
-		return m.Canaries
-	}
-	return nil
-}
-
-type CanaryQuery struct {
-	Threshold            float32  `protobuf:"fixed32,1,opt,name=threshold,proto3" json:"threshold,omitempty"`
-	Canary               *Canary  `protobuf:"bytes,2,opt,name=canary,proto3" json:"canary,omitempty"`
+type Ring struct {
+	Ring                 int32    `protobuf:"varint,1,opt,name=ring,proto3" json:"ring,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *CanaryQuery) Reset()         { *m = CanaryQuery{} }
-func (m *CanaryQuery) String() string { return proto.CompactTextString(m) }
-func (*CanaryQuery) ProtoMessage()    {}
-func (*CanaryQuery) Descriptor() ([]byte, []int) {
+func (m *Ring) Reset()         { *m = Ring{} }
+func (m *Ring) String() string { return proto.CompactTextString(m) }
+func (*Ring) ProtoMessage()    {}
+func (*Ring) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6327d78a13af617a, []int{2}
 }
 
-func (m *CanaryQuery) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CanaryQuery.Unmarshal(m, b)
+func (m *Ring) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Ring.Unmarshal(m, b)
 }
-func (m *CanaryQuery) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CanaryQuery.Marshal(b, m, deterministic)
+func (m *Ring) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Ring.Marshal(b, m, deterministic)
 }
-func (m *CanaryQuery) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CanaryQuery.Merge(m, src)
+func (m *Ring) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Ring.Merge(m, src)
 }
-func (m *CanaryQuery) XXX_Size() int {
-	return xxx_messageInfo_CanaryQuery.Size(m)
+func (m *Ring) XXX_Size() int {
+	return xxx_messageInfo_Ring.Size(m)
 }
-func (m *CanaryQuery) XXX_DiscardUnknown() {
-	xxx_messageInfo_CanaryQuery.DiscardUnknown(m)
+func (m *Ring) XXX_DiscardUnknown() {
+	xxx_messageInfo_Ring.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CanaryQuery proto.InternalMessageInfo
+var xxx_messageInfo_Ring proto.InternalMessageInfo
 
-func (m *CanaryQuery) GetThreshold() float32 {
+func (m *Ring) GetRing() int32 {
 	if m != nil {
-		return m.Threshold
+		return m.Ring
 	}
 	return 0
 }
 
-func (m *CanaryQuery) GetCanary() *Canary {
-	if m != nil {
-		return m.Canary
-	}
-	return nil
-}
-
 func init() {
-	proto.RegisterType((*Canary)(nil), "roleypoly.ctf.Canary")
-	proto.RegisterType((*Canaries)(nil), "roleypoly.ctf.Canaries")
-	proto.RegisterType((*CanaryQuery)(nil), "roleypoly.ctf.CanaryQuery")
+	proto.RegisterType((*Flags)(nil), "roleypoly.ctf.Flags")
+	proto.RegisterType((*Flag)(nil), "roleypoly.ctf.Flag")
+	proto.RegisterType((*Ring)(nil), "roleypoly.ctf.Ring")
 }
 
 func init() { proto.RegisterFile("ctf/ctf.proto", fileDescriptor_6327d78a13af617a) }
 
 var fileDescriptor_6327d78a13af617a = []byte{
-	// 322 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x92, 0x41, 0x4f, 0xfa, 0x40,
-	0x10, 0xc5, 0x69, 0xf9, 0x87, 0x3f, 0x0c, 0x70, 0xd9, 0x44, 0x6c, 0x2a, 0x31, 0xa4, 0x27, 0x2e,
-	0x6e, 0x23, 0x26, 0xde, 0xf4, 0x20, 0x28, 0x37, 0x13, 0x8b, 0x27, 0x6e, 0xed, 0x3a, 0x2d, 0x24,
-	0x4b, 0xb7, 0x59, 0xa6, 0x87, 0x7e, 0x6c, 0xbf, 0x81, 0xe9, 0xb6, 0xd4, 0x98, 0x54, 0x0f, 0xc6,
-	0xdb, 0xec, 0xcc, 0xbc, 0x37, 0xbf, 0xbc, 0x2c, 0x8c, 0x05, 0xc5, 0xbe, 0xa0, 0x98, 0x67, 0x5a,
-	0x91, 0x62, 0x63, 0xad, 0x24, 0x16, 0x99, 0x92, 0x05, 0x17, 0x14, 0xbb, 0x17, 0x89, 0x52, 0x89,
-	0x44, 0xdf, 0x0c, 0xa3, 0x3c, 0xf6, 0xf1, 0x90, 0x51, 0x51, 0xed, 0x7a, 0xb7, 0xd0, 0x5b, 0x86,
-	0x69, 0xa8, 0x0b, 0xc6, 0xe0, 0x5f, 0x1a, 0x1e, 0xd0, 0xb1, 0x66, 0xd6, 0x7c, 0x10, 0x98, 0x9a,
-	0x39, 0xf0, 0x3f, 0x43, 0x2d, 0x30, 0x25, 0xc7, 0x9e, 0x59, 0x73, 0x3b, 0x38, 0x3d, 0xbd, 0x3b,
-	0xe8, 0x1b, 0xdd, 0x1e, 0x8f, 0xec, 0x1a, 0xfa, 0xa2, 0xae, 0x1d, 0x6b, 0xd6, 0x9d, 0x0f, 0x17,
-	0x67, 0xfc, 0x0b, 0x02, 0xaf, 0x4e, 0x04, 0xcd, 0x9a, 0xb7, 0x85, 0x61, 0xd5, 0x7b, 0xc9, 0x51,
-	0x17, 0x6c, 0x0a, 0x03, 0xda, 0x69, 0x3c, 0xee, 0x94, 0x7c, 0x33, 0x00, 0x76, 0xf0, 0xd9, 0x60,
-	0x57, 0xd0, 0x33, 0xc2, 0xc2, 0x40, 0x7c, 0xeb, 0x5e, 0x2f, 0x2d, 0xde, 0x6d, 0xe8, 0x2e, 0x5f,
-	0x9f, 0xd8, 0x0a, 0x86, 0x6b, 0xa4, 0x86, 0xd2, 0x6d, 0x55, 0x99, 0xfb, 0xee, 0x79, 0xdb, 0xac,
-	0xe4, 0xec, 0xb0, 0x67, 0x98, 0x6c, 0x90, 0x36, 0xfb, 0x34, 0x91, 0x58, 0x1f, 0x52, 0x52, 0xaa,
-	0x9c, 0x7e, 0x34, 0x9c, 0xf0, 0x2a, 0x74, 0x7e, 0x0a, 0x9d, 0x3f, 0x96, 0xa1, 0x37, 0x7e, 0x6b,
-	0xa9, 0xa2, 0x50, 0xfe, 0x85, 0xdf, 0x3d, 0x8c, 0x96, 0x1a, 0x43, 0xaa, 0xe1, 0x58, 0x7b, 0x38,
-	0x6e, 0x7b, 0xdb, 0xeb, 0xb0, 0x15, 0x8c, 0x56, 0x28, 0xb1, 0xd1, 0xff, 0x8a, 0xe2, 0xe1, 0x72,
-	0x3b, 0x4d, 0xf6, 0xb4, 0xcb, 0x23, 0x2e, 0xd4, 0xc1, 0x6f, 0x1c, 0x7c, 0x9d, 0x89, 0xf2, 0x63,
-	0x46, 0x3d, 0xa3, 0xb8, 0xf9, 0x08, 0x00, 0x00, 0xff, 0xff, 0x65, 0x62, 0x80, 0x9a, 0xaa, 0x02,
-	0x00, 0x00,
+	// 266 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x51, 0x3f, 0x4b, 0xc4, 0x30,
+	0x1c, 0x6d, 0xbc, 0x56, 0xf0, 0x77, 0xde, 0x12, 0x45, 0x4a, 0x15, 0x29, 0x99, 0xea, 0x92, 0x42,
+	0x5d, 0x94, 0xdb, 0x3c, 0x3c, 0x57, 0x29, 0x4e, 0x6e, 0x6d, 0x49, 0x62, 0xa1, 0xe9, 0xaf, 0xe4,
+	0x72, 0x42, 0xbf, 0xb7, 0x1f, 0x40, 0x92, 0xe2, 0x89, 0x52, 0x1c, 0xdc, 0x5e, 0xde, 0x9f, 0xe4,
+	0xf1, 0x02, 0xab, 0xc6, 0xca, 0xbc, 0xb1, 0x92, 0x0f, 0x06, 0x2d, 0xd2, 0x95, 0xc1, 0x4e, 0x8c,
+	0x03, 0x76, 0x23, 0x6f, 0xac, 0x4c, 0x2e, 0x15, 0xa2, 0xea, 0x44, 0xee, 0xc5, 0x7a, 0x2f, 0x73,
+	0xa1, 0x07, 0x3b, 0x4e, 0x5e, 0x56, 0x40, 0xb4, 0xed, 0x2a, 0xb5, 0xa3, 0x37, 0x10, 0x49, 0x07,
+	0x62, 0x92, 0x2e, 0xb2, 0x65, 0x71, 0xc6, 0x7f, 0x5c, 0xc2, 0x9d, 0xa9, 0x9c, 0x1c, 0x8c, 0x43,
+	0xe8, 0x8e, 0x94, 0x42, 0xd8, 0x57, 0x5a, 0xc4, 0x24, 0x25, 0xd9, 0x49, 0xe9, 0xb1, 0xe3, 0x4c,
+	0xdb, 0xab, 0xf8, 0x28, 0x25, 0x59, 0x54, 0x7a, 0xcc, 0x12, 0x08, 0xcb, 0xb6, 0x57, 0x07, 0x8d,
+	0x7c, 0x6b, 0xc5, 0x07, 0x81, 0xc5, 0xe6, 0x65, 0x4b, 0xd7, 0x70, 0xfa, 0x24, 0xac, 0xb3, 0x4d,
+	0x75, 0x7e, 0xbf, 0xef, 0x94, 0xe4, 0x7c, 0xa6, 0xd4, 0x8e, 0x05, 0xf4, 0x0e, 0x60, 0x63, 0x44,
+	0x65, 0x85, 0xaf, 0x35, 0x57, 0x3d, 0x99, 0x23, 0x59, 0x40, 0xef, 0x61, 0xf9, 0x6c, 0x50, 0xe3,
+	0x3f, 0xa2, 0x6b, 0x80, 0x52, 0x68, 0x7c, 0xff, 0x23, 0x79, 0xc1, 0xa7, 0xe9, 0xf9, 0xd7, 0xf4,
+	0xfc, 0xd1, 0x4d, 0xcf, 0x82, 0x87, 0xeb, 0xd7, 0x2b, 0xd5, 0xda, 0xb7, 0x7d, 0xcd, 0x1b, 0xd4,
+	0xf9, 0x21, 0x9a, 0x9b, 0xa1, 0x71, 0x1f, 0x59, 0x1f, 0xfb, 0xc4, 0xed, 0x67, 0x00, 0x00, 0x00,
+	0xff, 0xff, 0xfe, 0xea, 0x9f, 0xc7, 0xda, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -203,11 +191,10 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type CTFClient interface {
-	GetCanaries(ctx context.Context, in *CanaryQuery, opts ...grpc.CallOption) (*Canaries, error)
-	SetSingleCanaryRollout(ctx context.Context, in *CanaryQuery, opts ...grpc.CallOption) (*empty.Empty, error)
-	SetGlobalCanaryRollout(ctx context.Context, in *CanaryQuery, opts ...grpc.CallOption) (*empty.Empty, error)
-	CreateCanary(ctx context.Context, in *Canary, opts ...grpc.CallOption) (*Canary, error)
-	DeleteCanary(ctx context.Context, in *CanaryQuery, opts ...grpc.CallOption) (*empty.Empty, error)
+	GetRingFlags(ctx context.Context, in *Ring, opts ...grpc.CallOption) (*Flags, error)
+	CreateFlag(ctx context.Context, in *Flag, opts ...grpc.CallOption) (*Flag, error)
+	PromoteFlag(ctx context.Context, in *Flag, opts ...grpc.CallOption) (*Flag, error)
+	RemoveFlag(ctx context.Context, in *Flag, opts ...grpc.CallOption) (*empty.Empty, error)
 }
 
 type cTFClient struct {
@@ -218,45 +205,36 @@ func NewCTFClient(cc *grpc.ClientConn) CTFClient {
 	return &cTFClient{cc}
 }
 
-func (c *cTFClient) GetCanaries(ctx context.Context, in *CanaryQuery, opts ...grpc.CallOption) (*Canaries, error) {
-	out := new(Canaries)
-	err := c.cc.Invoke(ctx, "/roleypoly.ctf.CTF/GetCanaries", in, out, opts...)
+func (c *cTFClient) GetRingFlags(ctx context.Context, in *Ring, opts ...grpc.CallOption) (*Flags, error) {
+	out := new(Flags)
+	err := c.cc.Invoke(ctx, "/roleypoly.ctf.CTF/GetRingFlags", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *cTFClient) SetSingleCanaryRollout(ctx context.Context, in *CanaryQuery, opts ...grpc.CallOption) (*empty.Empty, error) {
+func (c *cTFClient) CreateFlag(ctx context.Context, in *Flag, opts ...grpc.CallOption) (*Flag, error) {
+	out := new(Flag)
+	err := c.cc.Invoke(ctx, "/roleypoly.ctf.CTF/CreateFlag", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cTFClient) PromoteFlag(ctx context.Context, in *Flag, opts ...grpc.CallOption) (*Flag, error) {
+	out := new(Flag)
+	err := c.cc.Invoke(ctx, "/roleypoly.ctf.CTF/PromoteFlag", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cTFClient) RemoveFlag(ctx context.Context, in *Flag, opts ...grpc.CallOption) (*empty.Empty, error) {
 	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/roleypoly.ctf.CTF/SetSingleCanaryRollout", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *cTFClient) SetGlobalCanaryRollout(ctx context.Context, in *CanaryQuery, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/roleypoly.ctf.CTF/SetGlobalCanaryRollout", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *cTFClient) CreateCanary(ctx context.Context, in *Canary, opts ...grpc.CallOption) (*Canary, error) {
-	out := new(Canary)
-	err := c.cc.Invoke(ctx, "/roleypoly.ctf.CTF/CreateCanary", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *cTFClient) DeleteCanary(ctx context.Context, in *CanaryQuery, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/roleypoly.ctf.CTF/DeleteCanary", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/roleypoly.ctf.CTF/RemoveFlag", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -265,123 +243,101 @@ func (c *cTFClient) DeleteCanary(ctx context.Context, in *CanaryQuery, opts ...g
 
 // CTFServer is the server API for CTF service.
 type CTFServer interface {
-	GetCanaries(context.Context, *CanaryQuery) (*Canaries, error)
-	SetSingleCanaryRollout(context.Context, *CanaryQuery) (*empty.Empty, error)
-	SetGlobalCanaryRollout(context.Context, *CanaryQuery) (*empty.Empty, error)
-	CreateCanary(context.Context, *Canary) (*Canary, error)
-	DeleteCanary(context.Context, *CanaryQuery) (*empty.Empty, error)
+	GetRingFlags(context.Context, *Ring) (*Flags, error)
+	CreateFlag(context.Context, *Flag) (*Flag, error)
+	PromoteFlag(context.Context, *Flag) (*Flag, error)
+	RemoveFlag(context.Context, *Flag) (*empty.Empty, error)
 }
 
 // UnimplementedCTFServer can be embedded to have forward compatible implementations.
 type UnimplementedCTFServer struct {
 }
 
-func (*UnimplementedCTFServer) GetCanaries(ctx context.Context, req *CanaryQuery) (*Canaries, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCanaries not implemented")
+func (*UnimplementedCTFServer) GetRingFlags(ctx context.Context, req *Ring) (*Flags, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRingFlags not implemented")
 }
-func (*UnimplementedCTFServer) SetSingleCanaryRollout(ctx context.Context, req *CanaryQuery) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetSingleCanaryRollout not implemented")
+func (*UnimplementedCTFServer) CreateFlag(ctx context.Context, req *Flag) (*Flag, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateFlag not implemented")
 }
-func (*UnimplementedCTFServer) SetGlobalCanaryRollout(ctx context.Context, req *CanaryQuery) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetGlobalCanaryRollout not implemented")
+func (*UnimplementedCTFServer) PromoteFlag(ctx context.Context, req *Flag) (*Flag, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PromoteFlag not implemented")
 }
-func (*UnimplementedCTFServer) CreateCanary(ctx context.Context, req *Canary) (*Canary, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateCanary not implemented")
-}
-func (*UnimplementedCTFServer) DeleteCanary(ctx context.Context, req *CanaryQuery) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteCanary not implemented")
+func (*UnimplementedCTFServer) RemoveFlag(ctx context.Context, req *Flag) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveFlag not implemented")
 }
 
 func RegisterCTFServer(s *grpc.Server, srv CTFServer) {
 	s.RegisterService(&_CTF_serviceDesc, srv)
 }
 
-func _CTF_GetCanaries_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CanaryQuery)
+func _CTF_GetRingFlags_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Ring)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CTFServer).GetCanaries(ctx, in)
+		return srv.(CTFServer).GetRingFlags(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/roleypoly.ctf.CTF/GetCanaries",
+		FullMethod: "/roleypoly.ctf.CTF/GetRingFlags",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CTFServer).GetCanaries(ctx, req.(*CanaryQuery))
+		return srv.(CTFServer).GetRingFlags(ctx, req.(*Ring))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CTF_SetSingleCanaryRollout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CanaryQuery)
+func _CTF_CreateFlag_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Flag)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CTFServer).SetSingleCanaryRollout(ctx, in)
+		return srv.(CTFServer).CreateFlag(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/roleypoly.ctf.CTF/SetSingleCanaryRollout",
+		FullMethod: "/roleypoly.ctf.CTF/CreateFlag",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CTFServer).SetSingleCanaryRollout(ctx, req.(*CanaryQuery))
+		return srv.(CTFServer).CreateFlag(ctx, req.(*Flag))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CTF_SetGlobalCanaryRollout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CanaryQuery)
+func _CTF_PromoteFlag_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Flag)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CTFServer).SetGlobalCanaryRollout(ctx, in)
+		return srv.(CTFServer).PromoteFlag(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/roleypoly.ctf.CTF/SetGlobalCanaryRollout",
+		FullMethod: "/roleypoly.ctf.CTF/PromoteFlag",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CTFServer).SetGlobalCanaryRollout(ctx, req.(*CanaryQuery))
+		return srv.(CTFServer).PromoteFlag(ctx, req.(*Flag))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CTF_CreateCanary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Canary)
+func _CTF_RemoveFlag_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Flag)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CTFServer).CreateCanary(ctx, in)
+		return srv.(CTFServer).RemoveFlag(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/roleypoly.ctf.CTF/CreateCanary",
+		FullMethod: "/roleypoly.ctf.CTF/RemoveFlag",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CTFServer).CreateCanary(ctx, req.(*Canary))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CTF_DeleteCanary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CanaryQuery)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CTFServer).DeleteCanary(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/roleypoly.ctf.CTF/DeleteCanary",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CTFServer).DeleteCanary(ctx, req.(*CanaryQuery))
+		return srv.(CTFServer).RemoveFlag(ctx, req.(*Flag))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -391,24 +347,20 @@ var _CTF_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*CTFServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetCanaries",
-			Handler:    _CTF_GetCanaries_Handler,
+			MethodName: "GetRingFlags",
+			Handler:    _CTF_GetRingFlags_Handler,
 		},
 		{
-			MethodName: "SetSingleCanaryRollout",
-			Handler:    _CTF_SetSingleCanaryRollout_Handler,
+			MethodName: "CreateFlag",
+			Handler:    _CTF_CreateFlag_Handler,
 		},
 		{
-			MethodName: "SetGlobalCanaryRollout",
-			Handler:    _CTF_SetGlobalCanaryRollout_Handler,
+			MethodName: "PromoteFlag",
+			Handler:    _CTF_PromoteFlag_Handler,
 		},
 		{
-			MethodName: "CreateCanary",
-			Handler:    _CTF_CreateCanary_Handler,
-		},
-		{
-			MethodName: "DeleteCanary",
-			Handler:    _CTF_DeleteCanary_Handler,
+			MethodName: "RemoveFlag",
+			Handler:    _CTF_RemoveFlag_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

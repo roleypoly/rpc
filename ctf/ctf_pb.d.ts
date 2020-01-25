@@ -4,75 +4,69 @@
 import * as jspb from "google-protobuf";
 import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
 
-export class Canary extends jspb.Message {
+export class Flags extends jspb.Message {
+  clearFlagsList(): void;
+  getFlagsList(): Array<Flag>;
+  setFlagsList(value: Array<Flag>): void;
+  addFlags(value?: Flag, index?: number): Flag;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Flags.AsObject;
+  static toObject(includeInstance: boolean, msg: Flags): Flags.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Flags, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Flags;
+  static deserializeBinaryFromReader(message: Flags, reader: jspb.BinaryReader): Flags;
+}
+
+export namespace Flags {
+  export type AsObject = {
+    flagsList: Array<Flag.AsObject>,
+  }
+}
+
+export class Flag extends jspb.Message {
   getName(): string;
   setName(value: string): void;
 
-  getPercent(): number;
-  setPercent(value: number): void;
+  getRing(): number;
+  setRing(value: number): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Canary.AsObject;
-  static toObject(includeInstance: boolean, msg: Canary): Canary.AsObject;
+  toObject(includeInstance?: boolean): Flag.AsObject;
+  static toObject(includeInstance: boolean, msg: Flag): Flag.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: Canary, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Canary;
-  static deserializeBinaryFromReader(message: Canary, reader: jspb.BinaryReader): Canary;
+  static serializeBinaryToWriter(message: Flag, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Flag;
+  static deserializeBinaryFromReader(message: Flag, reader: jspb.BinaryReader): Flag;
 }
 
-export namespace Canary {
+export namespace Flag {
   export type AsObject = {
     name: string,
-    percent: number,
+    ring: number,
   }
 }
 
-export class Canaries extends jspb.Message {
-  clearCanariesList(): void;
-  getCanariesList(): Array<Canary>;
-  setCanariesList(value: Array<Canary>): void;
-  addCanaries(value?: Canary, index?: number): Canary;
+export class Ring extends jspb.Message {
+  getRing(): number;
+  setRing(value: number): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Canaries.AsObject;
-  static toObject(includeInstance: boolean, msg: Canaries): Canaries.AsObject;
+  toObject(includeInstance?: boolean): Ring.AsObject;
+  static toObject(includeInstance: boolean, msg: Ring): Ring.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: Canaries, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Canaries;
-  static deserializeBinaryFromReader(message: Canaries, reader: jspb.BinaryReader): Canaries;
+  static serializeBinaryToWriter(message: Ring, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Ring;
+  static deserializeBinaryFromReader(message: Ring, reader: jspb.BinaryReader): Ring;
 }
 
-export namespace Canaries {
+export namespace Ring {
   export type AsObject = {
-    canariesList: Array<Canary.AsObject>,
-  }
-}
-
-export class CanaryQuery extends jspb.Message {
-  getThreshold(): number;
-  setThreshold(value: number): void;
-
-  hasCanary(): boolean;
-  clearCanary(): void;
-  getCanary(): Canary | undefined;
-  setCanary(value?: Canary): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CanaryQuery.AsObject;
-  static toObject(includeInstance: boolean, msg: CanaryQuery): CanaryQuery.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: CanaryQuery, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CanaryQuery;
-  static deserializeBinaryFromReader(message: CanaryQuery, reader: jspb.BinaryReader): CanaryQuery;
-}
-
-export namespace CanaryQuery {
-  export type AsObject = {
-    threshold: number,
-    canary?: Canary.AsObject,
+    ring: number,
   }
 }
 

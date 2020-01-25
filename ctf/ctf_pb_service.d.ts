@@ -5,58 +5,48 @@ import * as ctf_ctf_pb from "../ctf/ctf_pb";
 import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
-type CTFGetCanaries = {
+type CTFGetRingFlags = {
   readonly methodName: string;
   readonly service: typeof CTF;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof ctf_ctf_pb.CanaryQuery;
-  readonly responseType: typeof ctf_ctf_pb.Canaries;
+  readonly requestType: typeof ctf_ctf_pb.Ring;
+  readonly responseType: typeof ctf_ctf_pb.Flags;
 };
 
-type CTFSetSingleCanaryRollout = {
+type CTFCreateFlag = {
   readonly methodName: string;
   readonly service: typeof CTF;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof ctf_ctf_pb.CanaryQuery;
-  readonly responseType: typeof google_protobuf_empty_pb.Empty;
+  readonly requestType: typeof ctf_ctf_pb.Flag;
+  readonly responseType: typeof ctf_ctf_pb.Flag;
 };
 
-type CTFSetGlobalCanaryRollout = {
+type CTFPromoteFlag = {
   readonly methodName: string;
   readonly service: typeof CTF;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof ctf_ctf_pb.CanaryQuery;
-  readonly responseType: typeof google_protobuf_empty_pb.Empty;
+  readonly requestType: typeof ctf_ctf_pb.Flag;
+  readonly responseType: typeof ctf_ctf_pb.Flag;
 };
 
-type CTFCreateCanary = {
+type CTFRemoveFlag = {
   readonly methodName: string;
   readonly service: typeof CTF;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof ctf_ctf_pb.Canary;
-  readonly responseType: typeof ctf_ctf_pb.Canary;
-};
-
-type CTFDeleteCanary = {
-  readonly methodName: string;
-  readonly service: typeof CTF;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof ctf_ctf_pb.CanaryQuery;
+  readonly requestType: typeof ctf_ctf_pb.Flag;
   readonly responseType: typeof google_protobuf_empty_pb.Empty;
 };
 
 export class CTF {
   static readonly serviceName: string;
-  static readonly GetCanaries: CTFGetCanaries;
-  static readonly SetSingleCanaryRollout: CTFSetSingleCanaryRollout;
-  static readonly SetGlobalCanaryRollout: CTFSetGlobalCanaryRollout;
-  static readonly CreateCanary: CTFCreateCanary;
-  static readonly DeleteCanary: CTFDeleteCanary;
+  static readonly GetRingFlags: CTFGetRingFlags;
+  static readonly CreateFlag: CTFCreateFlag;
+  static readonly PromoteFlag: CTFPromoteFlag;
+  static readonly RemoveFlag: CTFRemoveFlag;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -91,24 +81,20 @@ export class CTFClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
-  getCanaries(
-    requestMessage: ctf_ctf_pb.CanaryQuery,
+  getRingFlags(
+    requestMessage: ctf_ctf_pb.Ring,
     metadata?: grpc.Metadata,
-  ): Promise<ctf_ctf_pb.Canaries>;
-  setSingleCanaryRollout(
-    requestMessage: ctf_ctf_pb.CanaryQuery,
+  ): Promise<ctf_ctf_pb.Flags>;
+  createFlag(
+    requestMessage: ctf_ctf_pb.Flag,
     metadata?: grpc.Metadata,
-  ): Promise<google_protobuf_empty_pb.Empty>;
-  setGlobalCanaryRollout(
-    requestMessage: ctf_ctf_pb.CanaryQuery,
+  ): Promise<ctf_ctf_pb.Flag>;
+  promoteFlag(
+    requestMessage: ctf_ctf_pb.Flag,
     metadata?: grpc.Metadata,
-  ): Promise<google_protobuf_empty_pb.Empty>;
-  createCanary(
-    requestMessage: ctf_ctf_pb.Canary,
-    metadata?: grpc.Metadata,
-  ): Promise<ctf_ctf_pb.Canary>;
-  deleteCanary(
-    requestMessage: ctf_ctf_pb.CanaryQuery,
+  ): Promise<ctf_ctf_pb.Flag>;
+  removeFlag(
+    requestMessage: ctf_ctf_pb.Flag,
     metadata?: grpc.Metadata,
   ): Promise<google_protobuf_empty_pb.Empty>;
 }
