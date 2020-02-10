@@ -1,9 +1,17 @@
 syntax = "proto3";
 
 package roleypoly.auth.backend;
+option go_package = "github.com/roleypoly/rpc/auth/backend";
+
+import "shared/internal.proto";
 
 service AuthBackend {
     rpc GetSessionChallenge(UserSlug) returns (AuthChallenge) {}
+    rpc GetSession(SessionQuery) returns (roleypoly.RoleypolySession) {}
+}
+
+message SessionQuery {
+    string token = 1;
 }
 
 message UserSlug {
