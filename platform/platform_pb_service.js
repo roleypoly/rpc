@@ -12,13 +12,22 @@ var Platform = (function () {
   return Platform;
 }());
 
-Platform.GetMyGuilds = {
-  methodName: "GetMyGuilds",
+Platform.EnumerateMyGuilds = {
+  methodName: "EnumerateMyGuilds",
   service: Platform,
   requestStream: false,
   responseStream: false,
   requestType: google_protobuf_empty_pb.Empty,
-  responseType: shared_shared_pb.GuildList
+  responseType: platform_platform_pb.GuildEnumeration
+};
+
+Platform.GetGuildSlug = {
+  methodName: "GetGuildSlug",
+  service: Platform,
+  requestStream: false,
+  responseStream: false,
+  requestType: shared_shared_pb.IDQuery,
+  responseType: shared_shared_pb.Guild
 };
 
 Platform.GetGuild = {
@@ -27,7 +36,16 @@ Platform.GetGuild = {
   requestStream: false,
   responseStream: false,
   requestType: shared_shared_pb.IDQuery,
-  responseType: shared_shared_pb.Guild
+  responseType: platform_platform_pb.PresentableGuild
+};
+
+Platform.UpdateMyRoles = {
+  methodName: "UpdateMyRoles",
+  service: Platform,
+  requestStream: false,
+  responseStream: false,
+  requestType: platform_platform_pb.UpdateRoles,
+  responseType: google_protobuf_empty_pb.Empty
 };
 
 Platform.UpdateGuildData = {
@@ -39,24 +57,6 @@ Platform.UpdateGuildData = {
   responseType: google_protobuf_empty_pb.Empty
 };
 
-Platform.CommitRoles = {
-  methodName: "CommitRoles",
-  service: Platform,
-  requestStream: false,
-  responseStream: false,
-  requestType: platform_platform_pb.Roles,
-  responseType: google_protobuf_empty_pb.Empty
-};
-
-Platform.SetEntitlement = {
-  methodName: "SetEntitlement",
-  service: Platform,
-  requestStream: false,
-  responseStream: false,
-  requestType: platform_platform_pb.UpdateEntitlement,
-  responseType: google_protobuf_empty_pb.Empty
-};
-
 exports.Platform = Platform;
 
 function PlatformClient(serviceHost, options) {
@@ -64,9 +64,31 @@ function PlatformClient(serviceHost, options) {
   this.options = options || {};
 }
 
-PlatformClient.prototype.getMyGuilds = function getMyGuilds(requestMessage, metadata) {
+PlatformClient.prototype.enumerateMyGuilds = function enumerateMyGuilds(requestMessage, metadata) {
   return new Promise((resolve, reject) => {
-    grpc.unary(Platform.GetMyGuilds, {
+    grpc.unary(Platform.EnumerateMyGuilds, {
+      request: requestMessage,
+      host: this.serviceHost,
+      metadata: metadata,
+      transport: this.options.transport,
+      debug: this.options.debug,
+      onEnd: function (response) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          reject(err);
+        } else {
+          resolve(response.message);
+        }
+      }
+    });
+  });
+};
+
+PlatformClient.prototype.getGuildSlug = function getGuildSlug(requestMessage, metadata) {
+  return new Promise((resolve, reject) => {
+    grpc.unary(Platform.GetGuildSlug, {
       request: requestMessage,
       host: this.serviceHost,
       metadata: metadata,
@@ -108,53 +130,31 @@ PlatformClient.prototype.getGuild = function getGuild(requestMessage, metadata) 
   });
 };
 
+PlatformClient.prototype.updateMyRoles = function updateMyRoles(requestMessage, metadata) {
+  return new Promise((resolve, reject) => {
+    grpc.unary(Platform.UpdateMyRoles, {
+      request: requestMessage,
+      host: this.serviceHost,
+      metadata: metadata,
+      transport: this.options.transport,
+      debug: this.options.debug,
+      onEnd: function (response) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          reject(err);
+        } else {
+          resolve(response.message);
+        }
+      }
+    });
+  });
+};
+
 PlatformClient.prototype.updateGuildData = function updateGuildData(requestMessage, metadata) {
   return new Promise((resolve, reject) => {
     grpc.unary(Platform.UpdateGuildData, {
-      request: requestMessage,
-      host: this.serviceHost,
-      metadata: metadata,
-      transport: this.options.transport,
-      debug: this.options.debug,
-      onEnd: function (response) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          reject(err);
-        } else {
-          resolve(response.message);
-        }
-      }
-    });
-  });
-};
-
-PlatformClient.prototype.commitRoles = function commitRoles(requestMessage, metadata) {
-  return new Promise((resolve, reject) => {
-    grpc.unary(Platform.CommitRoles, {
-      request: requestMessage,
-      host: this.serviceHost,
-      metadata: metadata,
-      transport: this.options.transport,
-      debug: this.options.debug,
-      onEnd: function (response) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          reject(err);
-        } else {
-          resolve(response.message);
-        }
-      }
-    });
-  });
-};
-
-PlatformClient.prototype.setEntitlement = function setEntitlement(requestMessage, metadata) {
-  return new Promise((resolve, reject) => {
-    grpc.unary(Platform.SetEntitlement, {
       request: requestMessage,
       host: this.serviceHost,
       metadata: metadata,

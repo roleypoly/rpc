@@ -6,13 +6,22 @@ import * as shared_shared_pb from "../shared/shared_pb";
 import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
-type PlatformGetMyGuilds = {
+type PlatformEnumerateMyGuilds = {
   readonly methodName: string;
   readonly service: typeof Platform;
   readonly requestStream: false;
   readonly responseStream: false;
   readonly requestType: typeof google_protobuf_empty_pb.Empty;
-  readonly responseType: typeof shared_shared_pb.GuildList;
+  readonly responseType: typeof platform_platform_pb.GuildEnumeration;
+};
+
+type PlatformGetGuildSlug = {
+  readonly methodName: string;
+  readonly service: typeof Platform;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof shared_shared_pb.IDQuery;
+  readonly responseType: typeof shared_shared_pb.Guild;
 };
 
 type PlatformGetGuild = {
@@ -21,7 +30,16 @@ type PlatformGetGuild = {
   readonly requestStream: false;
   readonly responseStream: false;
   readonly requestType: typeof shared_shared_pb.IDQuery;
-  readonly responseType: typeof shared_shared_pb.Guild;
+  readonly responseType: typeof platform_platform_pb.PresentableGuild;
+};
+
+type PlatformUpdateMyRoles = {
+  readonly methodName: string;
+  readonly service: typeof Platform;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof platform_platform_pb.UpdateRoles;
+  readonly responseType: typeof google_protobuf_empty_pb.Empty;
 };
 
 type PlatformUpdateGuildData = {
@@ -33,31 +51,13 @@ type PlatformUpdateGuildData = {
   readonly responseType: typeof google_protobuf_empty_pb.Empty;
 };
 
-type PlatformCommitRoles = {
-  readonly methodName: string;
-  readonly service: typeof Platform;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof platform_platform_pb.Roles;
-  readonly responseType: typeof google_protobuf_empty_pb.Empty;
-};
-
-type PlatformSetEntitlement = {
-  readonly methodName: string;
-  readonly service: typeof Platform;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof platform_platform_pb.UpdateEntitlement;
-  readonly responseType: typeof google_protobuf_empty_pb.Empty;
-};
-
 export class Platform {
   static readonly serviceName: string;
-  static readonly GetMyGuilds: PlatformGetMyGuilds;
+  static readonly EnumerateMyGuilds: PlatformEnumerateMyGuilds;
+  static readonly GetGuildSlug: PlatformGetGuildSlug;
   static readonly GetGuild: PlatformGetGuild;
+  static readonly UpdateMyRoles: PlatformUpdateMyRoles;
   static readonly UpdateGuildData: PlatformUpdateGuildData;
-  static readonly CommitRoles: PlatformCommitRoles;
-  static readonly SetEntitlement: PlatformSetEntitlement;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -92,24 +92,24 @@ export class PlatformClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
-  getMyGuilds(
+  enumerateMyGuilds(
     requestMessage: google_protobuf_empty_pb.Empty,
     metadata?: grpc.Metadata,
-  ): Promise<shared_shared_pb.GuildList>;
-  getGuild(
+  ): Promise<platform_platform_pb.GuildEnumeration>;
+  getGuildSlug(
     requestMessage: shared_shared_pb.IDQuery,
     metadata?: grpc.Metadata,
   ): Promise<shared_shared_pb.Guild>;
+  getGuild(
+    requestMessage: shared_shared_pb.IDQuery,
+    metadata?: grpc.Metadata,
+  ): Promise<platform_platform_pb.PresentableGuild>;
+  updateMyRoles(
+    requestMessage: platform_platform_pb.UpdateRoles,
+    metadata?: grpc.Metadata,
+  ): Promise<google_protobuf_empty_pb.Empty>;
   updateGuildData(
     requestMessage: platform_platform_pb.GuildData,
-    metadata?: grpc.Metadata,
-  ): Promise<google_protobuf_empty_pb.Empty>;
-  commitRoles(
-    requestMessage: platform_platform_pb.Roles,
-    metadata?: grpc.Metadata,
-  ): Promise<google_protobuf_empty_pb.Empty>;
-  setEntitlement(
-    requestMessage: platform_platform_pb.UpdateEntitlement,
     metadata?: grpc.Metadata,
   ): Promise<google_protobuf_empty_pb.Empty>;
 }

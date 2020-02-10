@@ -4,20 +4,26 @@ package roleypoly.platform;
 option go_package = "github.com/roleypoly/rpc/platform";
 
 import "shared/shared.proto";
+import "discord/discord.proto";
 import "google/protobuf/empty.proto";
 
 service Platform {
-  rpc GetMyGuilds(google.protobuf.Empty)
-      returns (roleypoly.GuildList) {}
+  rpc EnumerateMyGuilds(google.protobuf.Empty) returns (GuildEnumeration) {}
+  rpc GetGuildSlug(roleypoly.IDQuery) returns (roleypoly.Guild) {}
+  rpc GetGuild(roleypoly.IDQuery) returns (PresentableGuild) {}
 
-  rpc GetGuild(roleypoly.IDQuery)
-      returns (roleypoly.Guild) {}
-
+  rpc UpdateMyRoles(UpdateRoles) returns (google.protobuf.Empty) {}
   rpc UpdateGuildData(GuildData) returns (google.protobuf.Empty) {}
+}
 
-  rpc CommitRoles(Roles) returns (google.protobuf.Empty) {}
+message GuildEnumeration { repeated PresentableGuild guilds = 1; }
 
-  rpc SetEntitlement(UpdateEntitlement) returns (google.protobuf.Empty) {}
+message PresentableGuild {
+  string ID = 1;
+  roleypoly.Guild guild = 2;
+  GuildData data = 3;
+  roleypoly.discord.Member member = 4;
+  roleypoly.GuildRoles roles = 5;
 }
 
 message GuildData {
@@ -27,9 +33,12 @@ message GuildData {
   repeated string entitlements = 4;
 }
 
-message Roles {
-  repeated string roles = 1;
+message UpdateRoles {
+  string guildID = 1;
+  Roles roles = 2;
 }
+
+message Roles { repeated string roles = 1; }
 
 message Category {
   string ID = 1;

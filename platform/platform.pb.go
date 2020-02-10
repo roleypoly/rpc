@@ -8,6 +8,7 @@ import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	empty "github.com/golang/protobuf/ptypes/empty"
+	discord "github.com/roleypoly/rpc/discord"
 	shared "github.com/roleypoly/rpc/shared"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -48,7 +49,117 @@ func (x Category_CategoryType) String() string {
 }
 
 func (Category_CategoryType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_fa9581d889443fc5, []int{2, 0}
+	return fileDescriptor_fa9581d889443fc5, []int{5, 0}
+}
+
+type GuildEnumeration struct {
+	Guilds               []*PresentableGuild `protobuf:"bytes,1,rep,name=guilds,proto3" json:"guilds,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}            `json:"-"`
+	XXX_unrecognized     []byte              `json:"-"`
+	XXX_sizecache        int32               `json:"-"`
+}
+
+func (m *GuildEnumeration) Reset()         { *m = GuildEnumeration{} }
+func (m *GuildEnumeration) String() string { return proto.CompactTextString(m) }
+func (*GuildEnumeration) ProtoMessage()    {}
+func (*GuildEnumeration) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fa9581d889443fc5, []int{0}
+}
+
+func (m *GuildEnumeration) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GuildEnumeration.Unmarshal(m, b)
+}
+func (m *GuildEnumeration) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GuildEnumeration.Marshal(b, m, deterministic)
+}
+func (m *GuildEnumeration) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GuildEnumeration.Merge(m, src)
+}
+func (m *GuildEnumeration) XXX_Size() int {
+	return xxx_messageInfo_GuildEnumeration.Size(m)
+}
+func (m *GuildEnumeration) XXX_DiscardUnknown() {
+	xxx_messageInfo_GuildEnumeration.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GuildEnumeration proto.InternalMessageInfo
+
+func (m *GuildEnumeration) GetGuilds() []*PresentableGuild {
+	if m != nil {
+		return m.Guilds
+	}
+	return nil
+}
+
+type PresentableGuild struct {
+	ID                   string             `protobuf:"bytes,1,opt,name=ID,proto3" json:"ID,omitempty"`
+	Guild                *shared.Guild      `protobuf:"bytes,2,opt,name=guild,proto3" json:"guild,omitempty"`
+	Data                 *GuildData         `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
+	Member               *discord.Member    `protobuf:"bytes,4,opt,name=member,proto3" json:"member,omitempty"`
+	Roles                *shared.GuildRoles `protobuf:"bytes,5,opt,name=roles,proto3" json:"roles,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}           `json:"-"`
+	XXX_unrecognized     []byte             `json:"-"`
+	XXX_sizecache        int32              `json:"-"`
+}
+
+func (m *PresentableGuild) Reset()         { *m = PresentableGuild{} }
+func (m *PresentableGuild) String() string { return proto.CompactTextString(m) }
+func (*PresentableGuild) ProtoMessage()    {}
+func (*PresentableGuild) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fa9581d889443fc5, []int{1}
+}
+
+func (m *PresentableGuild) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PresentableGuild.Unmarshal(m, b)
+}
+func (m *PresentableGuild) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PresentableGuild.Marshal(b, m, deterministic)
+}
+func (m *PresentableGuild) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PresentableGuild.Merge(m, src)
+}
+func (m *PresentableGuild) XXX_Size() int {
+	return xxx_messageInfo_PresentableGuild.Size(m)
+}
+func (m *PresentableGuild) XXX_DiscardUnknown() {
+	xxx_messageInfo_PresentableGuild.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PresentableGuild proto.InternalMessageInfo
+
+func (m *PresentableGuild) GetID() string {
+	if m != nil {
+		return m.ID
+	}
+	return ""
+}
+
+func (m *PresentableGuild) GetGuild() *shared.Guild {
+	if m != nil {
+		return m.Guild
+	}
+	return nil
+}
+
+func (m *PresentableGuild) GetData() *GuildData {
+	if m != nil {
+		return m.Data
+	}
+	return nil
+}
+
+func (m *PresentableGuild) GetMember() *discord.Member {
+	if m != nil {
+		return m.Member
+	}
+	return nil
+}
+
+func (m *PresentableGuild) GetRoles() *shared.GuildRoles {
+	if m != nil {
+		return m.Roles
+	}
+	return nil
 }
 
 type GuildData struct {
@@ -65,7 +176,7 @@ func (m *GuildData) Reset()         { *m = GuildData{} }
 func (m *GuildData) String() string { return proto.CompactTextString(m) }
 func (*GuildData) ProtoMessage()    {}
 func (*GuildData) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fa9581d889443fc5, []int{0}
+	return fileDescriptor_fa9581d889443fc5, []int{2}
 }
 
 func (m *GuildData) XXX_Unmarshal(b []byte) error {
@@ -114,6 +225,53 @@ func (m *GuildData) GetEntitlements() []string {
 	return nil
 }
 
+type UpdateRoles struct {
+	GuildID              string   `protobuf:"bytes,1,opt,name=guildID,proto3" json:"guildID,omitempty"`
+	Roles                *Roles   `protobuf:"bytes,2,opt,name=roles,proto3" json:"roles,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *UpdateRoles) Reset()         { *m = UpdateRoles{} }
+func (m *UpdateRoles) String() string { return proto.CompactTextString(m) }
+func (*UpdateRoles) ProtoMessage()    {}
+func (*UpdateRoles) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fa9581d889443fc5, []int{3}
+}
+
+func (m *UpdateRoles) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateRoles.Unmarshal(m, b)
+}
+func (m *UpdateRoles) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateRoles.Marshal(b, m, deterministic)
+}
+func (m *UpdateRoles) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateRoles.Merge(m, src)
+}
+func (m *UpdateRoles) XXX_Size() int {
+	return xxx_messageInfo_UpdateRoles.Size(m)
+}
+func (m *UpdateRoles) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateRoles.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UpdateRoles proto.InternalMessageInfo
+
+func (m *UpdateRoles) GetGuildID() string {
+	if m != nil {
+		return m.GuildID
+	}
+	return ""
+}
+
+func (m *UpdateRoles) GetRoles() *Roles {
+	if m != nil {
+		return m.Roles
+	}
+	return nil
+}
+
 type Roles struct {
 	Roles                []string `protobuf:"bytes,1,rep,name=roles,proto3" json:"roles,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -125,7 +283,7 @@ func (m *Roles) Reset()         { *m = Roles{} }
 func (m *Roles) String() string { return proto.CompactTextString(m) }
 func (*Roles) ProtoMessage()    {}
 func (*Roles) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fa9581d889443fc5, []int{1}
+	return fileDescriptor_fa9581d889443fc5, []int{4}
 }
 
 func (m *Roles) XXX_Unmarshal(b []byte) error {
@@ -169,7 +327,7 @@ func (m *Category) Reset()         { *m = Category{} }
 func (m *Category) String() string { return proto.CompactTextString(m) }
 func (*Category) ProtoMessage()    {}
 func (*Category) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fa9581d889443fc5, []int{2}
+	return fileDescriptor_fa9581d889443fc5, []int{5}
 }
 
 func (m *Category) XXX_Unmarshal(b []byte) error {
@@ -245,7 +403,7 @@ func (m *UpdateEntitlement) Reset()         { *m = UpdateEntitlement{} }
 func (m *UpdateEntitlement) String() string { return proto.CompactTextString(m) }
 func (*UpdateEntitlement) ProtoMessage()    {}
 func (*UpdateEntitlement) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fa9581d889443fc5, []int{3}
+	return fileDescriptor_fa9581d889443fc5, []int{6}
 }
 
 func (m *UpdateEntitlement) XXX_Unmarshal(b []byte) error {
@@ -289,7 +447,10 @@ func (m *UpdateEntitlement) GetState() bool {
 
 func init() {
 	proto.RegisterEnum("roleypoly.platform.Category_CategoryType", Category_CategoryType_name, Category_CategoryType_value)
+	proto.RegisterType((*GuildEnumeration)(nil), "roleypoly.platform.GuildEnumeration")
+	proto.RegisterType((*PresentableGuild)(nil), "roleypoly.platform.PresentableGuild")
 	proto.RegisterType((*GuildData)(nil), "roleypoly.platform.GuildData")
+	proto.RegisterType((*UpdateRoles)(nil), "roleypoly.platform.UpdateRoles")
 	proto.RegisterType((*Roles)(nil), "roleypoly.platform.Roles")
 	proto.RegisterType((*Category)(nil), "roleypoly.platform.Category")
 	proto.RegisterType((*UpdateEntitlement)(nil), "roleypoly.platform.UpdateEntitlement")
@@ -298,38 +459,47 @@ func init() {
 func init() { proto.RegisterFile("platform/platform.proto", fileDescriptor_fa9581d889443fc5) }
 
 var fileDescriptor_fa9581d889443fc5 = []byte{
-	// 493 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x53, 0xc1, 0x6e, 0xd3, 0x40,
-	0x10, 0x8d, 0x93, 0x38, 0x24, 0x93, 0xaa, 0x84, 0xa1, 0x2a, 0xc6, 0x50, 0xc9, 0x18, 0x55, 0x32,
-	0x17, 0x5b, 0x0a, 0x57, 0x7a, 0x69, 0x53, 0x45, 0x41, 0x20, 0x51, 0x03, 0x17, 0x6e, 0x4e, 0x32,
-	0x75, 0x56, 0xb2, 0xbd, 0xc6, 0x3b, 0x39, 0xf8, 0x4b, 0xf8, 0x3b, 0xc4, 0xa7, 0xa0, 0xac, 0xeb,
-	0xc4, 0x90, 0xa4, 0x27, 0xef, 0xdb, 0x79, 0xf3, 0xfc, 0x66, 0xfc, 0x0c, 0x2f, 0xf2, 0x24, 0xe2,
-	0x7b, 0x59, 0xa4, 0x41, 0x7d, 0xf0, 0xf3, 0x42, 0xb2, 0x44, 0x2c, 0x64, 0x42, 0x65, 0x2e, 0x93,
-	0xd2, 0xaf, 0x2b, 0xf6, 0x73, 0xb5, 0x8a, 0x0a, 0x5a, 0x06, 0xd5, 0xa3, 0x22, 0xda, 0xaf, 0x62,
-	0x29, 0xe3, 0x84, 0x02, 0x8d, 0xe6, 0xeb, 0xfb, 0x80, 0xd2, 0x9c, 0xcb, 0xaa, 0xe8, 0xfe, 0x32,
-	0x60, 0x30, 0x5d, 0x8b, 0x64, 0x39, 0x89, 0x38, 0xc2, 0x53, 0x68, 0xcf, 0x26, 0x96, 0xe1, 0x18,
-	0xde, 0x20, 0x6c, 0xcf, 0x26, 0x68, 0xc1, 0x93, 0x94, 0x94, 0x8a, 0x62, 0xb2, 0xda, 0xfa, 0xb2,
-	0x86, 0xf8, 0x01, 0x60, 0x11, 0x31, 0xc5, 0xb2, 0x10, 0xa4, 0xac, 0x8e, 0xd3, 0xf1, 0x86, 0xe3,
-	0xd7, 0xfe, 0xbe, 0x25, 0xff, 0xa6, 0x62, 0x95, 0x61, 0x83, 0x8f, 0x2e, 0x9c, 0x50, 0xc6, 0x82,
-	0x13, 0x4a, 0x29, 0x63, 0x65, 0x75, 0x9d, 0x8e, 0x37, 0x08, 0xff, 0xb9, 0x73, 0x2f, 0xc0, 0x0c,
-	0x65, 0x42, 0x0a, 0xcf, 0xc0, 0xdc, 0xe8, 0x2a, 0xcb, 0xd0, 0xac, 0x0a, 0xb8, 0xbf, 0x0d, 0xe8,
-	0xd7, 0xda, 0x7b, 0xbe, 0x11, 0xba, 0x59, 0x94, 0xd6, 0xa6, 0xf5, 0x79, 0x27, 0xd3, 0x69, 0xc8,
-	0xe0, 0x39, 0xf4, 0x56, 0x62, 0xb9, 0xa4, 0xcc, 0xea, 0x3a, 0x86, 0xd7, 0x0f, 0x1f, 0x10, 0x5e,
-	0x41, 0x97, 0xcb, 0x9c, 0x2c, 0xd3, 0x31, 0xbc, 0xd3, 0xf1, 0xbb, 0xc7, 0x26, 0xdb, 0x1e, 0xbe,
-	0x95, 0x39, 0x85, 0xba, 0x0d, 0x6d, 0xe8, 0xe7, 0x52, 0x09, 0x16, 0x32, 0xb3, 0x7a, 0x8e, 0xe1,
-	0x99, 0xe1, 0x16, 0xbb, 0x97, 0x70, 0xd2, 0xec, 0xc0, 0x01, 0x98, 0xe9, 0x3a, 0x61, 0x31, 0x6a,
-	0x21, 0x40, 0x4f, 0x89, 0x2c, 0x4e, 0x68, 0x64, 0xb8, 0x31, 0x3c, 0xfb, 0x9e, 0x2f, 0x23, 0xa6,
-	0xdb, 0xdd, 0x56, 0xd0, 0x03, 0xf3, 0xe7, 0x9a, 0x8a, 0x52, 0xcf, 0x3a, 0x1c, 0x63, 0xc3, 0xd7,
-	0x6c, 0x72, 0xb7, 0xa9, 0x84, 0x15, 0xe1, 0xd8, 0x0a, 0x14, 0x47, 0x4c, 0x56, 0x47, 0xcf, 0x5a,
-	0x81, 0xf1, 0x9f, 0x36, 0xf4, 0xbf, 0x3c, 0x0c, 0x85, 0x57, 0x30, 0x9c, 0x12, 0x7f, 0x2e, 0x75,
-	0x26, 0x14, 0x9e, 0xfb, 0x55, 0x78, 0xfc, 0x3a, 0x3c, 0xfe, 0xed, 0x26, 0x3c, 0xf6, 0x59, 0xe3,
-	0xc5, 0x9a, 0xfa, 0x49, 0x28, 0x76, 0x5b, 0x38, 0x86, 0xfe, 0x94, 0x58, 0xdf, 0xe0, 0x01, 0x73,
-	0xf6, 0xe8, 0xff, 0x3e, 0xb7, 0x85, 0x1f, 0xe1, 0x69, 0x35, 0xe8, 0x2e, 0x87, 0x17, 0x87, 0xf6,
-	0xbd, 0x2d, 0xdb, 0x47, 0x5c, 0xb9, 0x2d, 0xbc, 0x86, 0xe1, 0x8d, 0x4c, 0x53, 0xc1, 0x55, 0x74,
-	0x5e, 0x1e, 0xd2, 0xd1, 0xa5, 0x47, 0x34, 0xee, 0xe0, 0xf4, 0x2b, 0x71, 0x73, 0xeb, 0x97, 0x87,
-	0x64, 0xf6, 0x3e, 0xce, 0x71, 0xc9, 0xeb, 0xb7, 0x3f, 0xde, 0xc4, 0x82, 0x57, 0xeb, 0xb9, 0xbf,
-	0x90, 0x69, 0xb0, 0x15, 0x0b, 0x8a, 0x7c, 0xb1, 0xfd, 0xad, 0xe7, 0x3d, 0xdd, 0xf6, 0xfe, 0x6f,
-	0x00, 0x00, 0x00, 0xff, 0xff, 0xf7, 0x09, 0x2b, 0xfd, 0xf2, 0x03, 0x00, 0x00,
+	// 635 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x54, 0x4d, 0x6f, 0xd3, 0x40,
+	0x10, 0x8d, 0x93, 0x38, 0x24, 0x93, 0x52, 0xd2, 0x81, 0x16, 0x13, 0xa8, 0x08, 0xa6, 0xa0, 0x20,
+	0x24, 0x5b, 0x0d, 0x12, 0xa7, 0x72, 0x81, 0x94, 0xaa, 0x48, 0x95, 0x8a, 0x0b, 0x12, 0xe2, 0xb6,
+	0x89, 0xa7, 0xae, 0x25, 0x7f, 0xe1, 0x5d, 0x1f, 0xfc, 0x4b, 0xf8, 0x75, 0xf0, 0x37, 0xb8, 0x22,
+	0xef, 0xda, 0xae, 0x4b, 0x92, 0x8a, 0x93, 0x77, 0x76, 0xde, 0x9b, 0x7d, 0xf3, 0xbc, 0xb3, 0xf0,
+	0x30, 0x09, 0x98, 0xb8, 0x8c, 0xd3, 0xd0, 0xae, 0x16, 0x56, 0x92, 0xc6, 0x22, 0x46, 0x4c, 0xe3,
+	0x80, 0xf2, 0x24, 0x0e, 0x72, 0xab, 0xca, 0x8c, 0xef, 0xf3, 0x2b, 0x96, 0x92, 0x6b, 0xab, 0x8f,
+	0x02, 0x8e, 0x77, 0x5d, 0x9f, 0x2f, 0xe3, 0xd4, 0xb5, 0xcb, 0x6f, 0xb9, 0xfd, 0xd8, 0x8b, 0x63,
+	0x2f, 0x20, 0x5b, 0x46, 0x8b, 0xec, 0xd2, 0xa6, 0x30, 0x11, 0xb9, 0x4a, 0x9a, 0xe7, 0x30, 0x3a,
+	0xc9, 0xfc, 0xc0, 0x3d, 0x8e, 0xb2, 0x90, 0x52, 0x26, 0xfc, 0x38, 0xc2, 0x23, 0xe8, 0x79, 0xc5,
+	0x1e, 0x37, 0xb4, 0x49, 0x67, 0x3a, 0x9c, 0x1d, 0x58, 0xab, 0x0a, 0xac, 0xf3, 0x94, 0x38, 0x45,
+	0x82, 0x2d, 0x02, 0x92, 0x05, 0x9c, 0x92, 0x63, 0xfe, 0xd2, 0x60, 0xf4, 0x6f, 0x12, 0xb7, 0xa1,
+	0x7d, 0x3a, 0x37, 0xb4, 0x89, 0x36, 0x1d, 0x38, 0xed, 0xd3, 0x39, 0xbe, 0x04, 0x5d, 0xc2, 0x8d,
+	0xf6, 0x44, 0x9b, 0x0e, 0x67, 0xa3, 0xc6, 0x09, 0xaa, 0x9a, 0x4a, 0xe3, 0x21, 0x74, 0x5d, 0x26,
+	0x98, 0xd1, 0x91, 0xb0, 0xfd, 0x75, 0x42, 0x24, 0x7e, 0xce, 0x04, 0x73, 0x24, 0x14, 0x0f, 0xa1,
+	0x17, 0x52, 0xb8, 0xa0, 0xd4, 0xe8, 0x4a, 0xd2, 0xa3, 0x06, 0xa9, 0x32, 0xe6, 0x4c, 0x02, 0x9c,
+	0x12, 0x88, 0xaf, 0x41, 0x2f, 0x30, 0xdc, 0xd0, 0x25, 0x63, 0x77, 0x45, 0x4d, 0x91, 0x74, 0x14,
+	0xc6, 0xfc, 0xa9, 0xc1, 0xa0, 0x3e, 0x73, 0xa5, 0x31, 0x03, 0xee, 0x84, 0xc4, 0x39, 0xf3, 0x48,
+	0xb6, 0x36, 0x70, 0xaa, 0x10, 0x8f, 0x00, 0x96, 0x4c, 0x90, 0x17, 0xa7, 0x3e, 0x71, 0xa3, 0x23,
+	0x9d, 0x7d, 0xb2, 0xae, 0xa1, 0x0f, 0x0a, 0x95, 0x3b, 0x0d, 0x3c, 0x9a, 0xb0, 0x45, 0x91, 0xf0,
+	0x45, 0x40, 0x21, 0x45, 0x82, 0x1b, 0xdd, 0x49, 0x67, 0x3a, 0x70, 0x6e, 0xec, 0x99, 0xdf, 0x60,
+	0xf8, 0x35, 0x71, 0x99, 0x20, 0xa9, 0xb7, 0x90, 0x22, 0x4d, 0xac, 0xf5, 0x55, 0x21, 0xda, 0x55,
+	0xbf, 0xed, 0x15, 0x87, 0x6a, 0x15, 0x37, 0x7a, 0xde, 0x07, 0x5d, 0xd5, 0x7c, 0x50, 0x31, 0x35,
+	0x79, 0x7e, 0x99, 0xfe, 0xad, 0x41, 0xbf, 0x52, 0xbd, 0xe2, 0x08, 0x42, 0x37, 0x62, 0x61, 0x65,
+	0x87, 0x5c, 0x5f, 0x97, 0xe9, 0x34, 0xca, 0xe0, 0x1e, 0xf4, 0xae, 0x7c, 0xd7, 0xa5, 0x48, 0xfe,
+	0xb9, 0xbe, 0x53, 0x46, 0xf8, 0x0e, 0xba, 0x22, 0x4f, 0x48, 0xfe, 0x9d, 0xed, 0xd9, 0xab, 0xdb,
+	0x3c, 0xab, 0x17, 0x5f, 0xf2, 0x84, 0x1c, 0x49, 0xc3, 0x31, 0xf4, 0x93, 0x98, 0xfb, 0xc5, 0xd5,
+	0x36, 0x7a, 0x13, 0x6d, 0xaa, 0x3b, 0x75, 0x6c, 0xbe, 0x80, 0xad, 0x26, 0x03, 0x07, 0xa0, 0x87,
+	0x59, 0x20, 0xfc, 0x51, 0x0b, 0x01, 0x7a, 0xdc, 0x8f, 0xbc, 0x80, 0x46, 0x9a, 0xe9, 0xc1, 0x8e,
+	0x72, 0xf6, 0xf8, 0xda, 0x6f, 0x9c, 0x82, 0xfe, 0x23, 0xa3, 0x34, 0x97, 0xbd, 0x0e, 0x67, 0xd8,
+	0xd0, 0x75, 0x3a, 0xff, 0x5c, 0x64, 0x1c, 0x05, 0xd8, 0x64, 0x01, 0x17, 0x4c, 0x90, 0xbc, 0xda,
+	0x7d, 0x47, 0x05, 0xb3, 0x3f, 0x6d, 0xe8, 0x9f, 0x97, 0x4d, 0xe1, 0x05, 0xec, 0x54, 0x63, 0x49,
+	0x67, 0xb9, 0xbc, 0x73, 0x1c, 0xf7, 0x2c, 0x35, 0xce, 0x56, 0x35, 0xce, 0xd6, 0x71, 0x31, 0xce,
+	0xe3, 0x83, 0x8d, 0xb3, 0xd1, 0x18, 0x6d, 0xb3, 0x85, 0x6f, 0x61, 0xeb, 0x84, 0x84, 0x4c, 0x5c,
+	0x04, 0x99, 0x87, 0x6b, 0x64, 0x8f, 0x57, 0xc6, 0xd1, 0x6c, 0xe1, 0x47, 0xe8, 0x57, 0xbc, 0xb5,
+	0x9c, 0xff, 0x7a, 0x24, 0xcc, 0x16, 0x7e, 0x82, 0xbb, 0xca, 0xca, 0xb3, 0x5c, 0x5d, 0xa9, 0xa7,
+	0xeb, 0x88, 0x8d, 0x7b, 0x3c, 0xde, 0xd0, 0xb1, 0xac, 0x75, 0x4f, 0x01, 0xaf, 0xe7, 0xf1, 0xf6,
+	0x27, 0x62, 0x73, 0xad, 0xf7, 0xcf, 0xbf, 0x3f, 0xf3, 0x7c, 0x71, 0x95, 0x2d, 0xac, 0x65, 0x1c,
+	0xda, 0x75, 0x11, 0x3b, 0x4d, 0x96, 0xf5, 0x83, 0xbc, 0xe8, 0x49, 0xda, 0x9b, 0xbf, 0x01, 0x00,
+	0x00, 0xff, 0xff, 0x51, 0xab, 0x57, 0x11, 0xac, 0x05, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -344,11 +514,11 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type PlatformClient interface {
-	GetMyGuilds(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*shared.GuildList, error)
-	GetGuild(ctx context.Context, in *shared.IDQuery, opts ...grpc.CallOption) (*shared.Guild, error)
+	EnumerateMyGuilds(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GuildEnumeration, error)
+	GetGuildSlug(ctx context.Context, in *shared.IDQuery, opts ...grpc.CallOption) (*shared.Guild, error)
+	GetGuild(ctx context.Context, in *shared.IDQuery, opts ...grpc.CallOption) (*PresentableGuild, error)
+	UpdateMyRoles(ctx context.Context, in *UpdateRoles, opts ...grpc.CallOption) (*empty.Empty, error)
 	UpdateGuildData(ctx context.Context, in *GuildData, opts ...grpc.CallOption) (*empty.Empty, error)
-	CommitRoles(ctx context.Context, in *Roles, opts ...grpc.CallOption) (*empty.Empty, error)
-	SetEntitlement(ctx context.Context, in *UpdateEntitlement, opts ...grpc.CallOption) (*empty.Empty, error)
 }
 
 type platformClient struct {
@@ -359,18 +529,36 @@ func NewPlatformClient(cc *grpc.ClientConn) PlatformClient {
 	return &platformClient{cc}
 }
 
-func (c *platformClient) GetMyGuilds(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*shared.GuildList, error) {
-	out := new(shared.GuildList)
-	err := c.cc.Invoke(ctx, "/roleypoly.platform.Platform/GetMyGuilds", in, out, opts...)
+func (c *platformClient) EnumerateMyGuilds(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GuildEnumeration, error) {
+	out := new(GuildEnumeration)
+	err := c.cc.Invoke(ctx, "/roleypoly.platform.Platform/EnumerateMyGuilds", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *platformClient) GetGuild(ctx context.Context, in *shared.IDQuery, opts ...grpc.CallOption) (*shared.Guild, error) {
+func (c *platformClient) GetGuildSlug(ctx context.Context, in *shared.IDQuery, opts ...grpc.CallOption) (*shared.Guild, error) {
 	out := new(shared.Guild)
+	err := c.cc.Invoke(ctx, "/roleypoly.platform.Platform/GetGuildSlug", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *platformClient) GetGuild(ctx context.Context, in *shared.IDQuery, opts ...grpc.CallOption) (*PresentableGuild, error) {
+	out := new(PresentableGuild)
 	err := c.cc.Invoke(ctx, "/roleypoly.platform.Platform/GetGuild", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *platformClient) UpdateMyRoles(ctx context.Context, in *UpdateRoles, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, "/roleypoly.platform.Platform/UpdateMyRoles", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -386,71 +574,71 @@ func (c *platformClient) UpdateGuildData(ctx context.Context, in *GuildData, opt
 	return out, nil
 }
 
-func (c *platformClient) CommitRoles(ctx context.Context, in *Roles, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/roleypoly.platform.Platform/CommitRoles", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *platformClient) SetEntitlement(ctx context.Context, in *UpdateEntitlement, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/roleypoly.platform.Platform/SetEntitlement", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // PlatformServer is the server API for Platform service.
 type PlatformServer interface {
-	GetMyGuilds(context.Context, *empty.Empty) (*shared.GuildList, error)
-	GetGuild(context.Context, *shared.IDQuery) (*shared.Guild, error)
+	EnumerateMyGuilds(context.Context, *empty.Empty) (*GuildEnumeration, error)
+	GetGuildSlug(context.Context, *shared.IDQuery) (*shared.Guild, error)
+	GetGuild(context.Context, *shared.IDQuery) (*PresentableGuild, error)
+	UpdateMyRoles(context.Context, *UpdateRoles) (*empty.Empty, error)
 	UpdateGuildData(context.Context, *GuildData) (*empty.Empty, error)
-	CommitRoles(context.Context, *Roles) (*empty.Empty, error)
-	SetEntitlement(context.Context, *UpdateEntitlement) (*empty.Empty, error)
 }
 
 // UnimplementedPlatformServer can be embedded to have forward compatible implementations.
 type UnimplementedPlatformServer struct {
 }
 
-func (*UnimplementedPlatformServer) GetMyGuilds(ctx context.Context, req *empty.Empty) (*shared.GuildList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetMyGuilds not implemented")
+func (*UnimplementedPlatformServer) EnumerateMyGuilds(ctx context.Context, req *empty.Empty) (*GuildEnumeration, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EnumerateMyGuilds not implemented")
 }
-func (*UnimplementedPlatformServer) GetGuild(ctx context.Context, req *shared.IDQuery) (*shared.Guild, error) {
+func (*UnimplementedPlatformServer) GetGuildSlug(ctx context.Context, req *shared.IDQuery) (*shared.Guild, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetGuildSlug not implemented")
+}
+func (*UnimplementedPlatformServer) GetGuild(ctx context.Context, req *shared.IDQuery) (*PresentableGuild, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGuild not implemented")
+}
+func (*UnimplementedPlatformServer) UpdateMyRoles(ctx context.Context, req *UpdateRoles) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateMyRoles not implemented")
 }
 func (*UnimplementedPlatformServer) UpdateGuildData(ctx context.Context, req *GuildData) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateGuildData not implemented")
-}
-func (*UnimplementedPlatformServer) CommitRoles(ctx context.Context, req *Roles) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CommitRoles not implemented")
-}
-func (*UnimplementedPlatformServer) SetEntitlement(ctx context.Context, req *UpdateEntitlement) (*empty.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetEntitlement not implemented")
 }
 
 func RegisterPlatformServer(s *grpc.Server, srv PlatformServer) {
 	s.RegisterService(&_Platform_serviceDesc, srv)
 }
 
-func _Platform_GetMyGuilds_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Platform_EnumerateMyGuilds_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PlatformServer).GetMyGuilds(ctx, in)
+		return srv.(PlatformServer).EnumerateMyGuilds(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/roleypoly.platform.Platform/GetMyGuilds",
+		FullMethod: "/roleypoly.platform.Platform/EnumerateMyGuilds",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PlatformServer).GetMyGuilds(ctx, req.(*empty.Empty))
+		return srv.(PlatformServer).EnumerateMyGuilds(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Platform_GetGuildSlug_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(shared.IDQuery)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PlatformServer).GetGuildSlug(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/roleypoly.platform.Platform/GetGuildSlug",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PlatformServer).GetGuildSlug(ctx, req.(*shared.IDQuery))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -473,6 +661,24 @@ func _Platform_GetGuild_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Platform_UpdateMyRoles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateRoles)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PlatformServer).UpdateMyRoles(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/roleypoly.platform.Platform/UpdateMyRoles",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PlatformServer).UpdateMyRoles(ctx, req.(*UpdateRoles))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Platform_UpdateGuildData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GuildData)
 	if err := dec(in); err != nil {
@@ -491,65 +697,29 @@ func _Platform_UpdateGuildData_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Platform_CommitRoles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Roles)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PlatformServer).CommitRoles(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/roleypoly.platform.Platform/CommitRoles",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PlatformServer).CommitRoles(ctx, req.(*Roles))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Platform_SetEntitlement_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateEntitlement)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PlatformServer).SetEntitlement(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/roleypoly.platform.Platform/SetEntitlement",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PlatformServer).SetEntitlement(ctx, req.(*UpdateEntitlement))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 var _Platform_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "roleypoly.platform.Platform",
 	HandlerType: (*PlatformServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetMyGuilds",
-			Handler:    _Platform_GetMyGuilds_Handler,
+			MethodName: "EnumerateMyGuilds",
+			Handler:    _Platform_EnumerateMyGuilds_Handler,
+		},
+		{
+			MethodName: "GetGuildSlug",
+			Handler:    _Platform_GetGuildSlug_Handler,
 		},
 		{
 			MethodName: "GetGuild",
 			Handler:    _Platform_GetGuild_Handler,
 		},
 		{
+			MethodName: "UpdateMyRoles",
+			Handler:    _Platform_UpdateMyRoles_Handler,
+		},
+		{
 			MethodName: "UpdateGuildData",
 			Handler:    _Platform_UpdateGuildData_Handler,
-		},
-		{
-			MethodName: "CommitRoles",
-			Handler:    _Platform_CommitRoles_Handler,
-		},
-		{
-			MethodName: "SetEntitlement",
-			Handler:    _Platform_SetEntitlement_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
