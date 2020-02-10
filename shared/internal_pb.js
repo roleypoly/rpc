@@ -183,17 +183,21 @@ proto.roleypoly.RoleypolyUser.prototype.getDiscorduser = function() {
 };
 
 
-/** @param {?proto.roleypoly.DiscordUser|undefined} value */
+/**
+ * @param {?proto.roleypoly.DiscordUser|undefined} value
+ * @return {!proto.roleypoly.RoleypolyUser} returns this
+*/
 proto.roleypoly.RoleypolyUser.prototype.setDiscorduser = function(value) {
-  jspb.Message.setWrapperField(this, 1, value);
+  return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
+ * @return {!proto.roleypoly.RoleypolyUser} returns this
  */
 proto.roleypoly.RoleypolyUser.prototype.clearDiscorduser = function() {
-  this.setDiscorduser(undefined);
+  return this.setDiscorduser(undefined);
 };
 
 
@@ -304,7 +308,7 @@ proto.roleypoly.RoleypolySession.deserializeBinaryFromReader = function(msg, rea
     case 6:
       var value = msg.getExtraMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "", "");
          });
       break;
     default:
@@ -397,9 +401,12 @@ proto.roleypoly.RoleypolySession.prototype.getId = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.RoleypolySession} returns this
+ */
 proto.roleypoly.RoleypolySession.prototype.setId = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -413,17 +420,21 @@ proto.roleypoly.RoleypolySession.prototype.getUser = function() {
 };
 
 
-/** @param {?proto.roleypoly.RoleypolyUser|undefined} value */
+/**
+ * @param {?proto.roleypoly.RoleypolyUser|undefined} value
+ * @return {!proto.roleypoly.RoleypolySession} returns this
+*/
 proto.roleypoly.RoleypolySession.prototype.setUser = function(value) {
-  jspb.Message.setWrapperField(this, 2, value);
+  return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
+ * @return {!proto.roleypoly.RoleypolySession} returns this
  */
 proto.roleypoly.RoleypolySession.prototype.clearUser = function() {
-  this.setUser(undefined);
+  return this.setUser(undefined);
 };
 
 
@@ -445,9 +456,12 @@ proto.roleypoly.RoleypolySession.prototype.getSource = function() {
 };
 
 
-/** @param {!proto.roleypoly.RoleypolySession.SessionSource} value */
+/**
+ * @param {!proto.roleypoly.RoleypolySession.SessionSource} value
+ * @return {!proto.roleypoly.RoleypolySession} returns this
+ */
 proto.roleypoly.RoleypolySession.prototype.setSource = function(value) {
-  jspb.Message.setProto3EnumField(this, 3, value);
+  return jspb.Message.setProto3EnumField(this, 3, value);
 };
 
 
@@ -460,9 +474,12 @@ proto.roleypoly.RoleypolySession.prototype.getCreatedAt = function() {
 };
 
 
-/** @param {number} value */
+/**
+ * @param {number} value
+ * @return {!proto.roleypoly.RoleypolySession} returns this
+ */
 proto.roleypoly.RoleypolySession.prototype.setCreatedAt = function(value) {
-  jspb.Message.setProto3IntField(this, 4, value);
+  return jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
@@ -475,9 +492,12 @@ proto.roleypoly.RoleypolySession.prototype.getExpiresIn = function() {
 };
 
 
-/** @param {number} value */
+/**
+ * @param {number} value
+ * @return {!proto.roleypoly.RoleypolySession} returns this
+ */
 proto.roleypoly.RoleypolySession.prototype.setExpiresIn = function(value) {
-  jspb.Message.setProto3IntField(this, 5, value);
+  return jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
@@ -496,10 +516,11 @@ proto.roleypoly.RoleypolySession.prototype.getExtraMap = function(opt_noLazyCrea
 
 /**
  * Clears values from the map. The map will be non-null.
+ * @return {!proto.roleypoly.RoleypolySession} returns this
  */
 proto.roleypoly.RoleypolySession.prototype.clearExtraMap = function() {
   this.getExtraMap().clear();
-};
+  return this;};
 
 
 goog.object.extend(exports, proto.roleypoly);

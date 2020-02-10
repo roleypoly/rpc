@@ -225,9 +225,12 @@ proto.roleypoly.discord.GuildMembers.prototype.getId = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.discord.GuildMembers} returns this
+ */
 proto.roleypoly.discord.GuildMembers.prototype.setId = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -241,9 +244,12 @@ proto.roleypoly.discord.GuildMembers.prototype.getMembersList = function() {
 };
 
 
-/** @param {!Array<!proto.roleypoly.discord.Member>} value */
+/**
+ * @param {!Array<!proto.roleypoly.discord.Member>} value
+ * @return {!proto.roleypoly.discord.GuildMembers} returns this
+*/
 proto.roleypoly.discord.GuildMembers.prototype.setMembersList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 2, value);
+  return jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
 
 
@@ -259,9 +265,10 @@ proto.roleypoly.discord.GuildMembers.prototype.addMembers = function(opt_value, 
 
 /**
  * Clears the list making it empty but non-null.
+ * @return {!proto.roleypoly.discord.GuildMembers} returns this
  */
 proto.roleypoly.discord.GuildMembers.prototype.clearMembersList = function() {
-  this.setMembersList([]);
+  return this.setMembersList([]);
 };
 
 
@@ -431,9 +438,12 @@ proto.roleypoly.discord.Member.prototype.getGuildid = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.discord.Member} returns this
+ */
 proto.roleypoly.discord.Member.prototype.setGuildid = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -446,26 +456,31 @@ proto.roleypoly.discord.Member.prototype.getRolesList = function() {
 };
 
 
-/** @param {!Array<string>} value */
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.roleypoly.discord.Member} returns this
+ */
 proto.roleypoly.discord.Member.prototype.setRolesList = function(value) {
-  jspb.Message.setField(this, 3, value || []);
+  return jspb.Message.setField(this, 3, value || []);
 };
 
 
 /**
  * @param {string} value
  * @param {number=} opt_index
+ * @return {!proto.roleypoly.discord.Member} returns this
  */
 proto.roleypoly.discord.Member.prototype.addRoles = function(value, opt_index) {
-  jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
+ * @return {!proto.roleypoly.discord.Member} returns this
  */
 proto.roleypoly.discord.Member.prototype.clearRolesList = function() {
-  this.setRolesList([]);
+  return this.setRolesList([]);
 };
 
 
@@ -478,9 +493,12 @@ proto.roleypoly.discord.Member.prototype.getNick = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.discord.Member} returns this
+ */
 proto.roleypoly.discord.Member.prototype.setNick = function(value) {
-  jspb.Message.setProto3StringField(this, 4, value);
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -494,17 +512,21 @@ proto.roleypoly.discord.Member.prototype.getUser = function() {
 };
 
 
-/** @param {?proto.roleypoly.DiscordUser|undefined} value */
+/**
+ * @param {?proto.roleypoly.DiscordUser|undefined} value
+ * @return {!proto.roleypoly.discord.Member} returns this
+*/
 proto.roleypoly.discord.Member.prototype.setUser = function(value) {
-  jspb.Message.setWrapperField(this, 5, value);
+  return jspb.Message.setWrapperField(this, 5, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
+ * @return {!proto.roleypoly.discord.Member} returns this
  */
 proto.roleypoly.discord.Member.prototype.clearUser = function() {
-  this.setUser(undefined);
+  return this.setUser(undefined);
 };
 
 
@@ -674,9 +696,12 @@ proto.roleypoly.discord.ShardInfo.prototype.getShards = function() {
 };
 
 
-/** @param {number} value */
+/**
+ * @param {number} value
+ * @return {!proto.roleypoly.discord.ShardInfo} returns this
+ */
 proto.roleypoly.discord.ShardInfo.prototype.setShards = function(value) {
-  jspb.Message.setProto3IntField(this, 1, value);
+  return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -689,9 +714,12 @@ proto.roleypoly.discord.ShardInfo.prototype.getServers = function() {
 };
 
 
-/** @param {number} value */
+/**
+ * @param {number} value
+ * @return {!proto.roleypoly.discord.ShardInfo} returns this
+ */
 proto.roleypoly.discord.ShardInfo.prototype.setServers = function(value) {
-  jspb.Message.setProto3IntField(this, 2, value);
+  return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -704,9 +732,12 @@ proto.roleypoly.discord.ShardInfo.prototype.getUsers = function() {
 };
 
 
-/** @param {number} value */
+/**
+ * @param {number} value
+ * @return {!proto.roleypoly.discord.ShardInfo} returns this
+ */
 proto.roleypoly.discord.ShardInfo.prototype.setUsers = function(value) {
-  jspb.Message.setProto3IntField(this, 3, value);
+  return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
@@ -719,9 +750,12 @@ proto.roleypoly.discord.ShardInfo.prototype.getRoles = function() {
 };
 
 
-/** @param {number} value */
+/**
+ * @param {number} value
+ * @return {!proto.roleypoly.discord.ShardInfo} returns this
+ */
 proto.roleypoly.discord.ShardInfo.prototype.setRoles = function(value) {
-  jspb.Message.setProto3IntField(this, 4, value);
+  return jspb.Message.setProto3IntField(this, 4, value);
 };
 
 

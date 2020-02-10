@@ -278,9 +278,12 @@ proto.roleypoly.IDQuery.prototype.getMemberid = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.IDQuery} returns this
+ */
 proto.roleypoly.IDQuery.prototype.setMemberid = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -293,9 +296,12 @@ proto.roleypoly.IDQuery.prototype.getGuildid = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.IDQuery} returns this
+ */
 proto.roleypoly.IDQuery.prototype.setGuildid = function(value) {
-  jspb.Message.setProto3StringField(this, 2, value);
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -431,9 +437,12 @@ proto.roleypoly.GuildList.prototype.getGuildsList = function() {
 };
 
 
-/** @param {!Array<!proto.roleypoly.Guild>} value */
+/**
+ * @param {!Array<!proto.roleypoly.Guild>} value
+ * @return {!proto.roleypoly.GuildList} returns this
+*/
 proto.roleypoly.GuildList.prototype.setGuildsList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 1, value);
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
@@ -449,9 +458,10 @@ proto.roleypoly.GuildList.prototype.addGuilds = function(opt_value, opt_index) {
 
 /**
  * Clears the list making it empty but non-null.
+ * @return {!proto.roleypoly.GuildList} returns this
  */
 proto.roleypoly.GuildList.prototype.clearGuildsList = function() {
-  this.setGuildsList([]);
+  return this.setGuildsList([]);
 };
 
 
@@ -636,9 +646,12 @@ proto.roleypoly.Guild.prototype.getId = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.Guild} returns this
+ */
 proto.roleypoly.Guild.prototype.setId = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -651,9 +664,12 @@ proto.roleypoly.Guild.prototype.getName = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.Guild} returns this
+ */
 proto.roleypoly.Guild.prototype.setName = function(value) {
-  jspb.Message.setProto3StringField(this, 2, value);
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -666,9 +682,12 @@ proto.roleypoly.Guild.prototype.getIcon = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.Guild} returns this
+ */
 proto.roleypoly.Guild.prototype.setIcon = function(value) {
-  jspb.Message.setProto3StringField(this, 3, value);
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -681,9 +700,12 @@ proto.roleypoly.Guild.prototype.getOwnerid = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.Guild} returns this
+ */
 proto.roleypoly.Guild.prototype.setOwnerid = function(value) {
-  jspb.Message.setProto3StringField(this, 4, value);
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -696,9 +718,12 @@ proto.roleypoly.Guild.prototype.getMembercount = function() {
 };
 
 
-/** @param {number} value */
+/**
+ * @param {number} value
+ * @return {!proto.roleypoly.Guild} returns this
+ */
 proto.roleypoly.Guild.prototype.setMembercount = function(value) {
-  jspb.Message.setProto3IntField(this, 5, value);
+  return jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
@@ -711,9 +736,12 @@ proto.roleypoly.Guild.prototype.getSplash = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.Guild} returns this
+ */
 proto.roleypoly.Guild.prototype.setSplash = function(value) {
-  jspb.Message.setProto3StringField(this, 6, value);
+  return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
@@ -860,9 +888,12 @@ proto.roleypoly.GuildRoles.prototype.getId = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.GuildRoles} returns this
+ */
 proto.roleypoly.GuildRoles.prototype.setId = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -876,9 +907,12 @@ proto.roleypoly.GuildRoles.prototype.getRolesList = function() {
 };
 
 
-/** @param {!Array<!proto.roleypoly.Role>} value */
+/**
+ * @param {!Array<!proto.roleypoly.Role>} value
+ * @return {!proto.roleypoly.GuildRoles} returns this
+*/
 proto.roleypoly.GuildRoles.prototype.setRolesList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 2, value);
+  return jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
 
 
@@ -894,9 +928,10 @@ proto.roleypoly.GuildRoles.prototype.addRoles = function(opt_value, opt_index) {
 
 /**
  * Clears the list making it empty but non-null.
+ * @return {!proto.roleypoly.GuildRoles} returns this
  */
 proto.roleypoly.GuildRoles.prototype.clearRolesList = function() {
-  this.setRolesList([]);
+  return this.setRolesList([]);
 };
 
 
@@ -1102,9 +1137,12 @@ proto.roleypoly.Role.prototype.getId = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.Role} returns this
+ */
 proto.roleypoly.Role.prototype.setId = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1117,9 +1155,12 @@ proto.roleypoly.Role.prototype.getName = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.Role} returns this
+ */
 proto.roleypoly.Role.prototype.setName = function(value) {
-  jspb.Message.setProto3StringField(this, 2, value);
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -1132,9 +1173,12 @@ proto.roleypoly.Role.prototype.getPermissions = function() {
 };
 
 
-/** @param {number} value */
+/**
+ * @param {number} value
+ * @return {!proto.roleypoly.Role} returns this
+ */
 proto.roleypoly.Role.prototype.setPermissions = function(value) {
-  jspb.Message.setProto3IntField(this, 3, value);
+  return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
@@ -1147,9 +1191,12 @@ proto.roleypoly.Role.prototype.getColor = function() {
 };
 
 
-/** @param {number} value */
+/**
+ * @param {number} value
+ * @return {!proto.roleypoly.Role} returns this
+ */
 proto.roleypoly.Role.prototype.setColor = function(value) {
-  jspb.Message.setProto3IntField(this, 4, value);
+  return jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
@@ -1162,9 +1209,12 @@ proto.roleypoly.Role.prototype.getPosition = function() {
 };
 
 
-/** @param {number} value */
+/**
+ * @param {number} value
+ * @return {!proto.roleypoly.Role} returns this
+ */
 proto.roleypoly.Role.prototype.setPosition = function(value) {
-  jspb.Message.setProto3IntField(this, 5, value);
+  return jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
@@ -1177,9 +1227,12 @@ proto.roleypoly.Role.prototype.getManaged = function() {
 };
 
 
-/** @param {boolean} value */
+/**
+ * @param {boolean} value
+ * @return {!proto.roleypoly.Role} returns this
+ */
 proto.roleypoly.Role.prototype.setManaged = function(value) {
-  jspb.Message.setProto3BooleanField(this, 6, value);
+  return jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 
@@ -1192,9 +1245,12 @@ proto.roleypoly.Role.prototype.getSafety = function() {
 };
 
 
-/** @param {!proto.roleypoly.Role.RoleSafety} value */
+/**
+ * @param {!proto.roleypoly.Role.RoleSafety} value
+ * @return {!proto.roleypoly.Role} returns this
+ */
 proto.roleypoly.Role.prototype.setSafety = function(value) {
-  jspb.Message.setProto3EnumField(this, 7, value);
+  return jspb.Message.setProto3EnumField(this, 7, value);
 };
 
 
@@ -1367,9 +1423,12 @@ proto.roleypoly.DiscordUser.prototype.getId = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.DiscordUser} returns this
+ */
 proto.roleypoly.DiscordUser.prototype.setId = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1382,9 +1441,12 @@ proto.roleypoly.DiscordUser.prototype.getUsername = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.DiscordUser} returns this
+ */
 proto.roleypoly.DiscordUser.prototype.setUsername = function(value) {
-  jspb.Message.setProto3StringField(this, 2, value);
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -1397,9 +1459,12 @@ proto.roleypoly.DiscordUser.prototype.getDiscriminator = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.DiscordUser} returns this
+ */
 proto.roleypoly.DiscordUser.prototype.setDiscriminator = function(value) {
-  jspb.Message.setProto3StringField(this, 3, value);
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -1412,9 +1477,12 @@ proto.roleypoly.DiscordUser.prototype.getAvatar = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.DiscordUser} returns this
+ */
 proto.roleypoly.DiscordUser.prototype.setAvatar = function(value) {
-  jspb.Message.setProto3StringField(this, 4, value);
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -1427,9 +1495,12 @@ proto.roleypoly.DiscordUser.prototype.getBot = function() {
 };
 
 
-/** @param {boolean} value */
+/**
+ * @param {boolean} value
+ * @return {!proto.roleypoly.DiscordUser} returns this
+ */
 proto.roleypoly.DiscordUser.prototype.setBot = function(value) {
-  jspb.Message.setProto3BooleanField(this, 5, value);
+  return jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 

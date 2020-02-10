@@ -159,9 +159,12 @@ proto.roleypoly.auth.client.ClientToken.prototype.getToken = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.auth.client.ClientToken} returns this
+ */
 proto.roleypoly.auth.client.ClientToken.prototype.setToken = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 

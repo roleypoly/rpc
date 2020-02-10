@@ -21,7 +21,7 @@ jobs:
       - name: Ensure protoc
         uses: roleypoly/actions/setup-protoc@master
         with:
-          protoc-version: "3.9.1"
+          protoc-version: "3.11.3"
 
       - uses: actions/checkout@v1
 

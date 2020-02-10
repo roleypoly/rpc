@@ -305,9 +305,12 @@ proto.roleypoly.platform.GuildEnumeration.prototype.getGuildsList = function() {
 };
 
 
-/** @param {!Array<!proto.roleypoly.platform.PresentableGuild>} value */
+/**
+ * @param {!Array<!proto.roleypoly.platform.PresentableGuild>} value
+ * @return {!proto.roleypoly.platform.GuildEnumeration} returns this
+*/
 proto.roleypoly.platform.GuildEnumeration.prototype.setGuildsList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 1, value);
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
@@ -323,9 +326,10 @@ proto.roleypoly.platform.GuildEnumeration.prototype.addGuilds = function(opt_val
 
 /**
  * Clears the list making it empty but non-null.
+ * @return {!proto.roleypoly.platform.GuildEnumeration} returns this
  */
 proto.roleypoly.platform.GuildEnumeration.prototype.clearGuildsList = function() {
-  this.setGuildsList([]);
+  return this.setGuildsList([]);
 };
 
 
@@ -506,9 +510,12 @@ proto.roleypoly.platform.PresentableGuild.prototype.getId = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.platform.PresentableGuild} returns this
+ */
 proto.roleypoly.platform.PresentableGuild.prototype.setId = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -522,17 +529,21 @@ proto.roleypoly.platform.PresentableGuild.prototype.getGuild = function() {
 };
 
 
-/** @param {?proto.roleypoly.Guild|undefined} value */
+/**
+ * @param {?proto.roleypoly.Guild|undefined} value
+ * @return {!proto.roleypoly.platform.PresentableGuild} returns this
+*/
 proto.roleypoly.platform.PresentableGuild.prototype.setGuild = function(value) {
-  jspb.Message.setWrapperField(this, 2, value);
+  return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
+ * @return {!proto.roleypoly.platform.PresentableGuild} returns this
  */
 proto.roleypoly.platform.PresentableGuild.prototype.clearGuild = function() {
-  this.setGuild(undefined);
+  return this.setGuild(undefined);
 };
 
 
@@ -555,17 +566,21 @@ proto.roleypoly.platform.PresentableGuild.prototype.getData = function() {
 };
 
 
-/** @param {?proto.roleypoly.platform.GuildData|undefined} value */
+/**
+ * @param {?proto.roleypoly.platform.GuildData|undefined} value
+ * @return {!proto.roleypoly.platform.PresentableGuild} returns this
+*/
 proto.roleypoly.platform.PresentableGuild.prototype.setData = function(value) {
-  jspb.Message.setWrapperField(this, 3, value);
+  return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
+ * @return {!proto.roleypoly.platform.PresentableGuild} returns this
  */
 proto.roleypoly.platform.PresentableGuild.prototype.clearData = function() {
-  this.setData(undefined);
+  return this.setData(undefined);
 };
 
 
@@ -588,17 +603,21 @@ proto.roleypoly.platform.PresentableGuild.prototype.getMember = function() {
 };
 
 
-/** @param {?proto.roleypoly.discord.Member|undefined} value */
+/**
+ * @param {?proto.roleypoly.discord.Member|undefined} value
+ * @return {!proto.roleypoly.platform.PresentableGuild} returns this
+*/
 proto.roleypoly.platform.PresentableGuild.prototype.setMember = function(value) {
-  jspb.Message.setWrapperField(this, 4, value);
+  return jspb.Message.setWrapperField(this, 4, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
+ * @return {!proto.roleypoly.platform.PresentableGuild} returns this
  */
 proto.roleypoly.platform.PresentableGuild.prototype.clearMember = function() {
-  this.setMember(undefined);
+  return this.setMember(undefined);
 };
 
 
@@ -621,17 +640,21 @@ proto.roleypoly.platform.PresentableGuild.prototype.getRoles = function() {
 };
 
 
-/** @param {?proto.roleypoly.GuildRoles|undefined} value */
+/**
+ * @param {?proto.roleypoly.GuildRoles|undefined} value
+ * @return {!proto.roleypoly.platform.PresentableGuild} returns this
+*/
 proto.roleypoly.platform.PresentableGuild.prototype.setRoles = function(value) {
-  jspb.Message.setWrapperField(this, 5, value);
+  return jspb.Message.setWrapperField(this, 5, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
+ * @return {!proto.roleypoly.platform.PresentableGuild} returns this
  */
 proto.roleypoly.platform.PresentableGuild.prototype.clearRoles = function() {
-  this.setRoles(undefined);
+  return this.setRoles(undefined);
 };
 
 
@@ -811,9 +834,12 @@ proto.roleypoly.platform.GuildData.prototype.getId = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.platform.GuildData} returns this
+ */
 proto.roleypoly.platform.GuildData.prototype.setId = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -826,9 +852,12 @@ proto.roleypoly.platform.GuildData.prototype.getMessage = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.platform.GuildData} returns this
+ */
 proto.roleypoly.platform.GuildData.prototype.setMessage = function(value) {
-  jspb.Message.setProto3StringField(this, 2, value);
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -842,9 +871,12 @@ proto.roleypoly.platform.GuildData.prototype.getCategoriesList = function() {
 };
 
 
-/** @param {!Array<!proto.roleypoly.platform.Category>} value */
+/**
+ * @param {!Array<!proto.roleypoly.platform.Category>} value
+ * @return {!proto.roleypoly.platform.GuildData} returns this
+*/
 proto.roleypoly.platform.GuildData.prototype.setCategoriesList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 3, value);
+  return jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
 
 
@@ -860,9 +892,10 @@ proto.roleypoly.platform.GuildData.prototype.addCategories = function(opt_value,
 
 /**
  * Clears the list making it empty but non-null.
+ * @return {!proto.roleypoly.platform.GuildData} returns this
  */
 proto.roleypoly.platform.GuildData.prototype.clearCategoriesList = function() {
-  this.setCategoriesList([]);
+  return this.setCategoriesList([]);
 };
 
 
@@ -875,26 +908,31 @@ proto.roleypoly.platform.GuildData.prototype.getEntitlementsList = function() {
 };
 
 
-/** @param {!Array<string>} value */
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.roleypoly.platform.GuildData} returns this
+ */
 proto.roleypoly.platform.GuildData.prototype.setEntitlementsList = function(value) {
-  jspb.Message.setField(this, 4, value || []);
+  return jspb.Message.setField(this, 4, value || []);
 };
 
 
 /**
  * @param {string} value
  * @param {number=} opt_index
+ * @return {!proto.roleypoly.platform.GuildData} returns this
  */
 proto.roleypoly.platform.GuildData.prototype.addEntitlements = function(value, opt_index) {
-  jspb.Message.addToRepeatedField(this, 4, value, opt_index);
+  return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
+ * @return {!proto.roleypoly.platform.GuildData} returns this
  */
 proto.roleypoly.platform.GuildData.prototype.clearEntitlementsList = function() {
-  this.setEntitlementsList([]);
+  return this.setEntitlementsList([]);
 };
 
 
@@ -1033,9 +1071,12 @@ proto.roleypoly.platform.UpdateRoles.prototype.getGuildid = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.platform.UpdateRoles} returns this
+ */
 proto.roleypoly.platform.UpdateRoles.prototype.setGuildid = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1049,17 +1090,21 @@ proto.roleypoly.platform.UpdateRoles.prototype.getRoles = function() {
 };
 
 
-/** @param {?proto.roleypoly.platform.Roles|undefined} value */
+/**
+ * @param {?proto.roleypoly.platform.Roles|undefined} value
+ * @return {!proto.roleypoly.platform.UpdateRoles} returns this
+*/
 proto.roleypoly.platform.UpdateRoles.prototype.setRoles = function(value) {
-  jspb.Message.setWrapperField(this, 2, value);
+  return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
+ * @return {!proto.roleypoly.platform.UpdateRoles} returns this
  */
 proto.roleypoly.platform.UpdateRoles.prototype.clearRoles = function() {
-  this.setRoles(undefined);
+  return this.setRoles(undefined);
 };
 
 
@@ -1200,26 +1245,31 @@ proto.roleypoly.platform.Roles.prototype.getRolesList = function() {
 };
 
 
-/** @param {!Array<string>} value */
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.roleypoly.platform.Roles} returns this
+ */
 proto.roleypoly.platform.Roles.prototype.setRolesList = function(value) {
-  jspb.Message.setField(this, 1, value || []);
+  return jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
  * @param {string} value
  * @param {number=} opt_index
+ * @return {!proto.roleypoly.platform.Roles} returns this
  */
 proto.roleypoly.platform.Roles.prototype.addRoles = function(value, opt_index) {
-  jspb.Message.addToRepeatedField(this, 1, value, opt_index);
+  return jspb.Message.addToRepeatedField(this, 1, value, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
+ * @return {!proto.roleypoly.platform.Roles} returns this
  */
 proto.roleypoly.platform.Roles.prototype.clearRolesList = function() {
-  this.setRolesList([]);
+  return this.setRolesList([]);
 };
 
 
@@ -1419,9 +1469,12 @@ proto.roleypoly.platform.Category.prototype.getId = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.platform.Category} returns this
+ */
 proto.roleypoly.platform.Category.prototype.setId = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1434,9 +1487,12 @@ proto.roleypoly.platform.Category.prototype.getName = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.platform.Category} returns this
+ */
 proto.roleypoly.platform.Category.prototype.setName = function(value) {
-  jspb.Message.setProto3StringField(this, 2, value);
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -1449,26 +1505,31 @@ proto.roleypoly.platform.Category.prototype.getRolesList = function() {
 };
 
 
-/** @param {!Array<string>} value */
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.roleypoly.platform.Category} returns this
+ */
 proto.roleypoly.platform.Category.prototype.setRolesList = function(value) {
-  jspb.Message.setField(this, 3, value || []);
+  return jspb.Message.setField(this, 3, value || []);
 };
 
 
 /**
  * @param {string} value
  * @param {number=} opt_index
+ * @return {!proto.roleypoly.platform.Category} returns this
  */
 proto.roleypoly.platform.Category.prototype.addRoles = function(value, opt_index) {
-  jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
+ * @return {!proto.roleypoly.platform.Category} returns this
  */
 proto.roleypoly.platform.Category.prototype.clearRolesList = function() {
-  this.setRolesList([]);
+  return this.setRolesList([]);
 };
 
 
@@ -1481,9 +1542,12 @@ proto.roleypoly.platform.Category.prototype.getHidden = function() {
 };
 
 
-/** @param {boolean} value */
+/**
+ * @param {boolean} value
+ * @return {!proto.roleypoly.platform.Category} returns this
+ */
 proto.roleypoly.platform.Category.prototype.setHidden = function(value) {
-  jspb.Message.setProto3BooleanField(this, 4, value);
+  return jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 
@@ -1496,9 +1560,12 @@ proto.roleypoly.platform.Category.prototype.getType = function() {
 };
 
 
-/** @param {!proto.roleypoly.platform.Category.CategoryType} value */
+/**
+ * @param {!proto.roleypoly.platform.Category.CategoryType} value
+ * @return {!proto.roleypoly.platform.Category} returns this
+ */
 proto.roleypoly.platform.Category.prototype.setType = function(value) {
-  jspb.Message.setProto3EnumField(this, 5, value);
+  return jspb.Message.setProto3EnumField(this, 5, value);
 };
 
 
@@ -1511,9 +1578,12 @@ proto.roleypoly.platform.Category.prototype.getPosition = function() {
 };
 
 
-/** @param {number} value */
+/**
+ * @param {number} value
+ * @return {!proto.roleypoly.platform.Category} returns this
+ */
 proto.roleypoly.platform.Category.prototype.setPosition = function(value) {
-  jspb.Message.setProto3IntField(this, 6, value);
+  return jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
@@ -1665,17 +1735,21 @@ proto.roleypoly.platform.UpdateEntitlement.prototype.getQuery = function() {
 };
 
 
-/** @param {?proto.roleypoly.IDQuery|undefined} value */
+/**
+ * @param {?proto.roleypoly.IDQuery|undefined} value
+ * @return {!proto.roleypoly.platform.UpdateEntitlement} returns this
+*/
 proto.roleypoly.platform.UpdateEntitlement.prototype.setQuery = function(value) {
-  jspb.Message.setWrapperField(this, 1, value);
+  return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
+ * @return {!proto.roleypoly.platform.UpdateEntitlement} returns this
  */
 proto.roleypoly.platform.UpdateEntitlement.prototype.clearQuery = function() {
-  this.setQuery(undefined);
+  return this.setQuery(undefined);
 };
 
 
@@ -1697,9 +1771,12 @@ proto.roleypoly.platform.UpdateEntitlement.prototype.getName = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.platform.UpdateEntitlement} returns this
+ */
 proto.roleypoly.platform.UpdateEntitlement.prototype.setName = function(value) {
-  jspb.Message.setProto3StringField(this, 2, value);
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -1712,9 +1789,12 @@ proto.roleypoly.platform.UpdateEntitlement.prototype.getState = function() {
 };
 
 
-/** @param {boolean} value */
+/**
+ * @param {boolean} value
+ * @return {!proto.roleypoly.platform.UpdateEntitlement} returns this
+ */
 proto.roleypoly.platform.UpdateEntitlement.prototype.setState = function(value) {
-  jspb.Message.setProto3BooleanField(this, 3, value);
+  return jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 

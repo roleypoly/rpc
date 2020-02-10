@@ -212,9 +212,12 @@ proto.roleypoly.ctf.Flags.prototype.getFlagsList = function() {
 };
 
 
-/** @param {!Array<!proto.roleypoly.ctf.Flag>} value */
+/**
+ * @param {!Array<!proto.roleypoly.ctf.Flag>} value
+ * @return {!proto.roleypoly.ctf.Flags} returns this
+*/
 proto.roleypoly.ctf.Flags.prototype.setFlagsList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 1, value);
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
@@ -230,9 +233,10 @@ proto.roleypoly.ctf.Flags.prototype.addFlags = function(opt_value, opt_index) {
 
 /**
  * Clears the list making it empty but non-null.
+ * @return {!proto.roleypoly.ctf.Flags} returns this
  */
 proto.roleypoly.ctf.Flags.prototype.clearFlagsList = function() {
-  this.setFlagsList([]);
+  return this.setFlagsList([]);
 };
 
 
@@ -369,9 +373,12 @@ proto.roleypoly.ctf.Flag.prototype.getName = function() {
 };
 
 
-/** @param {string} value */
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.ctf.Flag} returns this
+ */
 proto.roleypoly.ctf.Flag.prototype.setName = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -384,9 +391,12 @@ proto.roleypoly.ctf.Flag.prototype.getRing = function() {
 };
 
 
-/** @param {number} value */
+/**
+ * @param {number} value
+ * @return {!proto.roleypoly.ctf.Flag} returns this
+ */
 proto.roleypoly.ctf.Flag.prototype.setRing = function(value) {
-  jspb.Message.setProto3IntField(this, 2, value);
+  return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -511,9 +521,12 @@ proto.roleypoly.ctf.Ring.prototype.getRing = function() {
 };
 
 
-/** @param {number} value */
+/**
+ * @param {number} value
+ * @return {!proto.roleypoly.ctf.Ring} returns this
+ */
 proto.roleypoly.ctf.Ring.prototype.setRing = function(value) {
-  jspb.Message.setProto3IntField(this, 1, value);
+  return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
