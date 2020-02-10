@@ -181,11 +181,11 @@ var fileDescriptor_6327d78a13af617a = []byte{
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ context.Context
-var _ grpc.ClientConn
+var _ grpc.ClientConnInterface
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion4
+const _ = grpc.SupportPackageIsVersion6
 
 // CTFClient is the client API for CTF service.
 //
@@ -198,10 +198,10 @@ type CTFClient interface {
 }
 
 type cTFClient struct {
-	cc *grpc.ClientConn
+	cc grpc.ClientConnInterface
 }
 
-func NewCTFClient(cc *grpc.ClientConn) CTFClient {
+func NewCTFClient(cc grpc.ClientConnInterface) CTFClient {
 	return &cTFClient{cc}
 }
 
