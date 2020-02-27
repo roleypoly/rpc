@@ -1,15 +1,15 @@
 name: RPC Builder Image
 
 on:
-	push:
-		paths:
-			- .github/workflows/docker_builder.yml
-			- package-lock.json
-			- package.json
-			- Dockerfile
+  push:
+    paths:
+      - .github/workflows/docker_builder.yml
+      - package-lock.json
+      - package.json
+      - Dockerfile
 
 jobs:
-	build:
+  build:
     name: Build Builder Image
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
