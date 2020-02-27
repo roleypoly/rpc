@@ -5,7 +5,10 @@ WORKDIR /src
 RUN apk add --no-cache nodejs protoc protobuf protobuf-dev git npm && \
     go get -u github.com/golang/protobuf/...
 
-COPY package.json package-lock.json /src/
-RUN npm ci
+COPY hack /src/hack
+COPY package.json package-lock.json go.mod go.sum /src/
+RUN npm ci && \
+    go mod download && \
+    go build -o /bin/rpc-gen /src/hack/gen.go
 
-CMD ["go", "generate"]
+CMD ["/bin/rpc-gen"] 

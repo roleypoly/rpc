@@ -9,6 +9,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"regexp"
+	"sort"
 	"strings"
 )
 
@@ -23,6 +24,8 @@ func main() {
 	if err != nil {
 		log.Fatalln("os.Getwd() error", err)
 	}
+
+	os.Chdir(rootDir) // sometimes go forgets where it is
 
 	dirs, err := getRelevantDirs()
 	if err != nil {
@@ -161,7 +164,7 @@ func getRelevantDirs() ([]string, error) {
 	for _, match := range matches {
 		dirs = append(
 			dirs,
-			filepath.Clean(
+			filepath.Clean("./"+
 				strings.Replace(match, ".genconfig", "", -1),
 			),
 		)
@@ -272,11 +275,19 @@ func glob(dir string, ext string, depth int) ([]string, error) {
 
 	files := []string{}
 	err := filepath.Walk(dir, func(path string, f os.FileInfo, err error) error {
-		if strings.HasPrefix(path, "node_modules") || strings.HasPrefix(path, ".") {
+		if err != nil {
+			return err
+		}
+
+		if f != nil && f.IsDir() && strings.HasPrefix(path, "node_modules") {
+			return filepath.SkipDir
+		}
+
+		if strings.HasPrefix(path, ".") {
 			return nil
 		}
 
-		if f.IsDir() {
+		if f != nil && f.IsDir() {
 			return nil
 		}
 
@@ -290,6 +301,7 @@ func glob(dir string, ext string, depth int) ([]string, error) {
 		return nil
 	})
 
+	sort.Strings(files)
 	return files, err
 }
 
