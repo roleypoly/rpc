@@ -1,0 +1,43 @@
+name: RPC Builder Image
+
+on: 
+	push:
+		paths:
+			- .github/workflows/docker_builder.yml
+			- package-lock.json
+			- package.json
+			- Dockerfile
+
+jobs:
+	build:
+    name: Build Builder Image
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Docker Login
+        run: |
+          echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+
+      - name: Build & Push
+        uses: roleypoly/actions/dxt@master
+        with:
+          tag: ${{ github.repository }}-builder:${{ github.sha }}
+          platforms: linux/amd64
+          qemu: 'false'
+          push: 'true'
+      
+      - name: Retag Image
+        if: github.event_name == 'push'
+        run: |
+          retag() {
+            curl -sSL https://github.com/docker/buildx/releases/download/v0.3.0/buildx-v0.3.0.linux-amd64 > $HOME/buildx &&\
+            chmod a+x $HOME/buildx &&\
+            $HOME/buildx imagetools create --tag "${{ github.repository }}:$1" "${{ github.repository }}:${{ github.sha }}" && \
+            exit 0
+          }
+          test ${{ github.ref }} = "refs/heads/master" && retag latest || \
+          test ${{ github.ref }} = "refs/heads/develop" && retag next || \
+          test ${{ github.ref }} = "refs/heads/ci-testing" && retag scratch || \
+          echo "not a well-known branch, not retagging"
