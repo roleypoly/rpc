@@ -5,12 +5,11 @@ option go_package = "github.com/roleypoly/rpc/auth/client";
 
 import "shared/internal.proto";
 import "google/protobuf/empty.proto";
+import "auth/shared.proto";
 
 service AuthClient {
-    rpc GetClientToken(google.protobuf.Empty) returns (ClientToken) {}
+    rpc GetClientToken(google.protobuf.Empty) returns (roleypoly.auth.Token) {}
     rpc GetUserSession(google.protobuf.Empty) returns (roleypoly.RoleypolySession) {}
-}
-
-message ClientToken {
-    string token = 1;
+    rpc ResolveSessionKey(roleypoly.auth.Token) returns (roleypoly.auth.Token) {}
+    rpc AuthorizeChallenge(roleypoly.auth.AuthChallenge) returns (roleypoly.auth.Token) {}
 }

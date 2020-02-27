@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package roleypoly.auth;
+option go_package = "github.com/roleypoly/rpc/auth/shared";
+
+message Token {
+    string token = 1;
+    Type type = 2;
+    
+    enum Type {
+        unknown = 0;
+        sessionKey = 1;
+        clientToken = 2;
+    }
+}
+
+message AuthChallenge {
+    string userID = 1;
+    string magicUrl = 2;
+    string magicWords = 3;
+}

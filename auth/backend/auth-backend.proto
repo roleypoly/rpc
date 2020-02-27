@@ -4,22 +4,10 @@ package roleypoly.auth.backend;
 option go_package = "github.com/roleypoly/rpc/auth/backend";
 
 import "shared/internal.proto";
+import "shared/shared.proto";
+import "auth/shared.proto";
 
 service AuthBackend {
-    rpc GetSessionChallenge(UserSlug) returns (AuthChallenge) {}
-    rpc GetSession(SessionQuery) returns (roleypoly.RoleypolySession) {}
-}
-
-message SessionQuery {
-    string token = 1;
-}
-
-message UserSlug {
-    string userID = 1;
-}
-
-message AuthChallenge {
-    string userID = 1;
-    string magicUrl = 2;
-    string magicWords = 3;
+    rpc GetNewAuthChallenge(roleypoly.IDQuery) returns (roleypoly.auth.AuthChallenge) {}
+    rpc GetSession(roleypoly.auth.Token) returns (roleypoly.RoleypolySession) {}
 }

@@ -9,6 +9,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var empty_pb_1 = require("google-protobuf/google/protobuf/empty_pb");
 exports.Empty = empty_pb_1.Empty;
+const Auth = __importStar(require("./auth"));
+exports.Auth = Auth;
 const AuthClient = __importStar(require("./auth/client"));
 exports.AuthClient = AuthClient;
 const Ctf = __importStar(require("./ctf"));
