@@ -8,8 +8,8 @@ import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	empty "github.com/golang/protobuf/ptypes/empty"
-	shared "github.com/roleypoly/rpc/auth/shared"
-	shared1 "github.com/roleypoly/rpc/shared"
+	auth "github.com/roleypoly/rpc/auth"
+	shared "github.com/roleypoly/rpc/shared"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -64,10 +64,10 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type AuthClientClient interface {
-	GetClientToken(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*shared.Token, error)
-	GetUserSession(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*shared1.RoleypolySession, error)
-	ResolveSessionKey(ctx context.Context, in *shared.Token, opts ...grpc.CallOption) (*shared.Token, error)
-	AuthorizeChallenge(ctx context.Context, in *shared.AuthChallenge, opts ...grpc.CallOption) (*shared.Token, error)
+	GetClientToken(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*auth.Token, error)
+	GetUserSession(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*shared.RoleypolySession, error)
+	ResolveSessionKey(ctx context.Context, in *auth.Token, opts ...grpc.CallOption) (*auth.Token, error)
+	AuthorizeChallenge(ctx context.Context, in *auth.AuthChallenge, opts ...grpc.CallOption) (*auth.Token, error)
 }
 
 type authClientClient struct {
@@ -78,8 +78,8 @@ func NewAuthClientClient(cc grpc.ClientConnInterface) AuthClientClient {
 	return &authClientClient{cc}
 }
 
-func (c *authClientClient) GetClientToken(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*shared.Token, error) {
-	out := new(shared.Token)
+func (c *authClientClient) GetClientToken(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*auth.Token, error) {
+	out := new(auth.Token)
 	err := c.cc.Invoke(ctx, "/roleypoly.auth.client.AuthClient/GetClientToken", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -87,8 +87,8 @@ func (c *authClientClient) GetClientToken(ctx context.Context, in *empty.Empty, 
 	return out, nil
 }
 
-func (c *authClientClient) GetUserSession(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*shared1.RoleypolySession, error) {
-	out := new(shared1.RoleypolySession)
+func (c *authClientClient) GetUserSession(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*shared.RoleypolySession, error) {
+	out := new(shared.RoleypolySession)
 	err := c.cc.Invoke(ctx, "/roleypoly.auth.client.AuthClient/GetUserSession", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -96,8 +96,8 @@ func (c *authClientClient) GetUserSession(ctx context.Context, in *empty.Empty, 
 	return out, nil
 }
 
-func (c *authClientClient) ResolveSessionKey(ctx context.Context, in *shared.Token, opts ...grpc.CallOption) (*shared.Token, error) {
-	out := new(shared.Token)
+func (c *authClientClient) ResolveSessionKey(ctx context.Context, in *auth.Token, opts ...grpc.CallOption) (*auth.Token, error) {
+	out := new(auth.Token)
 	err := c.cc.Invoke(ctx, "/roleypoly.auth.client.AuthClient/ResolveSessionKey", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -105,8 +105,8 @@ func (c *authClientClient) ResolveSessionKey(ctx context.Context, in *shared.Tok
 	return out, nil
 }
 
-func (c *authClientClient) AuthorizeChallenge(ctx context.Context, in *shared.AuthChallenge, opts ...grpc.CallOption) (*shared.Token, error) {
-	out := new(shared.Token)
+func (c *authClientClient) AuthorizeChallenge(ctx context.Context, in *auth.AuthChallenge, opts ...grpc.CallOption) (*auth.Token, error) {
+	out := new(auth.Token)
 	err := c.cc.Invoke(ctx, "/roleypoly.auth.client.AuthClient/AuthorizeChallenge", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -116,26 +116,26 @@ func (c *authClientClient) AuthorizeChallenge(ctx context.Context, in *shared.Au
 
 // AuthClientServer is the server API for AuthClient service.
 type AuthClientServer interface {
-	GetClientToken(context.Context, *empty.Empty) (*shared.Token, error)
-	GetUserSession(context.Context, *empty.Empty) (*shared1.RoleypolySession, error)
-	ResolveSessionKey(context.Context, *shared.Token) (*shared.Token, error)
-	AuthorizeChallenge(context.Context, *shared.AuthChallenge) (*shared.Token, error)
+	GetClientToken(context.Context, *empty.Empty) (*auth.Token, error)
+	GetUserSession(context.Context, *empty.Empty) (*shared.RoleypolySession, error)
+	ResolveSessionKey(context.Context, *auth.Token) (*auth.Token, error)
+	AuthorizeChallenge(context.Context, *auth.AuthChallenge) (*auth.Token, error)
 }
 
 // UnimplementedAuthClientServer can be embedded to have forward compatible implementations.
 type UnimplementedAuthClientServer struct {
 }
 
-func (*UnimplementedAuthClientServer) GetClientToken(ctx context.Context, req *empty.Empty) (*shared.Token, error) {
+func (*UnimplementedAuthClientServer) GetClientToken(ctx context.Context, req *empty.Empty) (*auth.Token, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetClientToken not implemented")
 }
-func (*UnimplementedAuthClientServer) GetUserSession(ctx context.Context, req *empty.Empty) (*shared1.RoleypolySession, error) {
+func (*UnimplementedAuthClientServer) GetUserSession(ctx context.Context, req *empty.Empty) (*shared.RoleypolySession, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserSession not implemented")
 }
-func (*UnimplementedAuthClientServer) ResolveSessionKey(ctx context.Context, req *shared.Token) (*shared.Token, error) {
+func (*UnimplementedAuthClientServer) ResolveSessionKey(ctx context.Context, req *auth.Token) (*auth.Token, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResolveSessionKey not implemented")
 }
-func (*UnimplementedAuthClientServer) AuthorizeChallenge(ctx context.Context, req *shared.AuthChallenge) (*shared.Token, error) {
+func (*UnimplementedAuthClientServer) AuthorizeChallenge(ctx context.Context, req *auth.AuthChallenge) (*auth.Token, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AuthorizeChallenge not implemented")
 }
 
@@ -180,7 +180,7 @@ func _AuthClient_GetUserSession_Handler(srv interface{}, ctx context.Context, de
 }
 
 func _AuthClient_ResolveSessionKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(shared.Token)
+	in := new(auth.Token)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -192,13 +192,13 @@ func _AuthClient_ResolveSessionKey_Handler(srv interface{}, ctx context.Context,
 		FullMethod: "/roleypoly.auth.client.AuthClient/ResolveSessionKey",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthClientServer).ResolveSessionKey(ctx, req.(*shared.Token))
+		return srv.(AuthClientServer).ResolveSessionKey(ctx, req.(*auth.Token))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AuthClient_AuthorizeChallenge_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(shared.AuthChallenge)
+	in := new(auth.AuthChallenge)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -210,7 +210,7 @@ func _AuthClient_AuthorizeChallenge_Handler(srv interface{}, ctx context.Context
 		FullMethod: "/roleypoly.auth.client.AuthClient/AuthorizeChallenge",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthClientServer).AuthorizeChallenge(ctx, req.(*shared.AuthChallenge))
+		return srv.(AuthClientServer).AuthorizeChallenge(ctx, req.(*auth.AuthChallenge))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -7,7 +7,7 @@ import (
 	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	shared1 "github.com/roleypoly/rpc/auth/shared"
+	auth "github.com/roleypoly/rpc/auth"
 	shared "github.com/roleypoly/rpc/shared"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -60,8 +60,8 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type AuthBackendClient interface {
-	GetNewAuthChallenge(ctx context.Context, in *shared.IDQuery, opts ...grpc.CallOption) (*shared1.AuthChallenge, error)
-	GetSession(ctx context.Context, in *shared1.Token, opts ...grpc.CallOption) (*shared.RoleypolySession, error)
+	GetNewAuthChallenge(ctx context.Context, in *shared.IDQuery, opts ...grpc.CallOption) (*auth.AuthChallenge, error)
+	GetSession(ctx context.Context, in *auth.Token, opts ...grpc.CallOption) (*shared.RoleypolySession, error)
 }
 
 type authBackendClient struct {
@@ -72,8 +72,8 @@ func NewAuthBackendClient(cc grpc.ClientConnInterface) AuthBackendClient {
 	return &authBackendClient{cc}
 }
 
-func (c *authBackendClient) GetNewAuthChallenge(ctx context.Context, in *shared.IDQuery, opts ...grpc.CallOption) (*shared1.AuthChallenge, error) {
-	out := new(shared1.AuthChallenge)
+func (c *authBackendClient) GetNewAuthChallenge(ctx context.Context, in *shared.IDQuery, opts ...grpc.CallOption) (*auth.AuthChallenge, error) {
+	out := new(auth.AuthChallenge)
 	err := c.cc.Invoke(ctx, "/roleypoly.auth.backend.AuthBackend/GetNewAuthChallenge", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -81,7 +81,7 @@ func (c *authBackendClient) GetNewAuthChallenge(ctx context.Context, in *shared.
 	return out, nil
 }
 
-func (c *authBackendClient) GetSession(ctx context.Context, in *shared1.Token, opts ...grpc.CallOption) (*shared.RoleypolySession, error) {
+func (c *authBackendClient) GetSession(ctx context.Context, in *auth.Token, opts ...grpc.CallOption) (*shared.RoleypolySession, error) {
 	out := new(shared.RoleypolySession)
 	err := c.cc.Invoke(ctx, "/roleypoly.auth.backend.AuthBackend/GetSession", in, out, opts...)
 	if err != nil {
@@ -92,18 +92,18 @@ func (c *authBackendClient) GetSession(ctx context.Context, in *shared1.Token, o
 
 // AuthBackendServer is the server API for AuthBackend service.
 type AuthBackendServer interface {
-	GetNewAuthChallenge(context.Context, *shared.IDQuery) (*shared1.AuthChallenge, error)
-	GetSession(context.Context, *shared1.Token) (*shared.RoleypolySession, error)
+	GetNewAuthChallenge(context.Context, *shared.IDQuery) (*auth.AuthChallenge, error)
+	GetSession(context.Context, *auth.Token) (*shared.RoleypolySession, error)
 }
 
 // UnimplementedAuthBackendServer can be embedded to have forward compatible implementations.
 type UnimplementedAuthBackendServer struct {
 }
 
-func (*UnimplementedAuthBackendServer) GetNewAuthChallenge(ctx context.Context, req *shared.IDQuery) (*shared1.AuthChallenge, error) {
+func (*UnimplementedAuthBackendServer) GetNewAuthChallenge(ctx context.Context, req *shared.IDQuery) (*auth.AuthChallenge, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNewAuthChallenge not implemented")
 }
-func (*UnimplementedAuthBackendServer) GetSession(ctx context.Context, req *shared1.Token) (*shared.RoleypolySession, error) {
+func (*UnimplementedAuthBackendServer) GetSession(ctx context.Context, req *auth.Token) (*shared.RoleypolySession, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSession not implemented")
 }
 
@@ -130,7 +130,7 @@ func _AuthBackend_GetNewAuthChallenge_Handler(srv interface{}, ctx context.Conte
 }
 
 func _AuthBackend_GetSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(shared1.Token)
+	in := new(auth.Token)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -142,7 +142,7 @@ func _AuthBackend_GetSession_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: "/roleypoly.auth.backend.AuthBackend/GetSession",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthBackendServer).GetSession(ctx, req.(*shared1.Token))
+		return srv.(AuthBackendServer).GetSession(ctx, req.(*auth.Token))
 	}
 	return interceptor(ctx, in, info, handler)
 }
