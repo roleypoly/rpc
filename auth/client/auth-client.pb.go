@@ -69,7 +69,9 @@ func init() {
 	proto.RegisterType((*ClientToken)(nil), "roleypoly.auth.client.ClientToken")
 }
 
-func init() { proto.RegisterFile("auth/client/auth-client.proto", fileDescriptor_1833648300932cc9) }
+func init() {
+	proto.RegisterFile("auth/client/auth-client.proto", fileDescriptor_1833648300932cc9)
+}
 
 var fileDescriptor_1833648300932cc9 = []byte{
 	// 232 bytes of a gzipped FileDescriptorProto

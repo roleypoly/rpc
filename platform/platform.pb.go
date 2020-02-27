@@ -456,7 +456,9 @@ func init() {
 	proto.RegisterType((*UpdateEntitlement)(nil), "roleypoly.platform.UpdateEntitlement")
 }
 
-func init() { proto.RegisterFile("platform/platform.proto", fileDescriptor_fa9581d889443fc5) }
+func init() {
+	proto.RegisterFile("platform/platform.proto", fileDescriptor_fa9581d889443fc5)
+}
 
 var fileDescriptor_fa9581d889443fc5 = []byte{
 	// 635 bytes of a gzipped FileDescriptorProto

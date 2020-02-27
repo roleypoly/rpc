@@ -173,7 +173,9 @@ func init() {
 	proto.RegisterMapType((map[string]string)(nil), "roleypoly.RoleypolySession.ExtraEntry")
 }
 
-func init() { proto.RegisterFile("shared/internal.proto", fileDescriptor_c67730e27cff8995) }
+func init() {
+	proto.RegisterFile("shared/internal.proto", fileDescriptor_c67730e27cff8995)
+}
 
 var fileDescriptor_c67730e27cff8995 = []byte{
 	// 347 bytes of a gzipped FileDescriptorProto

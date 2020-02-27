@@ -428,7 +428,9 @@ func init() {
 	proto.RegisterType((*DiscordUser)(nil), "roleypoly.DiscordUser")
 }
 
-func init() { proto.RegisterFile("shared/shared.proto", fileDescriptor_9301c8e954a55bc6) }
+func init() {
+	proto.RegisterFile("shared/shared.proto", fileDescriptor_9301c8e954a55bc6)
+}
 
 var fileDescriptor_9301c8e954a55bc6 = []byte{
 	// 461 bytes of a gzipped FileDescriptorProto

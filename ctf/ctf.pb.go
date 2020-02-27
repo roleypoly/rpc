@@ -156,7 +156,9 @@ func init() {
 	proto.RegisterType((*Ring)(nil), "roleypoly.ctf.Ring")
 }
 
-func init() { proto.RegisterFile("ctf/ctf.proto", fileDescriptor_6327d78a13af617a) }
+func init() {
+	proto.RegisterFile("ctf/ctf.proto", fileDescriptor_6327d78a13af617a)
+}
 
 var fileDescriptor_6327d78a13af617a = []byte{
 	// 266 bytes of a gzipped FileDescriptorProto

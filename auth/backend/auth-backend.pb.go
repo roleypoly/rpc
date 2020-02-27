@@ -164,7 +164,9 @@ func init() {
 	proto.RegisterType((*AuthChallenge)(nil), "roleypoly.auth.backend.AuthChallenge")
 }
 
-func init() { proto.RegisterFile("auth/backend/auth-backend.proto", fileDescriptor_5436ad1a948af874) }
+func init() {
+	proto.RegisterFile("auth/backend/auth-backend.proto", fileDescriptor_5436ad1a948af874)
+}
 
 var fileDescriptor_5436ad1a948af874 = []byte{
 	// 281 bytes of a gzipped FileDescriptorProto

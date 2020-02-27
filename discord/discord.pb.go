@@ -205,7 +205,9 @@ func init() {
 	proto.RegisterType((*ShardInfo)(nil), "roleypoly.discord.ShardInfo")
 }
 
-func init() { proto.RegisterFile("discord/discord.proto", fileDescriptor_fa569a6aa3df0e67) }
+func init() {
+	proto.RegisterFile("discord/discord.proto", fileDescriptor_fa569a6aa3df0e67)
+}
 
 var fileDescriptor_fa569a6aa3df0e67 = []byte{
 	// 438 bytes of a gzipped FileDescriptorProto
