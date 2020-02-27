@@ -90,7 +90,8 @@ proto.roleypoly.auth.Token.prototype.toObject = function(opt_includeInstance) {
 proto.roleypoly.auth.Token.toObject = function(includeInstance, msg) {
   var f, obj = {
     token: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    type: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    type: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    state: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -135,6 +136,10 @@ proto.roleypoly.auth.Token.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {!proto.roleypoly.auth.Token.Type} */ (reader.readEnum());
       msg.setType(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setState(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -175,6 +180,13 @@ proto.roleypoly.auth.Token.serializeBinaryToWriter = function(message, writer) {
   if (f !== 0.0) {
     writer.writeEnum(
       2,
+      f
+    );
+  }
+  f = message.getState();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
       f
     );
   }
@@ -223,6 +235,24 @@ proto.roleypoly.auth.Token.prototype.getType = function() {
  */
 proto.roleypoly.auth.Token.prototype.setType = function(value) {
   return jspb.Message.setProto3EnumField(this, 2, value);
+};
+
+
+/**
+ * optional string state = 3;
+ * @return {string}
+ */
+proto.roleypoly.auth.Token.prototype.getState = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.roleypoly.auth.Token} returns this
+ */
+proto.roleypoly.auth.Token.prototype.setState = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 

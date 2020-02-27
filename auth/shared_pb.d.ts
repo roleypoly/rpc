@@ -10,6 +10,9 @@ export class Token extends jspb.Message {
   getType(): Token.TypeMap[keyof Token.TypeMap];
   setType(value: Token.TypeMap[keyof Token.TypeMap]): void;
 
+  getState(): string;
+  setState(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Token.AsObject;
   static toObject(includeInstance: boolean, msg: Token): Token.AsObject;
@@ -24,6 +27,7 @@ export namespace Token {
   export type AsObject = {
     token: string,
     type: Token.TypeMap[keyof Token.TypeMap],
+    state: string,
   }
 
   export interface TypeMap {
