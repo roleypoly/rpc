@@ -153,7 +153,7 @@ func writeGlobalJS() error {
 func getRelevantDirs() ([]string, error) {
 	dirs := []string{}
 
-	matches, err := glob(".", ".genconfig")
+	matches, err := glob(".", ".genconfig", -1)
 	if err != nil {
 		return dirs, err
 	}
@@ -207,10 +207,10 @@ func assertGlob(i []string, err error) []string {
 func cleanDir(dir string) {
 	log.Printf(`[%s] cleaning...`, dir)
 
-	jsFiles := assertGlob(glob(dir, ".js"))
-	goFiles := assertGlob(glob(dir, ".go"))
-	tsFiles := assertGlob(glob(dir, ".ts"))
-	mapFiles := assertGlob(glob(dir, ".map"))
+	jsFiles := assertGlob(glob(dir, ".js", -1))
+	goFiles := assertGlob(glob(dir, ".go", -1))
+	tsFiles := assertGlob(glob(dir, ".ts", -1))
+	mapFiles := assertGlob(glob(dir, ".map", -1))
 
 	files := append(jsFiles, goFiles...)
 	files = append(files, tsFiles...)
@@ -225,7 +225,7 @@ func cleanDir(dir string) {
 }
 
 func getLocalProtoNames(dir string) []string {
-	return assertGlob(glob(dir, ".proto"))
+	return assertGlob(glob(dir, ".proto", 1))
 }
 
 func runProtoc(dir string, flags ...string) error {
@@ -235,7 +235,7 @@ func runProtoc(dir string, flags ...string) error {
 		fmt.Sprintf("--plugin=protoc-gen-ts=%s/node_modules/.bin/protoc-gen-ts", rootDir),
 	}
 
-	files, err := glob(dir, ".proto")
+	files, err := glob(dir, ".proto", 1)
 	if err != nil {
 		return err
 	}
@@ -267,13 +267,23 @@ func runTsc() {
 }
 
 // -- ripped from https://stackoverflow.com/a/26809999 --
-func glob(dir string, ext string) ([]string, error) {
+func glob(dir string, ext string, depth int) ([]string, error) {
+	depth += strings.Count(dir, "/") // adds basis depth
 
 	files := []string{}
 	err := filepath.Walk(dir, func(path string, f os.FileInfo, err error) error {
 		if strings.HasPrefix(path, "node_modules") || strings.HasPrefix(path, ".") {
 			return nil
 		}
+
+		if f.IsDir() {
+			return nil
+		}
+
+		if depth != -1 && strings.Count(filepath.Dir(path), "/") > depth-1 {
+			return nil
+		}
+
 		if filepath.Ext(path) == ext {
 			files = append(files, path)
 		}
