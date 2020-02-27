@@ -1,6 +1,6 @@
 name: RPC Builder Image
 
-on: 
+on:
 	push:
 		paths:
 			- .github/workflows/docker_builder.yml
