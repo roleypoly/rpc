@@ -69,6 +69,15 @@ type DiscordUpdateMember = {
   readonly responseType: typeof discord_discord_pb.Member;
 };
 
+type DiscordUpdateMemberRoles = {
+  readonly methodName: string;
+  readonly service: typeof Discord;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof discord_discord_pb.RoleTransaction;
+  readonly responseType: typeof discord_discord_pb.RoleTransactionResult;
+};
+
 type DiscordOwnUser = {
   readonly methodName: string;
   readonly service: typeof Discord;
@@ -87,6 +96,7 @@ export class Discord {
   static readonly GetMember: DiscordGetMember;
   static readonly GetUser: DiscordGetUser;
   static readonly UpdateMember: DiscordUpdateMember;
+  static readonly UpdateMemberRoles: DiscordUpdateMemberRoles;
   static readonly OwnUser: DiscordOwnUser;
 }
 
@@ -150,6 +160,10 @@ export class DiscordClient {
     requestMessage: discord_discord_pb.Member,
     metadata?: grpc.Metadata,
   ): Promise<discord_discord_pb.Member>;
+  updateMemberRoles(
+    requestMessage: discord_discord_pb.RoleTransaction,
+    metadata?: grpc.Metadata,
+  ): Promise<discord_discord_pb.RoleTransactionResult>;
   ownUser(
     requestMessage: google_protobuf_empty_pb.Empty,
     metadata?: grpc.Metadata,

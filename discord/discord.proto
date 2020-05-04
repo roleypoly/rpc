@@ -14,7 +14,8 @@ service Discord {
 
   rpc GetMember(roleypoly.IDQuery) returns (Member) {}
   rpc GetUser(roleypoly.IDQuery) returns (roleypoly.DiscordUser) {}
-  rpc UpdateMember(Member) returns (Member) {}
+  rpc UpdateMember(Member) returns (Member) {} // deprecated 4 MAR 2020
+  rpc UpdateMemberRoles(RoleTransaction) returns (RoleTransactionResult) {}
 
   rpc OwnUser(google.protobuf.Empty) returns (roleypoly.DiscordUser) {}
 }
@@ -29,6 +30,33 @@ message Member {
   repeated string roles = 3;
   string nick = 4;
   roleypoly.DiscordUser user = 5;
+}
+
+message RoleTransaction {
+  roleypoly.IDQuery member = 1;
+  repeated TxDelta delta = 2;
+}
+
+message TxDelta {
+  string role = 1;
+  Action action = 2;
+
+  enum Action {
+    UNKNOWN = 0;
+    ADD = 1;
+    REMOVE = 2;
+  }
+}
+
+message RoleTransactionResult {
+  Member member = 1;
+  Status status = 2;
+
+  enum Status {
+    DONE = 0;
+    QUEUED = 1;
+    FAILED = 2;
+  }
 }
 
 message ShardInfo {

@@ -75,6 +75,15 @@ Discord.UpdateMember = {
   responseType: discord_discord_pb.Member
 };
 
+Discord.UpdateMemberRoles = {
+  methodName: "UpdateMemberRoles",
+  service: Discord,
+  requestStream: false,
+  responseStream: false,
+  requestType: discord_discord_pb.RoleTransaction,
+  responseType: discord_discord_pb.RoleTransactionResult
+};
+
 Discord.OwnUser = {
   methodName: "OwnUser",
   service: Discord,
@@ -226,6 +235,28 @@ DiscordClient.prototype.getUser = function getUser(requestMessage, metadata) {
 DiscordClient.prototype.updateMember = function updateMember(requestMessage, metadata) {
   return new Promise((resolve, reject) => {
     grpc.unary(Discord.UpdateMember, {
+      request: requestMessage,
+      host: this.serviceHost,
+      metadata: metadata,
+      transport: this.options.transport,
+      debug: this.options.debug,
+      onEnd: function (response) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          reject(err);
+        } else {
+          resolve(response.message);
+        }
+      }
+    });
+  });
+};
+
+DiscordClient.prototype.updateMemberRoles = function updateMemberRoles(requestMessage, metadata) {
+  return new Promise((resolve, reject) => {
+    grpc.unary(Discord.UpdateMemberRoles, {
       request: requestMessage,
       host: this.serviceHost,
       metadata: metadata,
