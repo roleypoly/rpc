@@ -13,11 +13,6 @@ jobs:
         with:
           go-version: 1.14.x
 
-      - name: Ensure Node
-        uses: actions/setup-node@master
-        with:
-          node-version: 14.x
-
       - uses: actions/checkout@v1
 
       - uses: actions/cache@v1
@@ -34,7 +29,7 @@ jobs:
 
       - name: Smoketest
         run : |
-          docker run --rm --mount type=bind,src="$(pwd)",dst=/src --mount type=volume,dst=/src/node_modules rpc-builder go vet ./...
+          go vet ./...
           docker run --rm --mount type=bind,src="$(pwd)",dst=/src --mount type=volume,dst=/src/node_modules rpc-builder node hack/smoketest.js
 
       - name: Check if dirty
