@@ -16,7 +16,7 @@ jobs:
       - name: Ensure Node
         uses: actions/setup-node@master
         with:
-          go-version: 14.x
+          node-version: 14.x
 
       - uses: actions/checkout@v1
 
