@@ -7,8 +7,7 @@ on:
       - package-lock.json
       - package.json
       - Dockerfile
-      - go.sum
-      - go.mod
+      - go.*
   schedule:
     - cron: '0 12 * * 1' # 12 noon every monday
 
