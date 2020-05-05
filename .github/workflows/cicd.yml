@@ -11,32 +11,15 @@ jobs:
       - name: Ensure Go
         uses: actions/setup-go@master
         with:
-          go-version: 1.13.x
+          go-version: 1.14.x
 
       - name: Ensure Node
         uses: actions/setup-node@master
         with:
-          node-version: 12.x
-
-      - name: Ensure protoc
-        uses: roleypoly/actions/setup-protoc@master
-        with:
-          protoc-version: "3.11.3"
+          node-version: 14.x
 
       - uses: actions/checkout@v1
 
-      - name: Get npm cache directory
-        id: npm-cache
-        run: |
-          echo "::set-output name=dir::$(npm config get cache)"
-          
-      - uses: actions/cache@v1
-        with:
-          path: ${{ steps.npm-cache.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      
       - uses: actions/cache@v1
         with:
           path: ~/go/pkg/mod
@@ -46,15 +29,12 @@ jobs:
 
       - name: Fetch Dependencies & Generate
         run: |
-          export PATH=$PATH:$(go env GOPATH)/bin
-          go get github.com/golang/protobuf/protoc-gen-go
-          npm ci
-          go generate
+          docker build . -t rpc-builder
+          docker run --rm --mount type=bind,src="$(pwd)",dst=/src --mount type=volume,dst=/src/node_modules rpc-builder
 
       - name: Smoketest
         run : |
           go vet ./...
-          node hack/smoketest.js
 
       - name: Check if dirty
         run: test -z "`git status -s`" || (git status && exit 1)
