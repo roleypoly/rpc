@@ -6,8 +6,8 @@ on:
       - .github/workflows/docker_builder.yml
       - package-lock.json
       - package.json
-      - Dockerfile
       - go.*
+      - Dockerfile
   schedule:
     - cron: '0 12 * * 1' # 12 noon every monday
 
