@@ -3,7 +3,7 @@ module github.com/roleypoly/rpc
 go 1.13
 
 require (
-	github.com/golang/protobuf v1.3.5
+	github.com/golang/protobuf v1.4.1
 	golang.org/x/net v0.0.0-20200226121028-0de0cce0169b // indirect
 	golang.org/x/sys v0.0.0-20200223170610-d5e6a3e2c0ae // indirect
 	golang.org/x/text v0.3.2 // indirect
