@@ -30,7 +30,7 @@ jobs:
       - name: Fetch Dependencies & Generate
         run: |
           docker build . -t rpc-builder
-          docker run -it --rm --mount type=bind,src="$(pwd)",dst=/src --mount type=volume,dst=/src/node_modules rpc-builder
+          docker run --rm --mount type=bind,src="$(pwd)",dst=/src --mount type=volume,dst=/src/node_modules rpc-builder
 
       - name: Smoketest
         run : |
