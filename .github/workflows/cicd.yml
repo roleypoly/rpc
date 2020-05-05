@@ -34,7 +34,8 @@ jobs:
 
       - name: Smoketest
         run : |
-          go vet ./...
+          docker run --rm --mount type=bind,src="$(pwd)",dst=/src --mount type=volume,dst=/src/node_modules rpc-builder go vet ./...
+          docker run --rm --mount type=bind,src="$(pwd)",dst=/src --mount type=volume,dst=/src/node_modules rpc-builder node hack/smoketest.js
 
       - name: Check if dirty
         run: test -z "`git status -s`" || (git status && exit 1)
@@ -44,7 +45,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm run semantic-release
+        run: |
+          docker run --rm --mount type=bind,src="$(pwd)",dst=/src --mount type=volume,dst=/src/node_modules rpc-builder npm run semantic-release
 
 
 
