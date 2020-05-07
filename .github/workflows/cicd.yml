@@ -41,4 +41,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          docker run -it --rm -e GITHUB_TOKEN -e NPM_TOKEN -v`pwd`:/src docker.pkg.github.com/roleypoly/devops/semantic-release:latest
+          docker run --rm -e GITHUB_TOKEN -e NPM_TOKEN -v`pwd`:/src docker.pkg.github.com/roleypoly/devops/semantic-release:latest
