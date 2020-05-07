@@ -37,9 +37,6 @@ jobs:
 
       - name: Release
         if: github.ref == 'refs/heads/master'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
-          docker run --rm -e GITHUB_TOKEN -e NPM_TOKEN -v`pwd`:/src docker.pkg.github.com/roleypoly/devops/semantic-release:latest
+          docker run --rm -e GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} -e NPM_TOKEN=${{ secrets.NPM_TOKEN }} -v`pwd`:/src docker.pkg.github.com/roleypoly/devops/semantic-release:latest
