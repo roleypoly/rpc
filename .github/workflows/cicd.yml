@@ -34,6 +34,12 @@ jobs:
       - name: Check if dirty
         run: test -z "`git status -s`" || (git status && exit 1)
 
+      - name: Setup Git for Release
+        if: github.ref == 'refs/heads/master'
+        uses: webfactory/ssh-agent@v0.2.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+
       - name: Release
         if: github.ref == 'refs/heads/master'
         run: |
@@ -41,6 +47,6 @@ jobs:
           docker run --rm \
             -e GH_TOKEN=${{ secrets.GITHUB_TOKEN }} \
             -e NPM_TOKEN=${{ secrets.NPM_TOKEN }} \
-            -e GIT_CREDENTIALS=${{ secrets.GIT_AUTH }} \
             -v`pwd`:/src \
+            -v$SSH_AUTH_SOCK:$SSH_AUTH_SOCK \
               docker.pkg.github.com/roleypoly/devops/semantic-release:latest
