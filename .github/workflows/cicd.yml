@@ -4,7 +4,7 @@ on: push
 
 jobs:
   validate:
-    name: Validate & Release
+    name: Validate
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
     steps:
@@ -13,9 +13,9 @@ jobs:
         with:
           go-version: 1.14.x
 
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@master
 
-      - uses: actions/cache@v1
+      - uses: actions/cache@master
         with:
           path: ~/go/pkg/mod
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
@@ -27,26 +27,34 @@ jobs:
           docker run --rm --mount type=bind,src="$(pwd)",dst=/src --mount type=volume,dst=/src/node_modules roleypoly/rpc-builder
 
       - name: Smoketest
-        run : |
+        run: |
           go vet ./...
           docker run --rm --mount type=bind,src="$(pwd)",dst=/src --mount type=volume,dst=/src/node_modules roleypoly/rpc-builder node hack/smoketest.js
 
       - name: Check if dirty
         run: test -z "`git status -s`" || (git status && exit 1)
 
-      - name: Setup Git for Release
-        if: github.ref == 'refs/heads/master'
-        uses: webfactory/ssh-agent@v0.2.0
-        with:
-          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+  release:
+    name: Release
+    needs: validate
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - uses: actions/checkout@master
 
-      - name: Release
-        if: github.ref == 'refs/heads/master'
+      - name: Ensure Node
+        uses: actions/setup-node@master
+        with:
+          node-version: 14.x
+
+      - name: Dependencies
         run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
-          docker run --rm \
-            -e GH_TOKEN=${{ secrets.GITHUB_TOKEN }} \
-            -e NPM_TOKEN=${{ secrets.NPM_TOKEN }} \
-            -v`pwd`:/src \
-            -v$SSH_AUTH_SOCK:$SSH_AUTH_SOCK \
-              docker.pkg.github.com/roleypoly/devops/semantic-release:latest
+          npm ci
+      
+      - name: Release
+        run: |
+          npm run semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    
