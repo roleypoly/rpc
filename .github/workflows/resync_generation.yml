@@ -1,0 +1,53 @@
+name: Resynchronize Codegen
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - .github/workflows/resync_generation.yml
+      - package-lock.json
+      - package.json
+      - go.*
+      - Dockerfile
+  schedule:
+    - cron: '0 13 * * *' # 1pm every day
+
+jobs:
+  generate:
+    name: Do Resynchronize
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      
+      - name: Generate
+        runs: |
+          docker run -it --rm \
+            --mount type=bind,src="$(pwd)",dst=/src \
+            --mount type=volume,dst=/src/node_modules \
+              roleypoly/rpc-builder
+      
+      - name: Check if Dirty
+        id: check_if_dirty
+        runs: |
+          test -z "`git status -s`" || (git status && exit 1)
+        continue-on-error: true
+      
+      - name: Setup Git
+        if: steps.check_if_dirty.outcome == 'failure'
+        uses: webfactory/ssh-agent@v0.2.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+
+      - name: Push Changes if Dirty
+        if: steps.check_if_dirty.outcome == 'failure'
+        run: |
+          git config --local user.email "gh-automation@roleypoly.com"
+          git config --local user.name "Roleypoly RPC Automation"
+          git add .
+          git commit -m "chore: resynchronize generation, as it changed in CI."
+          git push
+
+
+        
+
