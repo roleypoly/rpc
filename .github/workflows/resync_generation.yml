@@ -44,6 +44,9 @@ jobs:
         run: |
           git config --local user.email "gh-automation@roleypoly.com"
           git config --local user.name "Roleypoly RPC Automation"
+          git stash
+          git checkout -B ci/auto-sync master
+          git stash apply
           git add .
           git commit -m "chore: resynchronize generation, as it changed in CI."
           git push
