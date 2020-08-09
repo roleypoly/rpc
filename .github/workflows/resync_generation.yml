@@ -22,7 +22,7 @@ jobs:
       
       - name: Generate
         run: |
-          docker run -it --rm \
+          docker run --rm \
             --mount type=bind,src="$(pwd)",dst=/src \
             --mount type=volume,dst=/src/node_modules \
               roleypoly/rpc-builder
