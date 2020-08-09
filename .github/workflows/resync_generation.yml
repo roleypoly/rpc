@@ -49,7 +49,7 @@ jobs:
           git stash apply
           git add .
           git commit -m "chore: resynchronize generation, as it changed in CI."
-          git push
+          git push origin ci/auto-sync --force-with-lease
 
 
         
