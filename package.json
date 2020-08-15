@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@improbable-eng/grpc-web": "0.13.0",
-    "google-protobuf": "3.12.4"
+    "google-protobuf": "3.13.0"
   },
   "release": {
     "plugins": [
