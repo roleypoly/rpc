@@ -14,12 +14,12 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
     __setModuleDefault(result, mod);
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Shared = exports.Platform = exports.Discord = exports.Ctf = exports.AuthClient = exports.Auth = void 0;
+exports.Shared = exports.Platform = exports.Discord = exports.Ctf = exports.AuthClient = exports.Auth = exports.Empty = void 0;
 var empty_pb_1 = require("google-protobuf/google/protobuf/empty_pb");
 Object.defineProperty(exports, "Empty", { enumerable: true, get: function () { return empty_pb_1.Empty; } });
 const Auth = __importStar(require("./auth"));
